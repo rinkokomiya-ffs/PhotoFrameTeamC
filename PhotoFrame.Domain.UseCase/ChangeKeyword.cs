@@ -10,12 +10,12 @@ namespace PhotoFrame.Domain.UseCase
     public class ChangeKeyword
     {
 
-        private readonly IKeywordRepository albumRepository;
+        private readonly IKeywordRepository keywordRepository;
         private readonly IPhotoRepository photoRepository;
 
-        public ChangeKeyword(IKeywordRepository albumRepository, IPhotoRepository photoRepository)
+        public ChangeKeyword(IKeywordRepository keywordRepository, IPhotoRepository photoRepository)
         {
-            this.albumRepository = albumRepository;
+            this.keywordRepository = keywordRepository;
             this.photoRepository = photoRepository;
         }
 
@@ -26,18 +26,15 @@ namespace PhotoFrame.Domain.UseCase
         /// <param name="photo"></param>
         /// <param name="newAlbumName"></param>
         /// <returns></returns>
-        public Photo Execute(Photo photo, string newAlbumName)
+        public Photo Execute(Photo photo, string keywordName)
         {
            
-            Func<IQueryable<Keyword>, Keyword> query = allAlbums => allAlbums.FirstOrDefault(a => a.Name == newAlbumName);
+            Func<IQueryable<Keyword>, Keyword> query = allKeywords => allKeywords.FirstOrDefault(keyword => keyword.Name == keywordName);
 
-            // 毎回Findを呼び出すのは非効率
-            // Find・Storeメソッド自体に見直しも必要
-            var newAlbum = albumRepository.Find(query);
-
-            if (newAlbum != null)
+            var result = keywordRepository.Find(query);
+            if (result != null)
             {
-                photo.IsAssignedTo(newAlbum);
+                photo.IsAssignedTo(result);
             }
 
             photoRepository.Store(photo);
@@ -51,23 +48,23 @@ namespace PhotoFrame.Domain.UseCase
         /// <param name="photo"></param>
         /// <param name="newAlbumName"></param>
         /// <returns></returns>
-        public async Task<Photo> ExecuteAsync(Photo photo, string newAlbumName)
-        {
-            Func<IQueryable<Keyword>, Keyword> query = allAlbums => allAlbums.FirstOrDefault(a => a.Name == newAlbumName);
+        //public async Task<Photo> ExecuteAsync(Photo photo, string newAlbumName)
+        //{
+        //    Func<IQueryable<Keyword>, Keyword> query = allAlbums => allAlbums.FirstOrDefault(a => a.Name == newAlbumName);
 
-            var newAlbum = albumRepository.Find(query);
+        //    var newAlbum = keywordRepository.Find(query);
 
-            if (newAlbum != null)
-            {
-                photo.IsAssignedTo(newAlbum);
-            }
+        //    if (newAlbum != null)
+        //    {
+        //        photo.IsAssignedTo(newAlbum);
+        //    }
 
-            await Task.Run(() =>
-            {
-                photoRepository.Store(photo);
-            });
+        //    await Task.Run(() =>
+        //    {
+        //        photoRepository.Store(photo);
+        //    });
 
-            return photo;
-        }
+        //    return photo;
+        //}
     }
 }
