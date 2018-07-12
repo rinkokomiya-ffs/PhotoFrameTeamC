@@ -43,11 +43,10 @@
             this.columnHeader_AlbumName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader_Favorite = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ButtonDetailSearch = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.comboBox_ChangeAlbum = new System.Windows.Forms.ComboBox();
-            this.button_ToggleFavorite = new System.Windows.Forms.Button();
-            this.button_ChangeAlbum = new System.Windows.Forms.Button();
             this.button_SlideShow = new System.Windows.Forms.Button();
+            this.button_ChangeAlbum = new System.Windows.Forms.Button();
+            this.button_ToggleFavorite = new System.Windows.Forms.Button();
+            this.comboBox_ChangeAlbum = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -58,7 +57,6 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -76,7 +74,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(576, 546);
+            this.splitContainer1.Size = new System.Drawing.Size(990, 546);
             this.splitContainer1.SplitterDistance = 69;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -169,10 +167,12 @@
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.comboBox_ChangeAlbum);
             this.splitContainer2.Panel2.Controls.Add(this.ButtonDetailSearch);
-            this.splitContainer2.Panel2.Controls.Add(this.panel2);
+            this.splitContainer2.Panel2.Controls.Add(this.button_ChangeAlbum);
+            this.splitContainer2.Panel2.Controls.Add(this.button_ToggleFavorite);
             this.splitContainer2.Panel2.Controls.Add(this.button_SlideShow);
-            this.splitContainer2.Size = new System.Drawing.Size(576, 473);
+            this.splitContainer2.Size = new System.Drawing.Size(990, 473);
             this.splitContainer2.SplitterDistance = 351;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -185,7 +185,7 @@
             this.listView_PhotoList.FullRowSelect = true;
             this.listView_PhotoList.Location = new System.Drawing.Point(33, 0);
             this.listView_PhotoList.Name = "listView_PhotoList";
-            this.listView_PhotoList.Size = new System.Drawing.Size(530, 278);
+            this.listView_PhotoList.Size = new System.Drawing.Size(530, 311);
             this.listView_PhotoList.TabIndex = 0;
             this.listView_PhotoList.UseCompatibleStateImageBehavior = false;
             this.listView_PhotoList.View = System.Windows.Forms.View.Details;
@@ -207,7 +207,7 @@
             // 
             // ButtonDetailSearch
             // 
-            this.ButtonDetailSearch.Location = new System.Drawing.Point(374, 28);
+            this.ButtonDetailSearch.Location = new System.Drawing.Point(343, 43);
             this.ButtonDetailSearch.Name = "ButtonDetailSearch";
             this.ButtonDetailSearch.Size = new System.Drawing.Size(97, 23);
             this.ButtonDetailSearch.TabIndex = 3;
@@ -215,47 +215,9 @@
             this.ButtonDetailSearch.UseVisualStyleBackColor = true;
             this.ButtonDetailSearch.Click += new System.EventHandler(this.ButtonDetailSearchClick);
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.comboBox_ChangeAlbum);
-            this.panel2.Controls.Add(this.button_ToggleFavorite);
-            this.panel2.Controls.Add(this.button_ChangeAlbum);
-            this.panel2.Location = new System.Drawing.Point(33, 13);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(334, 78);
-            this.panel2.TabIndex = 0;
-            // 
-            // comboBox_ChangeAlbum
-            // 
-            this.comboBox_ChangeAlbum.FormattingEnabled = true;
-            this.comboBox_ChangeAlbum.Location = new System.Drawing.Point(18, 16);
-            this.comboBox_ChangeAlbum.Name = "comboBox_ChangeAlbum";
-            this.comboBox_ChangeAlbum.Size = new System.Drawing.Size(190, 20);
-            this.comboBox_ChangeAlbum.TabIndex = 0;
-            // 
-            // button_ToggleFavorite
-            // 
-            this.button_ToggleFavorite.Location = new System.Drawing.Point(224, 45);
-            this.button_ToggleFavorite.Name = "button_ToggleFavorite";
-            this.button_ToggleFavorite.Size = new System.Drawing.Size(89, 23);
-            this.button_ToggleFavorite.TabIndex = 1;
-            this.button_ToggleFavorite.Text = "お気に入り";
-            this.button_ToggleFavorite.UseVisualStyleBackColor = true;
-            this.button_ToggleFavorite.Click += new System.EventHandler(this.ButtonToggleFavoriteClick);
-            // 
-            // button_ChangeAlbum
-            // 
-            this.button_ChangeAlbum.Location = new System.Drawing.Point(225, 16);
-            this.button_ChangeAlbum.Name = "button_ChangeAlbum";
-            this.button_ChangeAlbum.Size = new System.Drawing.Size(88, 23);
-            this.button_ChangeAlbum.TabIndex = 1;
-            this.button_ChangeAlbum.Text = "アルバム変更";
-            this.button_ChangeAlbum.UseVisualStyleBackColor = true;
-            this.button_ChangeAlbum.Click += new System.EventHandler(this.ButtonChangeKeywordClick);
-            // 
             // button_SlideShow
             // 
-            this.button_SlideShow.Location = new System.Drawing.Point(437, 43);
+            this.button_SlideShow.Location = new System.Drawing.Point(456, 43);
             this.button_SlideShow.Name = "button_SlideShow";
             this.button_SlideShow.Size = new System.Drawing.Size(89, 23);
             this.button_SlideShow.TabIndex = 2;
@@ -263,11 +225,39 @@
             this.button_SlideShow.UseVisualStyleBackColor = true;
             this.button_SlideShow.Click += new System.EventHandler(this.ButtonStartSlideShowClick);
             // 
+            // button_ChangeAlbum
+            // 
+            this.button_ChangeAlbum.Location = new System.Drawing.Point(259, 30);
+            this.button_ChangeAlbum.Name = "button_ChangeAlbum";
+            this.button_ChangeAlbum.Size = new System.Drawing.Size(70, 23);
+            this.button_ChangeAlbum.TabIndex = 1;
+            this.button_ChangeAlbum.Text = "設定";
+            this.button_ChangeAlbum.UseVisualStyleBackColor = true;
+            this.button_ChangeAlbum.Click += new System.EventHandler(this.ButtonChangeKeywordClick);
+            // 
+            // button_ToggleFavorite
+            // 
+            this.button_ToggleFavorite.Location = new System.Drawing.Point(51, 58);
+            this.button_ToggleFavorite.Name = "button_ToggleFavorite";
+            this.button_ToggleFavorite.Size = new System.Drawing.Size(89, 23);
+            this.button_ToggleFavorite.TabIndex = 1;
+            this.button_ToggleFavorite.Text = "切替";
+            this.button_ToggleFavorite.UseVisualStyleBackColor = true;
+            this.button_ToggleFavorite.Click += new System.EventHandler(this.ButtonToggleFavoriteClick);
+            // 
+            // comboBox_ChangeAlbum
+            // 
+            this.comboBox_ChangeAlbum.FormattingEnabled = true;
+            this.comboBox_ChangeAlbum.Location = new System.Drawing.Point(51, 32);
+            this.comboBox_ChangeAlbum.Name = "comboBox_ChangeAlbum";
+            this.comboBox_ChangeAlbum.Size = new System.Drawing.Size(190, 20);
+            this.comboBox_ChangeAlbum.TabIndex = 0;
+            // 
             // PhotoFrameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(576, 546);
+            this.ClientSize = new System.Drawing.Size(990, 546);
             this.Controls.Add(this.splitContainer1);
             this.Name = "PhotoFrameForm";
             this.Text = "Form1";
@@ -283,7 +273,6 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -301,15 +290,14 @@
         private System.Windows.Forms.Button buttonSearchAlbum;
         private System.Windows.Forms.TextBox textBoxRegistKeyword;
         private System.Windows.Forms.Label labelKeywordName;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ComboBox comboBox_ChangeAlbum;
-        private System.Windows.Forms.Button button_ChangeAlbum;
-        private System.Windows.Forms.Button button_ToggleFavorite;
         private System.Windows.Forms.Button button_SlideShow;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button buttonReferenceFolder;
         private System.Windows.Forms.Label labelShowFolderPath;
         private System.Windows.Forms.Button ButtonDetailSearch;
+        private System.Windows.Forms.ComboBox comboBox_ChangeAlbum;
+        private System.Windows.Forms.Button button_ChangeAlbum;
+        private System.Windows.Forms.Button button_ToggleFavorite;
     }
 }
 
