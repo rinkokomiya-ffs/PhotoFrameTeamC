@@ -23,7 +23,7 @@ namespace PhotoFrame.Persistence
 
         private readonly Type type;
 
-        public IKeywordRepository AlbumRepository { get; }
+        public IKeywordRepository KeywordRepository { get; }
         public IPhotoRepository PhotoRepository { get; }
 
         public RepositoryFactory(Type t)
@@ -32,14 +32,14 @@ namespace PhotoFrame.Persistence
             switch (type)
             {
                 case Type.Csv:
-                    AlbumRepository = new Csv.KeywordRepository(DatabaseName);
-                    PhotoRepository = new Csv.PhotoRepository(DatabaseName, AlbumRepository);
+                    KeywordRepository = new Csv.KeywordRepository(DatabaseName);
+                    PhotoRepository = new Csv.PhotoRepository(DatabaseName, KeywordRepository);
                     break;
                 case Type.EF:
                     // TODO: EFに適した生成に変更してください
                     SqlProviderServices sqlProviderServices = SqlProviderServices.Instance;
-                    AlbumRepository = new EF.KeywordRepository(sqlProviderServices);
-                    PhotoRepository = new EF.PhotoRepository(AlbumRepository, sqlProviderServices);
+                    KeywordRepository = new EF.KeywordRepository(sqlProviderServices);
+                    PhotoRepository = new EF.PhotoRepository(KeywordRepository, sqlProviderServices);
                     break;
                 default:
                     throw new ArgumentException("The specified type is not supported.");

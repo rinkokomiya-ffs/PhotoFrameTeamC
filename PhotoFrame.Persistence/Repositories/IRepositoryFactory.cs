@@ -9,7 +9,7 @@ namespace PhotoFrame.Persistence
 {
     public interface IRepositoryFactory
     {
-        IKeywordRepository AlbumRepository { get; }
+        IKeywordRepository KeywordRepository { get; }
         IPhotoRepository PhotoRepository { get; }
     }
 }

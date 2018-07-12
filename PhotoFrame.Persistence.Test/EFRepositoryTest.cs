@@ -13,7 +13,7 @@ namespace PhotoFrame.Persistence.Test
     public class EFRepositoryTest
     {
         private static IPhotoRepository photoRepository;
-        private static IKeywordRepository albumRepository;
+        private static IKeywordRepository keywordRepository;
 
         private TransactionScope scope;
 
@@ -23,12 +23,12 @@ namespace PhotoFrame.Persistence.Test
             // リポジトリ生成
             var repos = new RepositoryFactory(Type.EF);
             photoRepository = repos.PhotoRepository;
-            albumRepository = repos.AlbumRepository;
+            keywordRepository = repos.KeywordRepository;
 
             // テスト用データベースが存在していない場合は作りにいくが、
             // Transaction中ではテーブルを作成できないため、ここで作成させる
             //photoRepository.FindBy("dummy");
-            //albumRepository.FindBy("dummy");
+            //keywordRepository.FindBy("dummy");
         }
 
         [TestInitialize]
@@ -51,7 +51,7 @@ namespace PhotoFrame.Persistence.Test
             photoRepository.Store(photo);
 
             //var result = photoRepository.FindBy(photo.Id);
-            var result = photoRepository.Find(allAlbum => allAlbum.FirstOrDefault(p => p.Id == photo.Id));
+            var result = photoRepository.Find(allKeyword => allKeyword.FirstOrDefault(p => p.Id == photo.Id));
             Assert.AreNotEqual(null, result);
         }
 
@@ -65,24 +65,24 @@ namespace PhotoFrame.Persistence.Test
             photoRepository.Store(photo);
 
             // var result = photoRepository.FindBy(photo.Id);
-            var result = photoRepository.Find(allAlbum => allAlbum.FirstOrDefault(p => p.Id == photo.Id));
+            var result = photoRepository.Find(allKeyword => allKeyword.FirstOrDefault(p => p.Id == photo.Id));
             Assert.AreEqual(true, result.IsFavorite);
         }
 
         [TestMethod]
         public void 既存の写真をアルバムに追加できること()
         {
-            var album = Keyword.Create("Album1");
-            albumRepository.Store(album);
+            var keyword = Keyword.Create("Keyword1");
+            keywordRepository.Store(keyword);
             var photo = Photo.CreateFromFile(new File("dummy.bmp"));
             photoRepository.Store(photo);
 
-            photo.IsAssignedTo(album);
+            photo.IsAssignedTo(keyword);
             photoRepository.Store(photo);
 
             //var result = photoRepository.FindBy(photo.Id);
-            var result = photoRepository.Find(allAlbum => allAlbum.FirstOrDefault(p => p.Id == photo.Id));
-            Assert.AreEqual(album.Id, result.Album.Id);
+            var result = photoRepository.Find(allKeyword => allKeyword.FirstOrDefault(p => p.Id == photo.Id));
+            Assert.AreEqual(keyword.Id, result.Keyword.Id);
         }
     }
 }
