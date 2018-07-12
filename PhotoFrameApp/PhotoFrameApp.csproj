@@ -65,6 +65,9 @@
     <Compile Include="SlideShowForm.Designer.cs">
       <DependentUpon>SlideShowForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DetailSearchForm.resx">
+      <DependentUpon>DetailSearchForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PhotoFrameForm.resx">
       <DependentUpon>PhotoFrameForm.cs</DependentUpon>
     </EmbeddedResource>
