@@ -18,9 +18,9 @@ namespace PhotoFrame.Persistence.Csv
         /// 永続化ストアとして利用するCSVファイルパス
         /// </summary>
         private string CsvFilePath { get; }
-        private IAlbumRepository albumRepository;
+        private IKeywordRepository albumRepository;
 
-        public PhotoRepository(string databaseName, IAlbumRepository albumRepository)
+        public PhotoRepository(string databaseName, IKeywordRepository albumRepository)
         {
             this.CsvFilePath = $"{databaseName}_Photo.csv"; // $"{...}" : 文字列展開
             this.albumRepository = albumRepository;

@@ -14,9 +14,9 @@ namespace PhotoFrame.Persistence.EF
     class PhotoRepository : IPhotoRepository
     {
         private SqlProviderServices _sqlProviderServices;
-        private IAlbumRepository albumRepository;
+        private IKeywordRepository albumRepository;
 
-        public PhotoRepository(IAlbumRepository albumRepository, SqlProviderServices sqlProviderServices)
+        public PhotoRepository(IKeywordRepository albumRepository, SqlProviderServices sqlProviderServices)
         {
             this.albumRepository = albumRepository;
             _sqlProviderServices = sqlProviderServices;

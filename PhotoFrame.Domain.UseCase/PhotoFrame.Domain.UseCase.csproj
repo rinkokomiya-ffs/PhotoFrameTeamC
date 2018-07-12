@@ -41,8 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChangeAlbum.cs" />
-    <Compile Include="CreateAlbum.cs" />
+    <Compile Include="ChangeKeyword.cs" />
+    <Compile Include="CreateKeyword.cs" />
     <Compile Include="SearchAlbums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchDirectory.cs" />

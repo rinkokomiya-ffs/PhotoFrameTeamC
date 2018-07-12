@@ -1,6 +1,6 @@
 ﻿namespace PhotoFrameApp
 {
-    partial class SlideShow
+    partial class SlideShowForm
     {
         /// <summary>
         /// Required designer variable.

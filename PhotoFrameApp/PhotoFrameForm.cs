@@ -14,10 +14,10 @@ using System.IO;
 
 namespace PhotoFrameApp
 {
-    public partial class Form1 : Form
+    public partial class PhotoFrameForm : Form
     {
         private IPhotoRepository photoRepository;
-        private IAlbumRepository albumRepository;
+        private IKeywordRepository albumRepository;
         private IPhotoFileService photoFileService;
         private PhotoFrameApplication application;
         private IEnumerable<Photo> searchedPhotos; // リストビュー上のフォトのリスト
@@ -25,7 +25,7 @@ namespace PhotoFrameApp
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public Form1()
+        public PhotoFrameForm()
         {
             InitializeComponent();
 
@@ -53,11 +53,11 @@ namespace PhotoFrameApp
            
  
             // 全アルバム名を取得し、アルバム変更リストをセット
-            IEnumerable<Album> allAlbums = albumRepository.Find((IQueryable<Album> albums) => albums);
+            IEnumerable<Keyword> allAlbums = albumRepository.Find((IQueryable<Keyword> albums) => albums);
 
             if(allAlbums != null)
             {
-                foreach (Album album in allAlbums)
+                foreach (Keyword album in allAlbums)
                 {
                     comboBox_ChangeAlbum.Items.Add(album.Name);
                 }
@@ -178,7 +178,7 @@ namespace PhotoFrameApp
         {
             if(this.searchedPhotos.Count() > 0)
             {
-                var slideShowForm = new SlideShow(this.searchedPhotos);
+                var slideShowForm = new SlideShowForm(this.searchedPhotos);
                 slideShowForm.ShowDialog();
             }
             

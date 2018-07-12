@@ -41,9 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Album.cs" />
+    <Compile Include="Keyword.cs" />
     <Compile Include="File.cs" />
-    <Compile Include="IAlbumRepository.cs" />
+    <Compile Include="IKeywordRepository.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="IPhotoFileService.cs" />
     <Compile Include="IPhotoRepository.cs" />

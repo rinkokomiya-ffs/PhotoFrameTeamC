@@ -12,11 +12,11 @@ namespace PhotoFrame.Domain.UseCase
     /// アルバムを作成するユースケースを実現する
     /// </summary>
     // TODO: 仮実装
-    public class CreateAlbum
+    public class CreateKeyword
     {
-        private readonly IAlbumRepository albumRepository;
+        private readonly IKeywordRepository albumRepository;
         
-        public CreateAlbum(IAlbumRepository albumRepository)
+        public CreateKeyword(IKeywordRepository albumRepository)
         {
             this.albumRepository = albumRepository;
           
@@ -29,7 +29,7 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns>終了状態を数値で返す</returns>
         public int Execute(string albumName)
         {
-            IEnumerable<Album> result = albumRepository.Find((IQueryable<Album> albums) => (from p in albums where p.Name == albumName select p));
+            IEnumerable<Keyword> result = albumRepository.Find((IQueryable<Keyword> albums) => (from p in albums where p.Name == albumName select p));
 
             if (albumName != "")
             {
@@ -37,7 +37,7 @@ namespace PhotoFrame.Domain.UseCase
                 if (result == null || result.Count() == 0)
                 {
 
-                    var album = Album.Create(albumName);
+                    var album = Keyword.Create(albumName);
                     albumRepository.Store(album);
 
                     // 正常終了
@@ -66,7 +66,7 @@ namespace PhotoFrame.Domain.UseCase
         {
             var judgement = await Task.Run(() =>
             {
-                IEnumerable<Album> result = albumRepository.Find((IQueryable<Album> albums) => (from p in albums where p.Name == albumName select p));
+                IEnumerable<Keyword> result = albumRepository.Find((IQueryable<Keyword> albums) => (from p in albums where p.Name == albumName select p));
 
                 if (albumName != "")
                 {
@@ -74,7 +74,7 @@ namespace PhotoFrame.Domain.UseCase
                     if (result == null || result.Count() == 0)
                     {
 
-                        var album = Album.Create(albumName);
+                        var album = Keyword.Create(albumName);
                         albumRepository.Store(album);
 
                         // 正常終了

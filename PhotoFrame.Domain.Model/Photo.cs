@@ -23,14 +23,14 @@ namespace PhotoFrame.Domain.Model
         /// <summary>
         /// 所属アルバム
         /// </summary>
-        public virtual Album Album { get; private set; }
+        public virtual Keyword Album { get; private set; }
 
         /// <summary>
         /// 所属アルバムID
         /// </summary>
         public string AlbumId { get; set; }
 
-        public Photo(string photoId, File file, bool isFavorite = false, string albumId = null, Album album = null)
+        public Photo(string photoId, File file, bool isFavorite = false, string albumId = null, Keyword album = null)
         {
             Id = photoId;
             File = file;
@@ -50,7 +50,7 @@ namespace PhotoFrame.Domain.Model
 
         private Photo() { }
 
-        public void IsAssignedTo(Album album)
+        public void IsAssignedTo(Keyword album)
         {
             Album = album;
             AlbumId = album.Id;

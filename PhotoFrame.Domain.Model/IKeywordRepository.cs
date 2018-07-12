@@ -9,7 +9,7 @@ namespace PhotoFrame.Domain.Model
     /// <summary>
     /// Albumをドメインオブジェクトとするコレクションインターフェース
     /// </summary>
-    public interface IAlbumRepository : IRepository<Album>
+    public interface IKeywordRepository : IRepository<Keyword>
     {
         
     }

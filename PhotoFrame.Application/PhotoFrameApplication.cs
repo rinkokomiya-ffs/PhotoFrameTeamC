@@ -15,19 +15,19 @@ namespace PhotoFrame.Application
     public class PhotoFrameApplication
     {
         // ユースケースのインスタンス
-        private readonly CreateAlbum createAlbum;
+        private readonly CreateKeyword createAlbum;
         private readonly SearchAlbums searchAlbum;
         private readonly SearchDirectory searchDirectory;
         private readonly ToggleFavorite toggleFavorite;
-        private readonly ChangeAlbum changeAlbum;
+        private readonly ChangeKeyword changeAlbum;
 
-        public PhotoFrameApplication(IAlbumRepository albumRepository, IPhotoRepository photoRepository, IPhotoFileService photoFileService)
+        public PhotoFrameApplication(IKeywordRepository albumRepository, IPhotoRepository photoRepository, IPhotoFileService photoFileService)
         {
-            this.createAlbum = new CreateAlbum(albumRepository);
+            this.createAlbum = new CreateKeyword(albumRepository);
             this.searchAlbum = new SearchAlbums(photoRepository);
             this.searchDirectory = new SearchDirectory(photoRepository, photoFileService);
             this.toggleFavorite = new ToggleFavorite(photoRepository);
-            this.changeAlbum = new ChangeAlbum(albumRepository, photoRepository);
+            this.changeAlbum = new ChangeKeyword(albumRepository, photoRepository);
         }
 
         public int CreateAlbum(string albumName)

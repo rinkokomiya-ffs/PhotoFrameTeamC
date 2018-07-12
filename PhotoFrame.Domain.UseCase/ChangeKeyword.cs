@@ -7,13 +7,13 @@ using PhotoFrame.Domain.Model;
 
 namespace PhotoFrame.Domain.UseCase
 {
-    public class ChangeAlbum
+    public class ChangeKeyword
     {
 
-        private readonly IAlbumRepository albumRepository;
+        private readonly IKeywordRepository albumRepository;
         private readonly IPhotoRepository photoRepository;
 
-        public ChangeAlbum(IAlbumRepository albumRepository, IPhotoRepository photoRepository)
+        public ChangeKeyword(IKeywordRepository albumRepository, IPhotoRepository photoRepository)
         {
             this.albumRepository = albumRepository;
             this.photoRepository = photoRepository;
@@ -29,7 +29,7 @@ namespace PhotoFrame.Domain.UseCase
         public Photo Execute(Photo photo, string newAlbumName)
         {
            
-            Func<IQueryable<Album>, Album> query = allAlbums => allAlbums.FirstOrDefault(a => a.Name == newAlbumName);
+            Func<IQueryable<Keyword>, Keyword> query = allAlbums => allAlbums.FirstOrDefault(a => a.Name == newAlbumName);
 
             // 毎回Findを呼び出すのは非効率
             // Find・Storeメソッド自体に見直しも必要
@@ -53,7 +53,7 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns></returns>
         public async Task<Photo> ExecuteAsync(Photo photo, string newAlbumName)
         {
-            Func<IQueryable<Album>, Album> query = allAlbums => allAlbums.FirstOrDefault(a => a.Name == newAlbumName);
+            Func<IQueryable<Keyword>, Keyword> query = allAlbums => allAlbums.FirstOrDefault(a => a.Name == newAlbumName);
 
             var newAlbum = albumRepository.Find(query);
 

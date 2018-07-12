@@ -9,18 +9,18 @@ using System.Data.Entity.SqlServer;
 namespace PhotoFrame.Persistence.EF
 {
     /// <summary>
-    /// <see cref="IAlbumRepository">の実装クラス
+    /// <see cref="IKeywordRepository">の実装クラス
     /// </summary>
-    class AlbumRepository : IAlbumRepository
+    class KeywordRepository : IKeywordRepository
     {
         private SqlProviderServices _sqlProviderServices;
 
-        public AlbumRepository(SqlProviderServices sqlProviderServices)
+        public KeywordRepository(SqlProviderServices sqlProviderServices)
         {
             _sqlProviderServices = sqlProviderServices;
         }
 
-        public bool Exists(Album entity)
+        public bool Exists(Keyword entity)
         {
             // TODO: DBプログラミング講座で実装
             throw new NotImplementedException();
@@ -37,7 +37,7 @@ namespace PhotoFrame.Persistence.EF
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
-        public IEnumerable<Album> Find(Func<IQueryable<Album>, IQueryable<Album>> query)
+        public IEnumerable<Keyword> Find(Func<IQueryable<Keyword>, IQueryable<Keyword>> query)
             => query(FindAll());
 
         /// <summary>
@@ -45,10 +45,10 @@ namespace PhotoFrame.Persistence.EF
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
-        public Album Find(Func<IQueryable<Album>, Album> query)
+        public Keyword Find(Func<IQueryable<Keyword>, Keyword> query)
             => query(FindAll());
 
-        public Album FindBy(string id)
+        public Keyword FindBy(string id)
         {
             // TODO: DBプログラミング講座で実装
             throw new NotImplementedException();
@@ -60,7 +60,7 @@ namespace PhotoFrame.Persistence.EF
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public Album Store(Album entity)
+        public Keyword Store(Keyword entity)
         {
             // TODO: DBプログラミング講座で実装
             var album = AlbumToTable(entity);
@@ -105,7 +105,7 @@ namespace PhotoFrame.Persistence.EF
         ///  DBのデータをすべて取得
         /// </summary>
         /// <returns></returns>
-        private IQueryable<Album> FindAll()
+        private IQueryable<Keyword> FindAll()
         {
             using (var photoFrameEntity = new PhotoFrameDBEntities())
             {
@@ -119,9 +119,9 @@ namespace PhotoFrame.Persistence.EF
         /// </summary>
         /// <param name="m_album"></param>
         /// <returns></returns>
-        private Album TableToAlbum(M_ALBUM m_album)
+        private Keyword TableToAlbum(M_ALBUM m_album)
         {
-            return new Album(m_album.Id.ToString(), m_album.Name, m_album.Descript);
+            return new Keyword(m_album.Id.ToString(), m_album.Name, m_album.Descript);
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace PhotoFrame.Persistence.EF
         /// </summary>
         /// <param name="album"></param>
         /// <returns></returns>
-        private M_ALBUM AlbumToTable(Album album)
+        private M_ALBUM AlbumToTable(Keyword album)
         {
             var m_album = new M_ALBUM();
             m_album.Id = Guid.Parse(album.Id);

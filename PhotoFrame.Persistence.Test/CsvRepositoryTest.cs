@@ -12,7 +12,7 @@ namespace PhotoFrame.Persistence.Test
     public class CsvRepositoryTest
     {
         private IPhotoRepository photoRepository;
-        private IAlbumRepository albumRepository;
+        private IKeywordRepository albumRepository;
 
         [TestInitialize]
         public void SetUp()
@@ -61,7 +61,7 @@ namespace PhotoFrame.Persistence.Test
         [TestMethod]
         public void 既存の写真をアルバムに追加できること()
         {
-            var album = Album.Create("Album1");
+            var album = Keyword.Create("Album1");
             albumRepository.Store(album);
             var photo = Photo.CreateFromFile(new File("dummy.bmp"));
             photoRepository.Store(photo);
@@ -78,7 +78,7 @@ namespace PhotoFrame.Persistence.Test
         {
             for(int i = 0; i < 5; i++)
             {
-                Album album = Album.Create("Album" + i);
+                Keyword album = Keyword.Create("Album" + i);
             }
 
             //Album result = albumRepository.Find(albums => from a in albums where a.Name.Contains("3") select a);

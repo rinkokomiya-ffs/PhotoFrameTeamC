@@ -9,16 +9,16 @@ using System.IO;
 namespace PhotoFrame.Persistence.Csv
 {
     /// <summary>
-    /// <see cref="IAlbumRepository">の実装クラス
+    /// <see cref="IKeywordRepository">の実装クラス
     /// </summary>
-    class AlbumRepository : IAlbumRepository
+    class KeywordRepository : IKeywordRepository
     {
         /// <summary>
         /// 永続化ストアとして利用するCSVファイルパス
         /// </summary>
         private string CsvFilePath { get; }
 
-        public AlbumRepository(string databaseName)
+        public KeywordRepository(string databaseName)
         {
             this.CsvFilePath = $"{databaseName}_Album.csv"; // $"{...}" : 文字列展開
 
@@ -28,13 +28,13 @@ namespace PhotoFrame.Persistence.Csv
             }
         }
 
-        public IEnumerable<Album> Find(Func<IQueryable<Album>, IQueryable<Album>> query)
+        public IEnumerable<Keyword> Find(Func<IQueryable<Keyword>, IQueryable<Keyword>> query)
             => query(FindAll().AsQueryable()).ToList();
 
-        public Album Find(Func<IQueryable<Album>, Album> query)
+        public Keyword Find(Func<IQueryable<Keyword>, Keyword> query)
             => query(FindAll().AsQueryable());
 
-        public Album FindBy(string id)
+        public Keyword FindBy(string id)
         {
             using (var reader = new StreamReader(CsvFilePath, Encoding.UTF8))
             {
@@ -51,11 +51,11 @@ namespace PhotoFrame.Persistence.Csv
             return null;
         }
 
-        public bool Exists(Album entity) => ExistsBy(entity.Id);
+        public bool Exists(Keyword entity) => ExistsBy(entity.Id);
 
         public bool ExistsBy(string id) => FindBy(id) != null;
 
-        public Album Store(Album entity)
+        public Keyword Store(Keyword entity)
         {
             var serialized = Serialize(entity);
             var updated = false;
@@ -95,20 +95,20 @@ namespace PhotoFrame.Persistence.Csv
         }
 
         // Album型のデータをCSVの1行に変換する
-        private string Serialize(Album album)
+        private string Serialize(Keyword album)
             => $"{album.Id},{album.Name},{album.Description ?? ""}";
 
         // CSVの1行をAlbum型のデータに変換する
-        private Album Deserialize(string csvRow)
+        private Keyword Deserialize(string csvRow)
         {
             var split = csvRow.Split(',');
-            return new Album(split[0], split[1], split[2]);
+            return new Keyword(split[0], split[1], split[2]);
         }
 
         // CSVの行データをすべて取得する
-        private IEnumerable<Album> FindAll()
+        private IEnumerable<Keyword> FindAll()
         {
-            var result = new List<Album>();
+            var result = new List<Keyword>();
 
             using (var reader = new StreamReader(CsvFilePath, Encoding.UTF8))
             {

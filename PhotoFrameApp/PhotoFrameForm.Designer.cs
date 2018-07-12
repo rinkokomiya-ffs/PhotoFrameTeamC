@@ -1,6 +1,6 @@
 ﻿namespace PhotoFrameApp
 {
-    partial class Form1
+    partial class PhotoFrameForm
     {
         /// <summary>
         /// 必要なデザイナー変数です。

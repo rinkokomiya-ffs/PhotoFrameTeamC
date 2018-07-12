@@ -16,12 +16,12 @@ using PhotoFrame.Persistence.Csv;
 
 namespace PhotoFrameApp
 {
-    public partial class SlideShow : Form
+    public partial class SlideShowForm : Form
     {
         IEnumerable<Photo> photos;
         int photo_index;
 
-        public SlideShow()
+        public SlideShowForm()
         {
             InitializeComponent();
             Environment.Exit(1);
@@ -31,7 +31,7 @@ namespace PhotoFrameApp
         /// コンストラクタ
         /// </summary>
         /// <param name="photos"></param>
-        public SlideShow(IEnumerable<Photo> photos)
+        public SlideShowForm(IEnumerable<Photo> photos)
         {
             InitializeComponent();
             this.photos = photos;

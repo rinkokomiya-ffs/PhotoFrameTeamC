@@ -13,7 +13,7 @@ namespace PhotoFrame.Persistence.Test
     public class EFRepositoryTest
     {
         private static IPhotoRepository photoRepository;
-        private static IAlbumRepository albumRepository;
+        private static IKeywordRepository albumRepository;
 
         private TransactionScope scope;
 
@@ -72,7 +72,7 @@ namespace PhotoFrame.Persistence.Test
         [TestMethod]
         public void 既存の写真をアルバムに追加できること()
         {
-            var album = Album.Create("Album1");
+            var album = Keyword.Create("Album1");
             albumRepository.Store(album);
             var photo = Photo.CreateFromFile(new File("dummy.bmp"));
             photoRepository.Store(photo);

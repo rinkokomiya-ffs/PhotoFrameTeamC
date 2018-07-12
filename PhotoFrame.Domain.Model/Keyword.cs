@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PhotoFrame.Domain.Model
 {
-    public class Album : IEntity
+    public class Keyword : IEntity
     {
         public string Id { get; private set; }
 
@@ -25,17 +25,17 @@ namespace PhotoFrame.Domain.Model
         /// </summary>
         public virtual ICollection<Photo> Photos { get; private set; }
 
-        public static Album Create(string name, string description = null)
-            => new Album(Guid.NewGuid().ToString(), name, description);
+        public static Keyword Create(string name, string description = null)
+            => new Keyword(Guid.NewGuid().ToString(), name, description);
 
-        public Album(string albumId, string name, string description)
+        public Keyword(string albumId, string name, string description)
         {
             Id = albumId;
             Name = name;
             Description = description;
         }
 
-        private Album() { }
+        private Keyword() { }
 
         public void Rename(string newName)
         {
@@ -51,18 +51,18 @@ namespace PhotoFrame.Domain.Model
         {
             if ((object)this == obj) return true;
             if (obj == null || GetType() != obj.GetType()) return false;
-            return Id == ((Album)obj).Id;
+            return Id == ((Keyword)obj).Id;
         }
 
         public override int GetHashCode() => Id.GetHashCode();
 
-        public static bool operator ==(Album album1, Album album2)
+        public static bool operator ==(Keyword album1, Keyword album2)
         {
             if (ReferenceEquals(album1, album2)) return true;
             if ((object)album1 == null || (object)album2 == null) return false;
             return album1.Equals(album2);
         }
 
-        public static bool operator !=(Album album1, Album album2) => !(album1 == album2);
+        public static bool operator !=(Keyword album1, Keyword album2) => !(album1 == album2);
     }
 }
