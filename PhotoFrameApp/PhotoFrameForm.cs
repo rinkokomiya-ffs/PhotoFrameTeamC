@@ -72,10 +72,12 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void button_SearchAlbum_Click(object sender, EventArgs e)
+        private void ButtonSearchFolderClick(object sender, EventArgs e)
+        //private async void button_SearchAlbum_Click(object sender, EventArgs e)
         {
-            // this.searchedPhotos = application.SearchDirectory(textBox_Search.Text);
-            this.searchedPhotos = await application.SearchDirectoryAsync(textBox_Search.Text);
+            // フォルダパスを引数にとって、ビジネスロジック層に渡す
+            this.searchedPhotos = application.SearchDirectory(folderPath);
+            //this.searchedPhotos = await application.SearchDirectoryAsync(textBox_Search.Text);
 
             RenewPhotoListView();
 

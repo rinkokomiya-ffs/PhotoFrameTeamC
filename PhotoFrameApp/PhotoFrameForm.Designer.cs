@@ -114,7 +114,7 @@
             this.button_SearchAlbum.TabIndex = 1;
             this.button_SearchAlbum.Text = "検索";
             this.button_SearchAlbum.UseVisualStyleBackColor = true;
-            this.button_SearchAlbum.Click += new System.EventHandler(this.button_SearchAlbum_Click);
+            this.button_SearchAlbum.Click += new System.EventHandler(this.ButtonSearchFolderClick);
             // 
             // radioButton_AlbumName
             // 
