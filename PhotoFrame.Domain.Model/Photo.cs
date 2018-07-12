@@ -35,31 +35,31 @@ namespace PhotoFrame.Domain.Model
         /// </summary>
         public DateTime DateTime { get; set; }
 
-        public Photo(string photoId, File file, DateTime date, bool isFavorite = false, string albumId = null, Keyword album = null)
+        public Photo(string photoId, File file, DateTime date, bool isFavorite = false, string keywordId = null, Keyword keyword= null)
         {
             Id = photoId;
             File = file;
             DateTime = date;
             IsFavorite = isFavorite;
-            KeywordId = albumId;
-            Keyword = album;
+            KeywordId = keywordId;
+            Keyword = keyword;
         }
 
-        public static Photo CreateFromFile(File file)
+        public static Photo CreateFromFile(File file, DateTime data)
         {
             if (!file.IsPhoto)
             {
                 throw new ArgumentException("The specified file is not a photo.");
             }
-            return new Photo(Guid.NewGuid().ToString(), file);
+            return new Photo(Guid.NewGuid().ToString(), file, data);
         }
 
         private Photo() { }
 
-        public void IsAssignedTo(Keyword album)
+        public void IsAssignedTo(Keyword keyword)
         {
-            Album = album;
-            AlbumId = album.Id;
+            Keyword = keyword;
+            KeywordId = keyword.Id;
         }
 
         public void MarkAsFavorite()
