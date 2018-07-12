@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 using PhotoFrame.Domain.Model;
 
 namespace PhotoFrame.Domain.UseCase
@@ -40,11 +41,42 @@ namespace PhotoFrame.Domain.UseCase
                 }
                 else
                 {
-                    photosInDirectory.Add(Photo.CreateFromFile(file));
+
+                    photosInDirectory.Add(Photo.CreateFromFile(file, GetDateTime(file.FilePath)));
                 }
             }
 
             return photosInDirectory;
+        }
+
+        /// <summary>
+        /// 撮影日取得
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        private DateTime GetDateTime(string filePath)
+        {
+            //読み込む
+            Bitmap bmp = new System.Drawing.Bitmap(filePath);
+            //Exif情報を列挙する
+            var exifItem = bmp.PropertyItems.SingleOrDefault(item => item.Id == 0x9003 && item.Type == 2);
+            if(exifItem != null)
+            {
+                //文字列に変換する
+                string val = Encoding.ASCII.GetString(exifItem.Value);
+                val = val.Trim(new char[] {'\0'});
+                //DateTimeに変換
+                DateTime date = DateTime.ParseExact(val, "yyyy:MM:dd HH:mm:ss", null);
+                return date;
+            }
+            else
+            {
+                // 作成日時を取得する
+                DateTime date = System.IO.File.GetCreationTime(filePath);
+                return date;
+            }
+           
+                
         }
 
         /// <summary>
