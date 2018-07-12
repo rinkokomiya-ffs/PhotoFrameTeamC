@@ -114,6 +114,16 @@ namespace PhotoFrameApp
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonDetailSearchClick(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
         /// キーワード新規作成
         /// </summary>
         /// <param name="sender"></param>
@@ -286,6 +296,6 @@ namespace PhotoFrameApp
             }
         }
 
-        
+
     }
 }

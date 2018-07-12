@@ -48,6 +48,7 @@
             this.button_ToggleFavorite = new System.Windows.Forms.Button();
             this.button_ChangeAlbum = new System.Windows.Forms.Button();
             this.button_SlideShow = new System.Windows.Forms.Button();
+            this.ButtonDetailSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -178,6 +179,7 @@
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.ButtonDetailSearch);
             this.splitContainer2.Panel2.Controls.Add(this.panel2);
             this.splitContainer2.Panel2.Controls.Add(this.button_SlideShow);
             this.splitContainer2.Size = new System.Drawing.Size(576, 416);
@@ -261,6 +263,16 @@
             this.button_SlideShow.UseVisualStyleBackColor = true;
             this.button_SlideShow.Click += new System.EventHandler(this.ButtonStartSlideShowClick);
             // 
+            // ButtonDetailSearch
+            // 
+            this.ButtonDetailSearch.Location = new System.Drawing.Point(374, 28);
+            this.ButtonDetailSearch.Name = "ButtonDetailSearch";
+            this.ButtonDetailSearch.Size = new System.Drawing.Size(97, 23);
+            this.ButtonDetailSearch.TabIndex = 3;
+            this.ButtonDetailSearch.Text = "条件絞り込み";
+            this.ButtonDetailSearch.UseVisualStyleBackColor = true;
+            this.ButtonDetailSearch.Click += new System.EventHandler(this.ButtonDetailSearchClick);
+            // 
             // PhotoFrameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -308,6 +320,7 @@
         private System.Windows.Forms.TextBox textBox_Search;
         private System.Windows.Forms.Button buttonReferenceFolder;
         private System.Windows.Forms.Label labelShowFolderPath;
+        private System.Windows.Forms.Button ButtonDetailSearch;
     }
 }
 
