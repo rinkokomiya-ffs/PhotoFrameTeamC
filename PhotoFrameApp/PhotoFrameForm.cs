@@ -21,6 +21,8 @@ namespace PhotoFrameApp
         private IPhotoFileService photoFileService;
         private PhotoFrameApplication application;
         private IEnumerable<Photo> searchedPhotos; // リストビュー上のフォトのリスト
+
+        public string folderPath { set; get; }
         
         /// <summary>
         /// コンストラクタ
@@ -66,23 +68,14 @@ namespace PhotoFrameApp
         }
 
         /// <summary>
-        /// アルバム名でフォトを検索
+        /// フォルダ名からフォトを検索
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private async void button_SearchAlbum_Click(object sender, EventArgs e)
         {
-            if (radioButton_AlbumName.Checked)
-            {
-                //this.searchedPhotos = application.SearchAlbum(textBox_Search.Text);
-                this.searchedPhotos = await application.SearchAlbumAsync(textBox_Search.Text);
-
-            }
-            else if (radioButton_DirectoryName.Checked)
-            {
                // this.searchedPhotos = application.SearchDirectory(textBox_Search.Text);
                 this.searchedPhotos = await application.SearchDirectoryAsync(textBox_Search.Text);
-            }
 
             RenewPhotoListView();
             
@@ -258,6 +251,33 @@ namespace PhotoFrameApp
             }
         }
 
+        /// <summary>
+        /// フォルダ参照ボタンをクリックしたときのイベント
+        /// ダイアログを開いてラベルにフォルダパスを表示する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonReferenceFolderClick(object sender, EventArgs e)
+        {
+            // ダイアログを開く
+            // FolderBrowserDialogクラスのインスタンスを作成
+            FolderBrowserDialog fbd = new FolderBrowserDialog
+            {
+                //上部に表示する説明テキストを指定する
+                Description = "フォルダを指定してください。",
 
+                //最初に選択するフォルダを指定する
+                SelectedPath = @"C:\",
+            };
+
+            //ダイアログで決定ボタンを選択される
+            if (fbd.ShowDialog(this) == DialogResult.OK)
+            {
+                // ラベルにフォルダパスを表示
+                labelShowFolderPath.Text = fbd.SelectedPath;
+                // フォルダパスを格納
+                folderPath = fbd.SelectedPath;
+            }
+        }
     }
 }

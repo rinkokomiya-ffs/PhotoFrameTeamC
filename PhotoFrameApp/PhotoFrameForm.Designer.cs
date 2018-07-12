@@ -30,6 +30,7 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.buttonReferenceFolder = new System.Windows.Forms.Button();
             this.button_SearchAlbum = new System.Windows.Forms.Button();
             this.radioButton_AlbumName = new System.Windows.Forms.RadioButton();
             this.radioButton_DirectoryName = new System.Windows.Forms.RadioButton();
@@ -48,6 +49,7 @@
             this.button_ToggleFavorite = new System.Windows.Forms.Button();
             this.button_ChangeAlbum = new System.Windows.Forms.Button();
             this.button_SlideShow = new System.Windows.Forms.Button();
+            this.labelShowFolderPath = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -83,6 +85,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.labelShowFolderPath);
+            this.panel3.Controls.Add(this.buttonReferenceFolder);
             this.panel3.Controls.Add(this.button_SearchAlbum);
             this.panel3.Controls.Add(this.radioButton_AlbumName);
             this.panel3.Controls.Add(this.radioButton_DirectoryName);
@@ -91,6 +95,16 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(425, 53);
             this.panel3.TabIndex = 2;
+            // 
+            // buttonReferenceFolder
+            // 
+            this.buttonReferenceFolder.Location = new System.Drawing.Point(211, 0);
+            this.buttonReferenceFolder.Name = "buttonReferenceFolder";
+            this.buttonReferenceFolder.Size = new System.Drawing.Size(75, 23);
+            this.buttonReferenceFolder.TabIndex = 3;
+            this.buttonReferenceFolder.Text = "参照";
+            this.buttonReferenceFolder.UseVisualStyleBackColor = true;
+            this.buttonReferenceFolder.Click += new System.EventHandler(this.ButtonReferenceFolderClick);
             // 
             // button_SearchAlbum
             // 
@@ -264,13 +278,22 @@
             this.button_SlideShow.UseVisualStyleBackColor = true;
             this.button_SlideShow.Click += new System.EventHandler(this.button_SlideShow_Click);
             // 
-            // Form1
+            // labelShowFolderPath
+            // 
+            this.labelShowFolderPath.AutoSize = true;
+            this.labelShowFolderPath.Location = new System.Drawing.Point(157, 26);
+            this.labelShowFolderPath.Name = "labelShowFolderPath";
+            this.labelShowFolderPath.Size = new System.Drawing.Size(198, 12);
+            this.labelShowFolderPath.TabIndex = 4;
+            this.labelShowFolderPath.Text = "指定したフォルダパスがここに表示されます";
+            // 
+            // PhotoFrameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(576, 546);
             this.Controls.Add(this.splitContainer1);
-            this.Name = "Form1";
+            this.Name = "PhotoFrameForm";
             this.Text = "Form1";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -311,6 +334,8 @@
         private System.Windows.Forms.RadioButton radioButton_AlbumName;
         private System.Windows.Forms.RadioButton radioButton_DirectoryName;
         private System.Windows.Forms.TextBox textBox_Search;
+        private System.Windows.Forms.Button buttonReferenceFolder;
+        private System.Windows.Forms.Label labelShowFolderPath;
     }
 }
 
