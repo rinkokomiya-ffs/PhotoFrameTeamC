@@ -23,7 +23,7 @@ namespace PhotoFrameApp
         private IEnumerable<Photo> searchedPhotos; // リストビュー上のフォトのリスト
 
         public string folderPath { set; get; }
-        
+
         /// <summary>
         /// コンストラクタ
         /// </summary>
@@ -52,19 +52,19 @@ namespace PhotoFrameApp
             photoFileService = serviceFactory.PhotoFileService;
             application = new PhotoFrameApplication(albumRepository, photoRepository, photoFileService);
             searchedPhotos = new List<Photo>().AsEnumerable();
-           
- 
+
+
             // 全アルバム名を取得し、アルバム変更リストをセット
             IEnumerable<Keyword> allAlbums = albumRepository.Find((IQueryable<Keyword> albums) => albums);
 
-            if(allAlbums != null)
+            if (allAlbums != null)
             {
                 foreach (Keyword album in allAlbums)
                 {
                     comboBox_ChangeAlbum.Items.Add(album.Name);
                 }
             }
-            
+
         }
 
         /// <summary>
@@ -74,11 +74,11 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private async void button_SearchAlbum_Click(object sender, EventArgs e)
         {
-               // this.searchedPhotos = application.SearchDirectory(textBox_Search.Text);
-                this.searchedPhotos = await application.SearchDirectoryAsync(textBox_Search.Text);
+            // this.searchedPhotos = application.SearchDirectory(textBox_Search.Text);
+            this.searchedPhotos = await application.SearchDirectoryAsync(textBox_Search.Text);
 
             RenewPhotoListView();
-            
+
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace PhotoFrameApp
         private async void button_ToggleFavorite_Click(object sender, EventArgs e)
         {
             var indexList = GetListviewIndex();
-       
+
             for (int i = 0; i < indexList.Count; i++)
             {
                 // Photo photo = application.ToggleFavorite(searchedPhotos.ElementAt(index));
@@ -169,15 +169,15 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void button_SlideShow_Click(object sender, EventArgs e)
         {
-            if(this.searchedPhotos.Count() > 0)
+            if (this.searchedPhotos.Count() > 0)
             {
                 var slideShowForm = new SlideShowForm(this.searchedPhotos);
                 slideShowForm.ShowDialog();
             }
-            
+
         }
 
-        
+
         /// <summary>
         /// リストビュー1行分更新
         /// </summary>
