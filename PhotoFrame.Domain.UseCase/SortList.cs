@@ -30,13 +30,11 @@ namespace PhotoFrame.Domain.UseCase
             }
             else if (searchMethod == 1)
             {
-                var c = new Comparison<Photo>(Compare);
-                photoList.ToList().Sort(Compare);
-                return photoList.AsEnumerable();
+                return photoList.OrderBy(photo => photo.DateTime);
             }
             else if (searchMethod == 2)
             {
-                return photoList.AsEnumerable();
+                return photoList.OrderByDescending(photo => photo.DateTime);
             }
             else
             {
@@ -44,16 +42,5 @@ namespace PhotoFrame.Domain.UseCase
             }
         }
 
-        private int Compare(Photo photo1, Photo photo2)
-        {
-            if (photo1.DateTime < photo2.DateTime)
-            {
-                return -1;
-            }
-            else
-            {
-                return 1;
-            }
-        }
     }
 }
