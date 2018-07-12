@@ -32,23 +32,22 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.labelShowFolderPath = new System.Windows.Forms.Label();
             this.buttonReferenceFolder = new System.Windows.Forms.Button();
-            this.button_SearchAlbum = new System.Windows.Forms.Button();
-            this.textBox_Search = new System.Windows.Forms.TextBox();
+            this.buttonSearchAlbum = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBoxRegistKeyword = new System.Windows.Forms.TextBox();
-            this.label_AlbumName = new System.Windows.Forms.Label();
-            this.button_CreateAlbum = new System.Windows.Forms.Button();
+            this.labelKeywordName = new System.Windows.Forms.Label();
+            this.buttonCreateKeyword = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.listView_PhotoList = new System.Windows.Forms.ListView();
             this.columnHeader_PhotoPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader_AlbumName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader_Favorite = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ButtonDetailSearch = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.comboBox_ChangeAlbum = new System.Windows.Forms.ComboBox();
             this.button_ToggleFavorite = new System.Windows.Forms.Button();
             this.button_ChangeAlbum = new System.Windows.Forms.Button();
             this.button_SlideShow = new System.Windows.Forms.Button();
-            this.ButtonDetailSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -73,24 +72,22 @@
             // 
             this.splitContainer1.Panel1.AccessibleRole = System.Windows.Forms.AccessibleRole.IpAddress;
             this.splitContainer1.Panel1.Controls.Add(this.panel3);
-            this.splitContainer1.Panel1.Controls.Add(this.panel1);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(576, 546);
-            this.splitContainer1.SplitterDistance = 126;
+            this.splitContainer1.SplitterDistance = 69;
             this.splitContainer1.TabIndex = 0;
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.labelShowFolderPath);
             this.panel3.Controls.Add(this.buttonReferenceFolder);
-            this.panel3.Controls.Add(this.button_SearchAlbum);
-            this.panel3.Controls.Add(this.textBox_Search);
-            this.panel3.Location = new System.Drawing.Point(46, 12);
+            this.panel3.Controls.Add(this.buttonSearchAlbum);
+            this.panel3.Location = new System.Drawing.Point(33, 7);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(425, 53);
+            this.panel3.Size = new System.Drawing.Size(530, 53);
             this.panel3.TabIndex = 2;
             // 
             // labelShowFolderPath
@@ -112,59 +109,51 @@
             this.buttonReferenceFolder.UseVisualStyleBackColor = true;
             this.buttonReferenceFolder.Click += new System.EventHandler(this.ButtonReferenceFolderClick);
             // 
-            // button_SearchAlbum
+            // buttonSearchAlbum
             // 
-            this.button_SearchAlbum.Location = new System.Drawing.Point(352, 31);
-            this.button_SearchAlbum.Name = "button_SearchAlbum";
-            this.button_SearchAlbum.Size = new System.Drawing.Size(56, 23);
-            this.button_SearchAlbum.TabIndex = 1;
-            this.button_SearchAlbum.Text = "検索";
-            this.button_SearchAlbum.UseVisualStyleBackColor = true;
-            this.button_SearchAlbum.Click += new System.EventHandler(this.ButtonSearchFolderClick);
-            // 
-            // textBox_Search
-            // 
-            this.textBox_Search.Location = new System.Drawing.Point(77, 31);
-            this.textBox_Search.Name = "textBox_Search";
-            this.textBox_Search.Size = new System.Drawing.Size(256, 19);
-            this.textBox_Search.TabIndex = 2;
-            this.textBox_Search.Text = "Album1";
+            this.buttonSearchAlbum.Location = new System.Drawing.Point(3, 30);
+            this.buttonSearchAlbum.Name = "buttonSearchAlbum";
+            this.buttonSearchAlbum.Size = new System.Drawing.Size(77, 23);
+            this.buttonSearchAlbum.TabIndex = 1;
+            this.buttonSearchAlbum.Text = "検索";
+            this.buttonSearchAlbum.UseVisualStyleBackColor = true;
+            this.buttonSearchAlbum.Click += new System.EventHandler(this.ButtonSearchFolderClick);
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.textBoxRegistKeyword);
-            this.panel1.Controls.Add(this.label_AlbumName);
-            this.panel1.Controls.Add(this.button_CreateAlbum);
-            this.panel1.Location = new System.Drawing.Point(46, 83);
+            this.panel1.Controls.Add(this.labelKeywordName);
+            this.panel1.Controls.Add(this.buttonCreateKeyword);
+            this.panel1.Location = new System.Drawing.Point(33, 317);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(447, 31);
+            this.panel1.Size = new System.Drawing.Size(512, 31);
             this.panel1.TabIndex = 0;
             // 
             // textBoxRegistKeyword
             // 
-            this.textBoxRegistKeyword.Location = new System.Drawing.Point(78, 7);
+            this.textBoxRegistKeyword.Location = new System.Drawing.Point(123, 7);
             this.textBoxRegistKeyword.Name = "textBoxRegistKeyword";
-            this.textBoxRegistKeyword.Size = new System.Drawing.Size(256, 19);
+            this.textBoxRegistKeyword.Size = new System.Drawing.Size(284, 19);
             this.textBoxRegistKeyword.TabIndex = 0;
             // 
-            // label_AlbumName
+            // labelKeywordName
             // 
-            this.label_AlbumName.AutoSize = true;
-            this.label_AlbumName.Location = new System.Drawing.Point(16, 8);
-            this.label_AlbumName.Name = "label_AlbumName";
-            this.label_AlbumName.Size = new System.Drawing.Size(56, 12);
-            this.label_AlbumName.TabIndex = 1;
-            this.label_AlbumName.Text = "アルバム名";
+            this.labelKeywordName.AutoSize = true;
+            this.labelKeywordName.Location = new System.Drawing.Point(16, 8);
+            this.labelKeywordName.Name = "labelKeywordName";
+            this.labelKeywordName.Size = new System.Drawing.Size(101, 12);
+            this.labelKeywordName.TabIndex = 1;
+            this.labelKeywordName.Text = "キーワード新規作成";
             // 
-            // button_CreateAlbum
+            // buttonCreateKeyword
             // 
-            this.button_CreateAlbum.Location = new System.Drawing.Point(353, 5);
-            this.button_CreateAlbum.Name = "button_CreateAlbum";
-            this.button_CreateAlbum.Size = new System.Drawing.Size(86, 23);
-            this.button_CreateAlbum.TabIndex = 1;
-            this.button_CreateAlbum.Text = "アルバム作成";
-            this.button_CreateAlbum.UseVisualStyleBackColor = true;
-            this.button_CreateAlbum.Click += new System.EventHandler(this.ButtonRegistKeyword);
+            this.buttonCreateKeyword.Location = new System.Drawing.Point(413, 5);
+            this.buttonCreateKeyword.Name = "buttonCreateKeyword";
+            this.buttonCreateKeyword.Size = new System.Drawing.Size(86, 23);
+            this.buttonCreateKeyword.TabIndex = 1;
+            this.buttonCreateKeyword.Text = "作成";
+            this.buttonCreateKeyword.UseVisualStyleBackColor = true;
+            this.buttonCreateKeyword.Click += new System.EventHandler(this.ButtonRegistKeyword);
             // 
             // splitContainer2
             // 
@@ -176,14 +165,15 @@
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.Controls.Add(this.listView_PhotoList);
+            this.splitContainer2.Panel1.Controls.Add(this.panel1);
             // 
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.ButtonDetailSearch);
             this.splitContainer2.Panel2.Controls.Add(this.panel2);
             this.splitContainer2.Panel2.Controls.Add(this.button_SlideShow);
-            this.splitContainer2.Size = new System.Drawing.Size(576, 416);
-            this.splitContainer2.SplitterDistance = 309;
+            this.splitContainer2.Size = new System.Drawing.Size(576, 473);
+            this.splitContainer2.SplitterDistance = 351;
             this.splitContainer2.TabIndex = 0;
             // 
             // listView_PhotoList
@@ -193,7 +183,7 @@
             this.columnHeader_AlbumName,
             this.columnHeader_Favorite});
             this.listView_PhotoList.FullRowSelect = true;
-            this.listView_PhotoList.Location = new System.Drawing.Point(23, 13);
+            this.listView_PhotoList.Location = new System.Drawing.Point(33, 0);
             this.listView_PhotoList.Name = "listView_PhotoList";
             this.listView_PhotoList.Size = new System.Drawing.Size(530, 278);
             this.listView_PhotoList.TabIndex = 0;
@@ -214,6 +204,16 @@
             // 
             this.columnHeader_Favorite.Text = "お気に入り";
             this.columnHeader_Favorite.Width = 85;
+            // 
+            // ButtonDetailSearch
+            // 
+            this.ButtonDetailSearch.Location = new System.Drawing.Point(374, 28);
+            this.ButtonDetailSearch.Name = "ButtonDetailSearch";
+            this.ButtonDetailSearch.Size = new System.Drawing.Size(97, 23);
+            this.ButtonDetailSearch.TabIndex = 3;
+            this.ButtonDetailSearch.Text = "条件絞り込み";
+            this.ButtonDetailSearch.UseVisualStyleBackColor = true;
+            this.ButtonDetailSearch.Click += new System.EventHandler(this.ButtonDetailSearchClick);
             // 
             // panel2
             // 
@@ -263,16 +263,6 @@
             this.button_SlideShow.UseVisualStyleBackColor = true;
             this.button_SlideShow.Click += new System.EventHandler(this.ButtonStartSlideShowClick);
             // 
-            // ButtonDetailSearch
-            // 
-            this.ButtonDetailSearch.Location = new System.Drawing.Point(374, 28);
-            this.ButtonDetailSearch.Name = "ButtonDetailSearch";
-            this.ButtonDetailSearch.Size = new System.Drawing.Size(97, 23);
-            this.ButtonDetailSearch.TabIndex = 3;
-            this.ButtonDetailSearch.Text = "条件絞り込み";
-            this.ButtonDetailSearch.UseVisualStyleBackColor = true;
-            this.ButtonDetailSearch.Click += new System.EventHandler(this.ButtonDetailSearchClick);
-            // 
             // PhotoFrameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -301,23 +291,22 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Button button_CreateAlbum;
+        private System.Windows.Forms.Button buttonCreateKeyword;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.ListView listView_PhotoList;
         private System.Windows.Forms.ColumnHeader columnHeader_PhotoPath;
         private System.Windows.Forms.ColumnHeader columnHeader_AlbumName;
         private System.Windows.Forms.ColumnHeader columnHeader_Favorite;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button_SearchAlbum;
+        private System.Windows.Forms.Button buttonSearchAlbum;
         private System.Windows.Forms.TextBox textBoxRegistKeyword;
-        private System.Windows.Forms.Label label_AlbumName;
+        private System.Windows.Forms.Label labelKeywordName;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ComboBox comboBox_ChangeAlbum;
         private System.Windows.Forms.Button button_ChangeAlbum;
         private System.Windows.Forms.Button button_ToggleFavorite;
         private System.Windows.Forms.Button button_SlideShow;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox textBox_Search;
         private System.Windows.Forms.Button buttonReferenceFolder;
         private System.Windows.Forms.Label labelShowFolderPath;
         private System.Windows.Forms.Button ButtonDetailSearch;
