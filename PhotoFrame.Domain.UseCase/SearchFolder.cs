@@ -31,7 +31,7 @@ namespace PhotoFrame.Domain.UseCase
 
             foreach (var file in files)
             {
-                Func<IQueryable<Photo>, Photo> query = allPhotos => allPhotos.FirstOrDefault(a => a.File.FilePath == file.FilePath);
+                Func<IQueryable<Photo>, Photo> query = allPhotos => allPhotos.SingleOrDefault(a => a.File.FilePath == file.FilePath);
                
                 var hitPhoto = photoRepository.Find(query);
 
@@ -41,8 +41,11 @@ namespace PhotoFrame.Domain.UseCase
                 }
                 else
                 {
+                    Photo photo = Photo.CreateFromFile(file, GetDateTime(file.FilePath));
+                    photosInDirectory.Add(photo);
+                    photoRepository.Store(photo);
 
-                    photosInDirectory.Add(Photo.CreateFromFile(file, GetDateTime(file.FilePath)));
+
                 }
             }
 
