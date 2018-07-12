@@ -12,11 +12,11 @@ namespace PhotoFrame.Domain.UseCase
     /// アルバムを作成するユースケースを実現する
     /// </summary>
     // TODO: 仮実装
-    public class CreateKeyword
+    public class RegistKeyword
     {
-        private readonly IKeywordRepository albumRepository;
+        private readonly IAlbumRepository albumRepository;
         
-        public CreateKeyword(IKeywordRepository albumRepository)
+        public RegistKeyword(IAlbumRepository albumRepository)
         {
             this.albumRepository = albumRepository;
           

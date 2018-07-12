@@ -15,34 +15,34 @@ namespace PhotoFrame.Application
     public class PhotoFrameApplication
     {
         // ユースケースのインスタンス
-        private readonly CreateKeyword createAlbum;
-        private readonly SearchAlbums searchAlbum;
-        private readonly SearchDirectory searchDirectory;
+        private readonly RegistKeyword registKeyword;
+        private readonly DetailSearch detailSearch;
+        private readonly SearchFolder searchFolder;
         private readonly ToggleFavorite toggleFavorite;
-        private readonly ChangeKeyword changeAlbum;
+        private readonly ChangeKeyword changeKeyword;
 
-        public PhotoFrameApplication(IKeywordRepository albumRepository, IPhotoRepository photoRepository, IPhotoFileService photoFileService)
+        public PhotoFrameApplication(IAlbumRepository albumRepository, IPhotoRepository photoRepository, IPhotoFileService photoFileService)
         {
-            this.createAlbum = new CreateKeyword(albumRepository);
-            this.searchAlbum = new SearchAlbums(photoRepository);
-            this.searchDirectory = new SearchDirectory(photoRepository, photoFileService);
+            this.registKeyword = new RegistKeyword(albumRepository);
+            this.detailSearch = new DetailSearch(photoRepository);
+            this.searchFolder = new SearchFolder(photoRepository, photoFileService);
             this.toggleFavorite = new ToggleFavorite(photoRepository);
-            this.changeAlbum = new ChangeKeyword(albumRepository, photoRepository);
+            this.changeKeyword = new ChangeKeyword(albumRepository, photoRepository);
         }
 
-        public int CreateAlbum(string albumName)
+        public int RegistKeyword(string keyword)
         {
-            return createAlbum.Execute(albumName);
+            return registKeyword.Execute(keyword);
         }
 
-        public IEnumerable<Photo> SearchAlbum(string albumName)
+        public IEnumerable<Photo> DetailSearch(IEnumerable<Photo> photoList, string keyword, string isFavorite, DateTime firstData, DateTime lastData)
         {
-            return searchAlbum.Execute(albumName);
+            return detailSearch.Execute(photoList, keyword, isFavorite, firstData, lastData);
         }
 
-        public IEnumerable<Photo> SearchDirectory(string directoryName)
+        public IEnumerable<Photo> SearchFolder(string directoryName)
         {
-            return searchDirectory.Execute(directoryName);
+            return searchFolder.Execute(directoryName);
         }
 
         public Photo ToggleFavorite(Photo photo)
@@ -50,41 +50,41 @@ namespace PhotoFrame.Application
             return toggleFavorite.Execute(photo);
         }
      
-        public Photo ChangeAlbum(Photo photo, string newAlbumName)
+        public Photo ChangeKeyword(Photo photo, string keyword)
         {
-            return changeAlbum.Execute(photo, newAlbumName);
+            return changeKeyword.Execute(photo, keyword);
         }
 
         // ここより下は非同期用のユースケースの呼び出しメソッド
-        public async Task<int> CreateAlbumAsync(string albumName)
-        {
-            var judgement = await createAlbum.ExecuteAsync(albumName);
-            return judgement;
-        }
+        //public async Task<int> CreateAlbumAsync(string albumName)
+        //{
+        //    var judgement = await createAlbum.ExecuteAsync(albumName);
+        //    return judgement;
+        //}
 
-        public async Task<IEnumerable<Photo>> SearchDirectoryAsync(string directoryName)
-        { 
-            var retPhotos = await searchDirectory.ExecuteAsync(directoryName);
-            return retPhotos;
-        }
+        //public async Task<IEnumerable<Photo>> SearchDirectoryAsync(string directoryName)
+        //{ 
+        //    var retPhotos = await searchDirectory.ExecuteAsync(directoryName);
+        //    return retPhotos;
+        //}
 
-        public async Task<IEnumerable<Photo>> SearchAlbumAsync(string albumName)
-        {
-            var retPhotos = await searchAlbum.ExecuteAsync(albumName);
-            return retPhotos;
-        }
+        //public async Task<IEnumerable<Photo>> SearchAlbumAsync(string albumName)
+        //{
+        //    var retPhotos = await searchAlbum.ExecuteAsync(albumName);
+        //    return retPhotos;
+        //}
 
-        public async Task<Photo> ToggleFavoriteAsync(Photo photo)
-        {
-            var retPhoto = await toggleFavorite.ExecuteAsync(photo);
-            return retPhoto;
-        }
+        //public async Task<Photo> ToggleFavoriteAsync(Photo photo)
+        //{
+        //    var retPhoto = await toggleFavorite.ExecuteAsync(photo);
+        //    return retPhoto;
+        //}
 
-        public async Task<Photo> ChangeAlbumAsync(Photo photo, string newAlbumName)
-        {
-            var retPhoto = await changeAlbum.ExecuteAsync(photo, newAlbumName);
-            return retPhoto;
+        //public async Task<Photo> ChangeAlbumAsync(Photo photo, string newAlbumName)
+        //{
+        //    var retPhoto = await changeAlbum.ExecuteAsync(photo, newAlbumName);
+        //    return retPhoto;
             
-        }
+        //}
     }
 }
