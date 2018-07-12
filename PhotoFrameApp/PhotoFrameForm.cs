@@ -21,6 +21,7 @@ namespace PhotoFrameApp
         private IPhotoFileService photoFileService;
         private PhotoFrameApplication application;
         private IEnumerable<Photo> searchedPhotos; // リストビュー上のフォトのリスト
+        private Controller controller;
 
         public string folderPath { set; get; }
 
@@ -68,6 +69,35 @@ namespace PhotoFrameApp
         }
 
         /// <summary>
+        /// フォルダ参照ボタンをクリックしたときのイベント
+        /// ダイアログを開いてラベルにフォルダパスを表示する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonReferenceFolderClick(object sender, EventArgs e)
+        {
+            // ダイアログを開く
+            // FolderBrowserDialogクラスのインスタンスを作成
+            FolderBrowserDialog fbd = new FolderBrowserDialog
+            {
+                //上部に表示する説明テキストを指定する
+                Description = "フォルダを指定してください。",
+
+                //最初に選択するフォルダを指定する
+                SelectedPath = @"C:\",
+            };
+
+            //ダイアログで決定ボタンを選択される
+            if (fbd.ShowDialog(this) == DialogResult.OK)
+            {
+                // ラベルにフォルダパスを表示
+                labelShowFolderPath.Text = fbd.SelectedPath;
+                // フォルダパスを格納
+                folderPath = fbd.SelectedPath;
+            }
+        }
+
+        /// <summary>
         /// フォルダ名からフォトを検索
         /// </summary>
         /// <param name="sender"></param>
@@ -75,7 +105,7 @@ namespace PhotoFrameApp
         private void ButtonSearchFolderClick(object sender, EventArgs e)
         //private async void button_SearchAlbum_Click(object sender, EventArgs e)
         {
-            // フォルダパスを引数にとって、ビジネスロジック層に渡す
+            // フォルダパスを引数にとって、コントロールに渡す
             this.searchedPhotos = application.SearchDirectory(folderPath);
             //this.searchedPhotos = await application.SearchDirectoryAsync(textBox_Search.Text);
 
@@ -84,26 +114,28 @@ namespace PhotoFrameApp
         }
 
         /// <summary>
-        /// アルバム新規作成
+        /// キーワード新規作成
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void button_CreateAlbum_Click(object sender, EventArgs e)
+        //private async void ButtonRegistKeyword(object sender, EventArgs e)
+        private void ButtonRegistKeyword(object sender, EventArgs e)
+
         {
-            string albumName = textBox_CreateAlbum.Text;
-            //var result = application.CreateAlbum(albumName);
-            var result = await application.CreateAlbumAsync(albumName);
+            string keyword = textBoxRegistKeyword.Text;
+            var result = controller.ExecuteRegistKeyword(keyword);
+            //var result = await application.CreateAlbumAsync(keyword);
 
             switch (result)
             {
                 case 0:
-                    comboBox_ChangeAlbum.Items.Add(albumName);
+                    comboBox_ChangeAlbum.Items.Add(keyword);
                     break;
                 case 1:
-                    MessageBox.Show("アルバム名が未入力です");
+                    MessageBox.Show("キーワードが未入力です");
                     break;
                 case 2:
-                    MessageBox.Show("既存のアルバム名です");
+                    MessageBox.Show("既存のキーワードです");
                     break;
                 default:
                     break;
@@ -116,33 +148,35 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void button_ToggleFavorite_Click(object sender, EventArgs e)
+        //private async void button_ToggleFavorite_Click(object sender, EventArgs e)
+        private void ButtonToggleFavoriteClick(object sender, EventArgs e)
         {
             var indexList = GetListviewIndex();
 
             for (int i = 0; i < indexList.Count; i++)
             {
-                // Photo photo = application.ToggleFavorite(searchedPhotos.ElementAt(index));
-                Photo photo = await application.ToggleFavoriteAsync(searchedPhotos.ElementAt(indexList.ElementAt(i)));
+                Photo photo = controller.ToggleFavorite(searchedPhotos.ElementAt(indexList.ElementAt(i)));
+                //Photo photo = await application.ToggleFavoriteAsync(searchedPhotos.ElementAt(indexList.ElementAt(i)));
                 RenewPhotoListViewItem(indexList.ElementAt(i), photo);
             }
 
         }
 
         /// <summary>
-        /// 選択中のフォトの所属アルバムを変更
+        /// 選択中のフォトの所属キーワードを変更
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void button_ChangeAlbum_Click(object sender, EventArgs e)
+        //private async void ButtonChangeKeywordClick(object sender, EventArgs e)
+        private void ButtonChangeKeywordClick(object sender, EventArgs e)
         {
             string newAlbumName = comboBox_ChangeAlbum.Text;
             var indexList = GetListviewIndex();
 
             for (int i = 0; i < indexList.Count; i++)
             {
-                //Photo photo = application.ChangeAlbum(searchedPhotos.ElementAt(index), newAlbumName);
-                Photo photo = await application.ChangeAlbumAsync(searchedPhotos.ElementAt(indexList.ElementAt(i)), newAlbumName);
+                Photo photo = controller.ExecuteChangeKeyword(searchedPhotos.ElementAt(indexList.ElementAt(i)), newAlbumName);
+                //Photo photo = await application.ChangeAlbumAsync(searchedPhotos.ElementAt(indexList.ElementAt(i)), newAlbumName);
                 RenewPhotoListViewItem(indexList.ElementAt(i), photo);
             }
 
@@ -158,7 +192,6 @@ namespace PhotoFrameApp
             for (int i = 0; i < listView_PhotoList.SelectedItems.Count; i++)
             {
                 indexList.Add(listView_PhotoList.SelectedItems[i].Index);
-
             }
 
             return indexList;
@@ -169,7 +202,7 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_SlideShow_Click(object sender, EventArgs e)
+        private void ButtonStartSlideShowClick(object sender, EventArgs e)
         {
             if (this.searchedPhotos.Count() > 0)
             {
@@ -253,33 +286,6 @@ namespace PhotoFrameApp
             }
         }
 
-        /// <summary>
-        /// フォルダ参照ボタンをクリックしたときのイベント
-        /// ダイアログを開いてラベルにフォルダパスを表示する
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ButtonReferenceFolderClick(object sender, EventArgs e)
-        {
-            // ダイアログを開く
-            // FolderBrowserDialogクラスのインスタンスを作成
-            FolderBrowserDialog fbd = new FolderBrowserDialog
-            {
-                //上部に表示する説明テキストを指定する
-                Description = "フォルダを指定してください。",
-
-                //最初に選択するフォルダを指定する
-                SelectedPath = @"C:\",
-            };
-
-            //ダイアログで決定ボタンを選択される
-            if (fbd.ShowDialog(this) == DialogResult.OK)
-            {
-                // ラベルにフォルダパスを表示
-                labelShowFolderPath.Text = fbd.SelectedPath;
-                // フォルダパスを格納
-                folderPath = fbd.SelectedPath;
-            }
-        }
+        
     }
 }

@@ -30,13 +30,12 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.labelShowFolderPath = new System.Windows.Forms.Label();
             this.buttonReferenceFolder = new System.Windows.Forms.Button();
             this.button_SearchAlbum = new System.Windows.Forms.Button();
-            this.radioButton_AlbumName = new System.Windows.Forms.RadioButton();
-            this.radioButton_DirectoryName = new System.Windows.Forms.RadioButton();
             this.textBox_Search = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox_CreateAlbum = new System.Windows.Forms.TextBox();
+            this.textBoxRegistKeyword = new System.Windows.Forms.TextBox();
             this.label_AlbumName = new System.Windows.Forms.Label();
             this.button_CreateAlbum = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -49,7 +48,6 @@
             this.button_ToggleFavorite = new System.Windows.Forms.Button();
             this.button_ChangeAlbum = new System.Windows.Forms.Button();
             this.button_SlideShow = new System.Windows.Forms.Button();
-            this.labelShowFolderPath = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -88,17 +86,24 @@
             this.panel3.Controls.Add(this.labelShowFolderPath);
             this.panel3.Controls.Add(this.buttonReferenceFolder);
             this.panel3.Controls.Add(this.button_SearchAlbum);
-            this.panel3.Controls.Add(this.radioButton_AlbumName);
-            this.panel3.Controls.Add(this.radioButton_DirectoryName);
             this.panel3.Controls.Add(this.textBox_Search);
             this.panel3.Location = new System.Drawing.Point(46, 12);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(425, 53);
             this.panel3.TabIndex = 2;
             // 
+            // labelShowFolderPath
+            // 
+            this.labelShowFolderPath.AutoSize = true;
+            this.labelShowFolderPath.Location = new System.Drawing.Point(86, 8);
+            this.labelShowFolderPath.Name = "labelShowFolderPath";
+            this.labelShowFolderPath.Size = new System.Drawing.Size(198, 12);
+            this.labelShowFolderPath.TabIndex = 4;
+            this.labelShowFolderPath.Text = "指定したフォルダパスがここに表示されます";
+            // 
             // buttonReferenceFolder
             // 
-            this.buttonReferenceFolder.Location = new System.Drawing.Point(211, 0);
+            this.buttonReferenceFolder.Location = new System.Drawing.Point(5, 3);
             this.buttonReferenceFolder.Name = "buttonReferenceFolder";
             this.buttonReferenceFolder.Size = new System.Drawing.Size(75, 23);
             this.buttonReferenceFolder.TabIndex = 3;
@@ -116,28 +121,6 @@
             this.button_SearchAlbum.UseVisualStyleBackColor = true;
             this.button_SearchAlbum.Click += new System.EventHandler(this.ButtonSearchFolderClick);
             // 
-            // radioButton_AlbumName
-            // 
-            this.radioButton_AlbumName.AutoSize = true;
-            this.radioButton_AlbumName.Location = new System.Drawing.Point(112, 9);
-            this.radioButton_AlbumName.Name = "radioButton_AlbumName";
-            this.radioButton_AlbumName.Size = new System.Drawing.Size(74, 16);
-            this.radioButton_AlbumName.TabIndex = 1;
-            this.radioButton_AlbumName.Text = "アルバム名";
-            this.radioButton_AlbumName.UseVisualStyleBackColor = true;
-            // 
-            // radioButton_DirectoryName
-            // 
-            this.radioButton_DirectoryName.AutoSize = true;
-            this.radioButton_DirectoryName.Checked = true;
-            this.radioButton_DirectoryName.Location = new System.Drawing.Point(18, 9);
-            this.radioButton_DirectoryName.Name = "radioButton_DirectoryName";
-            this.radioButton_DirectoryName.Size = new System.Drawing.Size(70, 16);
-            this.radioButton_DirectoryName.TabIndex = 0;
-            this.radioButton_DirectoryName.TabStop = true;
-            this.radioButton_DirectoryName.Text = "フォルダ名";
-            this.radioButton_DirectoryName.UseVisualStyleBackColor = true;
-            // 
             // textBox_Search
             // 
             this.textBox_Search.Location = new System.Drawing.Point(77, 31);
@@ -148,7 +131,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.textBox_CreateAlbum);
+            this.panel1.Controls.Add(this.textBoxRegistKeyword);
             this.panel1.Controls.Add(this.label_AlbumName);
             this.panel1.Controls.Add(this.button_CreateAlbum);
             this.panel1.Location = new System.Drawing.Point(46, 83);
@@ -156,12 +139,12 @@
             this.panel1.Size = new System.Drawing.Size(447, 31);
             this.panel1.TabIndex = 0;
             // 
-            // textBox_CreateAlbum
+            // textBoxRegistKeyword
             // 
-            this.textBox_CreateAlbum.Location = new System.Drawing.Point(78, 7);
-            this.textBox_CreateAlbum.Name = "textBox_CreateAlbum";
-            this.textBox_CreateAlbum.Size = new System.Drawing.Size(256, 19);
-            this.textBox_CreateAlbum.TabIndex = 0;
+            this.textBoxRegistKeyword.Location = new System.Drawing.Point(78, 7);
+            this.textBoxRegistKeyword.Name = "textBoxRegistKeyword";
+            this.textBoxRegistKeyword.Size = new System.Drawing.Size(256, 19);
+            this.textBoxRegistKeyword.TabIndex = 0;
             // 
             // label_AlbumName
             // 
@@ -180,7 +163,7 @@
             this.button_CreateAlbum.TabIndex = 1;
             this.button_CreateAlbum.Text = "アルバム作成";
             this.button_CreateAlbum.UseVisualStyleBackColor = true;
-            this.button_CreateAlbum.Click += new System.EventHandler(this.button_CreateAlbum_Click);
+            this.button_CreateAlbum.Click += new System.EventHandler(this.ButtonRegistKeyword);
             // 
             // splitContainer2
             // 
@@ -256,7 +239,7 @@
             this.button_ToggleFavorite.TabIndex = 1;
             this.button_ToggleFavorite.Text = "お気に入り";
             this.button_ToggleFavorite.UseVisualStyleBackColor = true;
-            this.button_ToggleFavorite.Click += new System.EventHandler(this.button_ToggleFavorite_Click);
+            this.button_ToggleFavorite.Click += new System.EventHandler(this.ButtonToggleFavoriteClick);
             // 
             // button_ChangeAlbum
             // 
@@ -266,7 +249,7 @@
             this.button_ChangeAlbum.TabIndex = 1;
             this.button_ChangeAlbum.Text = "アルバム変更";
             this.button_ChangeAlbum.UseVisualStyleBackColor = true;
-            this.button_ChangeAlbum.Click += new System.EventHandler(this.button_ChangeAlbum_Click);
+            this.button_ChangeAlbum.Click += new System.EventHandler(this.ButtonChangeKeywordClick);
             // 
             // button_SlideShow
             // 
@@ -276,16 +259,7 @@
             this.button_SlideShow.TabIndex = 2;
             this.button_SlideShow.Text = "スライドショー";
             this.button_SlideShow.UseVisualStyleBackColor = true;
-            this.button_SlideShow.Click += new System.EventHandler(this.button_SlideShow_Click);
-            // 
-            // labelShowFolderPath
-            // 
-            this.labelShowFolderPath.AutoSize = true;
-            this.labelShowFolderPath.Location = new System.Drawing.Point(157, 26);
-            this.labelShowFolderPath.Name = "labelShowFolderPath";
-            this.labelShowFolderPath.Size = new System.Drawing.Size(198, 12);
-            this.labelShowFolderPath.TabIndex = 4;
-            this.labelShowFolderPath.Text = "指定したフォルダパスがここに表示されます";
+            this.button_SlideShow.Click += new System.EventHandler(this.ButtonStartSlideShowClick);
             // 
             // PhotoFrameForm
             // 
@@ -323,7 +297,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader_Favorite;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button_SearchAlbum;
-        private System.Windows.Forms.TextBox textBox_CreateAlbum;
+        private System.Windows.Forms.TextBox textBoxRegistKeyword;
         private System.Windows.Forms.Label label_AlbumName;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ComboBox comboBox_ChangeAlbum;
@@ -331,8 +305,6 @@
         private System.Windows.Forms.Button button_ToggleFavorite;
         private System.Windows.Forms.Button button_SlideShow;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.RadioButton radioButton_AlbumName;
-        private System.Windows.Forms.RadioButton radioButton_DirectoryName;
         private System.Windows.Forms.TextBox textBox_Search;
         private System.Windows.Forms.Button buttonReferenceFolder;
         private System.Windows.Forms.Label labelShowFolderPath;
