@@ -7,12 +7,12 @@ using PhotoFrame.Domain.Model;
 
 namespace PhotoFrame.Domain.UseCase
 {
-    public class SearchDirectory
+    public class SearchFolder
     {
         private readonly IPhotoRepository photoRepository;
         private readonly IPhotoFileService photoFileService;
 
-        public SearchDirectory(IPhotoRepository photoRepository, IPhotoFileService photoFileService)
+        public SearchFolder(IPhotoRepository photoRepository, IPhotoFileService photoFileService)
         {
             this.photoRepository = photoRepository;
             this.photoFileService = photoFileService;
@@ -52,32 +52,32 @@ namespace PhotoFrame.Domain.UseCase
         /// </summary>
         /// <param name="directoryName"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<Photo>> ExecuteAsync(string directoryName)
-        {
-            var files = photoFileService.FindAllPhotoFilesFromDirectory(directoryName);
-            var photosInDirectory = await Task.Run(() =>
-            {
-                var photosList = new List<Photo>();
-                foreach (var file in files)
-                {
-                    Func<IQueryable<Photo>, Photo> query = allPhotos => allPhotos.FirstOrDefault(a => a.File.FilePath == file.FilePath);
+        //public async Task<IEnumerable<Photo>> ExecuteAsync(string directoryName)
+        //{
+        //    var files = photoFileService.FindAllPhotoFilesFromDirectory(directoryName);
+        //    var photosInDirectory = await Task.Run(() =>
+        //    {
+        //        var photosList = new List<Photo>();
+        //        foreach (var file in files)
+        //        {
+        //            Func<IQueryable<Photo>, Photo> query = allPhotos => allPhotos.FirstOrDefault(a => a.File.FilePath == file.FilePath);
 
-                    var hitPhoto = photoRepository.Find(query);
+        //            var hitPhoto = photoRepository.Find(query);
 
-                    if (hitPhoto != null)
-                    {
-                        photosList.Add(hitPhoto);
-                    }
-                    else
-                    {
-                        photosList.Add(Photo.CreateFromFile(file));
-                    }
-                }
+        //            if (hitPhoto != null)
+        //            {
+        //                photosList.Add(hitPhoto);
+        //            }
+        //            else
+        //            {
+        //                photosList.Add(Photo.CreateFromFile(file));
+        //            }
+        //        }
 
-                return photosList;
-            });
+        //        return photosList;
+        //    });
             
-            return photosInDirectory;
-        }
+        //    return photosInDirectory;
+        //}
     }
 }

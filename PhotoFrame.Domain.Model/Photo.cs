@@ -23,20 +23,26 @@ namespace PhotoFrame.Domain.Model
         /// <summary>
         /// 所属アルバム
         /// </summary>
-        public virtual Keyword Album { get; private set; }
+        public virtual Keyword Keyword { get; private set; }
 
         /// <summary>
         /// 所属アルバムID
         /// </summary>
-        public string AlbumId { get; set; }
+        public string KeywordId { get; set; }
 
-        public Photo(string photoId, File file, bool isFavorite = false, string albumId = null, Keyword album = null)
+        /// <summary>
+        /// 撮影日
+        /// </summary>
+        public DateTime DateTime { get; set; }
+
+        public Photo(string photoId, File file, DateTime date, bool isFavorite = false, string albumId = null, Keyword album = null)
         {
             Id = photoId;
             File = file;
+            DateTime = date;
             IsFavorite = isFavorite;
-            AlbumId = albumId;
-            Album = album;
+            KeywordId = albumId;
+            Keyword = album;
         }
 
         public static Photo CreateFromFile(File file)
