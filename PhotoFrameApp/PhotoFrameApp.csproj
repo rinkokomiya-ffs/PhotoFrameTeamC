@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DetailSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetailSearchForm.Designer.cs">
+      <DependentUpon>DetailSearchForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PhotoFrameForm.cs">
       <SubType>Form</SubType>
     </Compile>
