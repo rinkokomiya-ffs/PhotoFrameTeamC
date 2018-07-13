@@ -76,7 +76,7 @@ namespace PhotoFrameApp
             }
 
             pictureBox_SelectedPhotos.ImageLocation = photos.ElementAt(photo_index).File.FilePath;
-        }
+        }   
 
         /// <summary>
         /// 自動再生のON/OFF切り替え
