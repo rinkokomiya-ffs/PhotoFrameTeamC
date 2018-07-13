@@ -15,44 +15,57 @@ namespace PhotoFrame.Application
     public class PhotoFrameApplication
     {
         // ユースケースのインスタンス
-        private readonly RegistKeyword registKeyword;
-        private readonly DetailSearch detailSearch;
-        private readonly SearchFolder searchFolder;
-        private readonly ToggleFavorite toggleFavorite;
-        private readonly ChangeKeyword changeKeyword;
+        private readonly RegistKeyword _registKeyword;
+        private readonly DetailSearch _detailSearch;
+        private readonly SearchFolder _searchFolder;
+        private readonly ToggleFavorite _toggleFavorite;
+        private readonly ChangeKeyword _changeKeyword;
+        private readonly SortList _sortList;
+        private readonly GetKeywordList _getKeywordList;
 
-        public PhotoFrameApplication(IAlbumRepository albumRepository, IPhotoRepository photoRepository, IPhotoFileService photoFileService)
+        public PhotoFrameApplication(IKeywordRepository albumRepository, IPhotoRepository photoRepository, IPhotoFileService photoFileService)
         {
-            this.registKeyword = new RegistKeyword(albumRepository);
-            this.detailSearch = new DetailSearch(photoRepository);
-            this.searchFolder = new SearchFolder(photoRepository, photoFileService);
-            this.toggleFavorite = new ToggleFavorite(photoRepository);
-            this.changeKeyword = new ChangeKeyword(albumRepository, photoRepository);
+            _registKeyword = new RegistKeyword(albumRepository);
+            _detailSearch = new DetailSearch();
+            _searchFolder = new SearchFolder(photoRepository, photoFileService);
+            _toggleFavorite = new ToggleFavorite(photoRepository);
+            _sortList = new SortList();
+            _changeKeyword = new ChangeKeyword(albumRepository, photoRepository);
         }
 
         public int RegistKeyword(string keyword)
         {
-            return registKeyword.Execute(keyword);
+            return _registKeyword.Execute(keyword);
         }
 
         public IEnumerable<Photo> DetailSearch(IEnumerable<Photo> photoList, string keyword, string isFavorite, DateTime firstData, DateTime lastData)
         {
-            return detailSearch.Execute(photoList, keyword, isFavorite, firstData, lastData);
+            return _detailSearch.Execute(photoList, keyword, isFavorite, firstData, lastData);
         }
 
         public IEnumerable<Photo> SearchFolder(string directoryName)
         {
-            return searchFolder.Execute(directoryName);
+            return _searchFolder.Execute(directoryName);
         }
 
         public Photo ToggleFavorite(Photo photo)
         {
-            return toggleFavorite.Execute(photo);
+            return _toggleFavorite.Execute(photo);
         }
      
         public Photo ChangeKeyword(Photo photo, string keyword)
         {
-            return changeKeyword.Execute(photo, keyword);
+            return _changeKeyword.Execute(photo, keyword);
+        }
+
+        public IEnumerable<Photo> SortList(IEnumerable<Photo> photoList, int sortMethod)
+        {
+            return _sortList.Execute(photoList, sortMethod);
+        }
+
+        public IEnumerable<Keyword> GetKeyword()
+        {
+            return _getKeywordList.Execute();
         }
 
         // ここより下は非同期用のユースケースの呼び出しメソッド
@@ -84,7 +97,7 @@ namespace PhotoFrame.Application
         //{
         //    var retPhoto = await changeAlbum.ExecuteAsync(photo, newAlbumName);
         //    return retPhoto;
-            
+
         //}
     }
 }

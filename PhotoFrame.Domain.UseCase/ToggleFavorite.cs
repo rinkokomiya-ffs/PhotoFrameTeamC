@@ -9,11 +9,11 @@ namespace PhotoFrame.Domain.UseCase
 {
     public class ToggleFavorite
     {
-        private readonly IPhotoRepository photoRepository;
+        private readonly IPhotoRepository _photoRepository;
 
         public ToggleFavorite(IPhotoRepository photoRepository)
         {
-            this.photoRepository = photoRepository;
+            _photoRepository = photoRepository;
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace PhotoFrame.Domain.UseCase
                 photo.MarkAsFavorite();
             }
 
-            photoRepository.Store(photo);
+            _photoRepository.Store(photo);
 
             return photo;
         }
@@ -43,24 +43,24 @@ namespace PhotoFrame.Domain.UseCase
         /// </summary>
         /// <param name="photo"></param>
         /// <returns></returns>
-        public async Task<Photo> ExecuteAsync(Photo photo)
-        {
+        //public async Task<Photo> ExecuteAsync(Photo photo)
+        //{
 
-            if (photo.IsFavorite)
-            {
-                photo.MarkAsUnFavorite();
-            }
-            else
-            {
-                photo.MarkAsFavorite();
-            }
+        //    if (photo.IsFavorite)
+        //    {
+        //        photo.MarkAsUnFavorite();
+        //    }
+        //    else
+        //    {
+        //        photo.MarkAsFavorite();
+        //    }
 
-            await Task.Run(() =>
-            {
-                photoRepository.Store(photo);
-            });
+        //    await Task.Run(() =>
+        //    {
+        //        photoRepository.Store(photo);
+        //    });
           
-            return photo;
-        }
+        //    return photo;
+        //}
     }
 }
