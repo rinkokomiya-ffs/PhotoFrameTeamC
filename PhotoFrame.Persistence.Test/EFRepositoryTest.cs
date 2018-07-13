@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 
+
 namespace PhotoFrame.Persistence.Test
 {
     [TestClass]
@@ -46,43 +47,91 @@ namespace PhotoFrame.Persistence.Test
         [TestMethod]
         public void 写真を追加できること()
         {
-            var photo = Photo.CreateFromFile(new File("dummy.bmp"));
+            var photo = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993,05,15,15,00,00));
 
             photoRepository.Store(photo);
 
             //var result = photoRepository.FindBy(photo.Id);
-            var result = photoRepository.Find(allKeyword => allKeyword.FirstOrDefault(p => p.Id == photo.Id));
+            var result = photoRepository.Find(allPhoto => allPhoto.FirstOrDefault(p => p.Id == photo.Id));
             Assert.AreNotEqual(null, result);
         }
 
         [TestMethod]
-        public void 写真を更新できること()
+        public void 重複した写真は追加されないこと()
         {
-            var photo = Photo.CreateFromFile(new File("dummy.bmp"));
+            var photo = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993,05,15,15,00,00));
+            photoRepository.Store(photo);
+
+            var same_photo = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
+            photoRepository.Store(same_photo);
+
+
+
+        }
+
+
+        [TestMethod]
+        public void 写真のお気に入りを更新できること()
+        {
+            var photo = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
+
             photoRepository.Store(photo);
 
             photo.MarkAsFavorite();
             photoRepository.Store(photo);
 
             // var result = photoRepository.FindBy(photo.Id);
-            var result = photoRepository.Find(allKeyword => allKeyword.FirstOrDefault(p => p.Id == photo.Id));
+            var result = photoRepository.Find(allPhoto => allPhoto.FirstOrDefault(p => p.Id == photo.Id));
             Assert.AreEqual(true, result.IsFavorite);
         }
 
         [TestMethod]
-        public void 既存の写真をアルバムに追加できること()
+        public void 既存の写真にキーワードを追加できること()
         {
             var keyword = Keyword.Create("Keyword1");
             keywordRepository.Store(keyword);
-            var photo = Photo.CreateFromFile(new File("dummy.bmp"));
+            var photo = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
+
             photoRepository.Store(photo);
 
             photo.IsAssignedTo(keyword);
             photoRepository.Store(photo);
 
             //var result = photoRepository.FindBy(photo.Id);
-            var result = photoRepository.Find(allKeyword => allKeyword.FirstOrDefault(p => p.Id == photo.Id));
-            Assert.AreEqual(keyword.Id, result.Keyword.Id);
+            var result = photoRepository.Find(allPhoto => allPhoto.FirstOrDefault(p => p.Keyword.Name == photo.Keyword.Name));
+            Assert.AreEqual(photo.Keyword.Name, result.Keyword.Name);
         }
+
+        [TestMethod]
+        public void 写真のキーワードを更新できること()
+        {
+            var old_keyword = Keyword.Create("old_keyword");
+            keywordRepository.Store(old_keyword);
+            var photo = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
+
+            photoRepository.Store(photo);
+
+            photo.IsAssignedTo(old_keyword);
+
+            var new_keyword = Keyword.Create("new_keyword");
+            keywordRepository.Store(new_keyword);
+
+            photo.IsAssignedTo(new_keyword);
+
+            var result = photoRepository.Find(allPhoto => allPhoto.FirstOrDefault(p => p.Id == photo.Id));
+            Assert.AreEqual(new_keyword.Name, result.Keyword.Name);
+
+        }
+
+        [TestMethod]
+        public void キーワードを追加できること()
+        {
+            var keyword = Keyword.Create("addKeyword");
+            keywordRepository.Store(keyword);
+
+            var result = keywordRepository.Find(allKeyword => allKeyword.FirstOrDefault(k => k.Id == keyword.Id));
+            Assert.AreEqual(keyword.Id, result.Id);
+        }
+
     }
 }
