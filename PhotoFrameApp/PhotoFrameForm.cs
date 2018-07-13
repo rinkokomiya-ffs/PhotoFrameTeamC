@@ -57,6 +57,9 @@ namespace PhotoFrameApp
             // ここで直接Findを呼び出すのはまずいのでは？
             IEnumerable<Keyword> allKeywords = keywordRepository.Find((IQueryable<Keyword> keywords) => keywords);
 
+            // InitializeKeywordList()を用意して、そこから全キーワードリストを取得する
+
+
             if (allKeywords != null)
             {
                 foreach (Keyword album in allKeywords)
@@ -201,6 +204,7 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void PhotoListPreviewDoubleClick(object sender, EventArgs e)
         {
+            ListViewItem targetItem = (ListViewItem)sender;
 
         }
 
