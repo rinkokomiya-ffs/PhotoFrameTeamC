@@ -20,6 +20,7 @@ namespace PhotoFrameApp
         public Controller(IKeywordRepository keywordRepository, IPhotoRepository photoRepository, IPhotoFileService photoFileService)
         {
             this.application = new PhotoFrameApplication(keywordRepository, photoRepository, photoFileService);
+     
         }
 
         public int ExecuteRegistKeyword(string keyword)
@@ -32,14 +33,9 @@ namespace PhotoFrameApp
             return application.SearchFolder(folderPath);
         }
 
-        public IEnumerable<Photo> SearchDirectory(string directoryName)
+        public Photo ExecuteToggleFavorite(Photo photo)
         {
-            return searchDirectory.Execute(directoryName);
-        }
-
-        public Photo ToggleFavorite(Photo photo)
-        {
-            return toggleFavorite.Execute(photo);
+            return application.ToggleFavorite(photo);
         }
 
         public Photo ExecuteChangeKeyword(Photo photo, string newAlbumName)
@@ -47,36 +43,41 @@ namespace PhotoFrameApp
             return application.ChangeKeyword(photo, newAlbumName);
         }
 
+        public IEnumerable<Photo> ExecuteSortList(IEnumerable<Photo> photoList, int sortMethod)
+        {
+            return application.SortList(photoList, sortMethod);
+        }
+
         // ここより下は非同期用のユースケースの呼び出しメソッド
-        public async Task<int> CreateAlbumAsync(string albumName)
-        {
-            var judgement = await createAlbum.ExecuteAsync(albumName);
-            return judgement;
-        }
+        //public async Task<int> CreateAlbumAsync(string albumName)
+        //{
+        //    var judgement = await createAlbum.ExecuteAsync(albumName);
+        //    return judgement;
+        //}
 
-        public async Task<IEnumerable<Photo>> SearchDirectoryAsync(string directoryName)
-        {
-            var retPhotos = await searchDirectory.ExecuteAsync(directoryName);
-            return retPhotos;
-        }
+        //public async Task<IEnumerable<Photo>> SearchDirectoryAsync(string directoryName)
+        //{
+        //    var retPhotos = await searchDirectory.ExecuteAsync(directoryName);
+        //    return retPhotos;
+        //}
 
-        public async Task<IEnumerable<Photo>> SearchAlbumAsync(string albumName)
-        {
-            var retPhotos = await searchAlbum.ExecuteAsync(albumName);
-            return retPhotos;
-        }
+        //public async Task<IEnumerable<Photo>> SearchAlbumAsync(string albumName)
+        //{
+        //    var retPhotos = await searchAlbum.ExecuteAsync(albumName);
+        //    return retPhotos;
+        //}
 
-        public async Task<Photo> ToggleFavoriteAsync(Photo photo)
-        {
-            var retPhoto = await toggleFavorite.ExecuteAsync(photo);
-            return retPhoto;
-        }
+        //public async Task<Photo> ToggleFavoriteAsync(Photo photo)
+        //{
+        //    var retPhoto = await toggleFavorite.ExecuteAsync(photo);
+        //    return retPhoto;
+        //}
 
-        public async Task<Photo> ChangeAlbumAsync(Photo photo, string newAlbumName)
-        {
-            var retPhoto = await changeAlbum.ExecuteAsync(photo, newAlbumName);
-            return retPhoto;
+        //public async Task<Photo> ChangeAlbumAsync(Photo photo, string newAlbumName)
+        //{
+        //    var retPhoto = await changeAlbum.ExecuteAsync(photo, newAlbumName);
+        //    return retPhoto;
 
-        }
+        //}
     }
 }
