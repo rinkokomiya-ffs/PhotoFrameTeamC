@@ -54,24 +54,21 @@ namespace PhotoFrameApp
             searchedPhotos = new List<Photo>().AsEnumerable();
 
 
-            // 全キーワード名を取得し、キーワード変更リストをセット
-            UpdateKeywordList();
-        }
+            // 全アルバム名を取得し、アルバム変更リストをセット
+            // ここで直接Findを呼び出すのはまずいのでは？
+            allKeywords = keywordRepository.Find((IQueryable<Keyword> keywords) => keywords);
 
-        /// <summary>
-        /// 全キーワードを取得してコンボボックスにセットする
-        /// </summary>
-        private void UpdateKeywordList()
-        {
-            allKeywords = controller.ExecuteInitializeKeywordList();
+            // InitializeKeywordList()を用意して、そこから全キーワードリストを取得する
+
+
             if (allKeywords != null)
             {
                 foreach (Keyword album in allKeywords)
                 {
-                    comboBoxChangeKeyword.Items.Add(album.Name);
+                    comboBox_ChangeAlbum.Items.Add(album.Name);
                 }
-                comboBoxChangeKeyword.SelectedIndex = 0;
             }
+
         }
 
         /// <summary>
@@ -112,21 +109,11 @@ namespace PhotoFrameApp
         //private async void button_SearchAlbum_Click(object sender, EventArgs e)
         {
             // フォルダパスを引数にとって、コントローラーに渡す
-            if (controller.ExecuteSearchFolder(folderPath).Count() == 0)
-            {
-                MessageBox.Show("写真が存在しません");
-            }
-            else if(controller.ExecuteSearchFolder(folderPath).Count() == null)
-            {
-                MessageBox.Show("フォルダが存在しません");
-            }
-            else
-            {
-                this.searchedPhotos = controller.ExecuteSearchFolder(folderPath);
-                //this.searchedPhotos = await application.SearchDirectoryAsync(textBox_Search.Text);
-            }
+            // count0か判別する必要がある
+            // もしnullだったら写真が存在しない
+            this.searchedPhotos = controller.ExecuteSearchFolder(folderPath);
+            //this.searchedPhotos = await application.SearchDirectoryAsync(textBox_Search.Text);
 
-            // リストビューに表示する
             RenewPhotoListView();
 
         }
@@ -160,7 +147,7 @@ namespace PhotoFrameApp
             switch (result)
             {
                 case 0:
-                    comboBoxChangeKeyword.Items.Add(keyword);
+                    comboBox_ChangeAlbum.Items.Add(keyword);
                     break;
                 case 1:
                     MessageBox.Show("キーワードが未入力です");
@@ -182,21 +169,13 @@ namespace PhotoFrameApp
         //private async void button_ToggleFavorite_Click(object sender, EventArgs e)
         private void ButtonToggleFavoriteClick(object sender, EventArgs e)
         {
-            // allKeywordがnullならエラー
-            if (allKeywords == null)
-            {
-                MessageBox.Show("キーワードが作成されていません。");
-            }
-            else
-            {
-                var indexList = GetListviewIndex();
+            var indexList = GetListviewIndex();
 
-                for (int i = 0; i < indexList.Count; i++)
-                {
-                    Photo photo = controller.ExecuteToggleFavorite(searchedPhotos.ElementAt(indexList.ElementAt(i)));
-                    //Photo photo = await application.ToggleFavoriteAsync(searchedPhotos.ElementAt(indexList.ElementAt(i)));
-                    RenewPhotoListViewItem(indexList.ElementAt(i), photo);
-                }
+            for (int i = 0; i < indexList.Count; i++)
+            {
+                Photo photo = controller.ExecuteToggleFavorite(searchedPhotos.ElementAt(indexList.ElementAt(i)));
+                //Photo photo = await application.ToggleFavoriteAsync(searchedPhotos.ElementAt(indexList.ElementAt(i)));
+                RenewPhotoListViewItem(indexList.ElementAt(i), photo);
             }
 
         }
@@ -209,23 +188,16 @@ namespace PhotoFrameApp
         //private async void ButtonChangeKeywordClick(object sender, EventArgs e)
         private void ButtonChangeKeywordClick(object sender, EventArgs e)
         {
-            // allKeywordがnullならエラー
-            if(allKeywords == null)
-            {
-                MessageBox.Show("キーワードが作成されていません。");
-            }
-            else
-            {
-                string newKeyword = comboBoxChangeKeyword.Text;
-                var indexList = GetListviewIndex();
+            string newAlbumName = comboBox_ChangeAlbum.Text;
+            var indexList = GetListviewIndex();
 
-                for (int i = 0; i < indexList.Count; i++)
-                {
-                    Photo photo = controller.ExecuteChangeKeyword(searchedPhotos.ElementAt(indexList.ElementAt(i)), newKeyword);
-                    //Photo photo = await application.ChangeAlbumAsync(searchedPhotos.ElementAt(indexList.ElementAt(i)), newAlbumName);
-                    RenewPhotoListViewItem(indexList.ElementAt(i), photo);
-                }
+            for (int i = 0; i < indexList.Count; i++)
+            {
+                Photo photo = controller.ExecuteChangeKeyword(searchedPhotos.ElementAt(indexList.ElementAt(i)), newAlbumName);
+                //Photo photo = await application.ChangeAlbumAsync(searchedPhotos.ElementAt(indexList.ElementAt(i)), newAlbumName);
+                RenewPhotoListViewItem(indexList.ElementAt(i), photo);
             }
+
         }
 
         /// <summary>
@@ -282,11 +254,10 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void ButtonStartSlideShowClick(object sender, EventArgs e)
         {
-            // ソートしたリストを渡す
-            IEnumerable<Photo> targetSlideshowPhotos = controller.ExecuteSortList(searchedPhotos, CheckSortList());
-            if (targetSlideshowPhotos.Count() > 0)
+            controller.ExecuteSortList(searchedPhotos, CheckSortList());
+            if (this.searchedPhotos.Count() > 0)
             {
-                var slideShowForm = new SlideShowForm(targetSlideshowPhotos);
+                var slideShowForm = new SlideShowForm(this.searchedPhotos);
                 slideShowForm.ShowDialog();
             }
 
@@ -300,16 +271,16 @@ namespace PhotoFrameApp
         /// <param name="photo"></param>
         private void RenewPhotoListViewItem(int index, Photo photo)
         {
-            string keyword = "";
+            string albumName = "";
             string isFavorite = "";
 
             if (photo.Keyword != null)
             {
-                keyword = photo.Keyword.Name;
+                albumName = photo.Keyword.Name;
             }
             else
             {
-                keyword = "";
+                albumName = "";
             }
 
 
@@ -323,7 +294,7 @@ namespace PhotoFrameApp
             }
 
             listView_PhotoList.Items[index].SubItems[0].Text = photo.File.FilePath;
-            listView_PhotoList.Items[index].SubItems[1].Text = keyword;
+            listView_PhotoList.Items[index].SubItems[1].Text = albumName;
             listView_PhotoList.Items[index].SubItems[2].Text = isFavorite;
         }
 
@@ -339,15 +310,15 @@ namespace PhotoFrameApp
             {
                 foreach (Photo photo in searchedPhotos)
                 {
-                    string keyword, isFavorite;
+                    string albumName, isFavorite;
 
                     if (photo.Keyword != null)
                     {
-                        keyword = photo.Keyword.Name;
+                        albumName = photo.Keyword.Name;
                     }
                     else
                     {
-                        keyword = "";
+                        albumName = "";
                     }
 
 
@@ -360,7 +331,7 @@ namespace PhotoFrameApp
                         isFavorite = "";
                     }
 
-                    string[] item = { photo.File.FilePath, keyword, isFavorite };
+                    string[] item = { photo.File.FilePath, albumName, isFavorite };
                     listView_PhotoList.Items.Add(new ListViewItem(item));
 
                 }
