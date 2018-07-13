@@ -7,18 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PhotoFrame.Persistence
+namespace PhotoFrame.Persistence.Repositories
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class M_PHOTO
+    public partial class m_Keyword
     {
-        public System.Guid Id { get; set; }
-        public string FilePath { get; set; }
-        public bool IsFavorite { get; set; }
-        public Nullable<System.Guid> AlbumId { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public m_Keyword()
+        {
+            this.m_Photo = new HashSet<m_Photo>();
+        }
     
-        public virtual M_ALBUM M_ALBUM { get; set; }
+        public System.Guid Id { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<m_Photo> m_Photo { get; set; }
     }
 }

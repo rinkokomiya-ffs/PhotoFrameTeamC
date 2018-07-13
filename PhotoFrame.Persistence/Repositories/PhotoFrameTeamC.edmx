@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PhotoFrameTeamCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="m_Keyword">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="m_Photo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FilePath" Type="nvarchar(max)" />
+          <Property Name="DateTime" Type="datetime" />
+          <Property Name="IsFavorite" Type="bit" Nullable="false" />
+          <Property Name="KeywordId" Type="uniqueidentifier" />
+        </EntityType>
+        <Association Name="FK_m_Photo_m_Keyword1">
+          <End Role="m_Keyword" Type="Self.m_Keyword" Multiplicity="0..1" />
+          <End Role="m_Photo" Type="Self.m_Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="m_Keyword">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="m_Photo">
+              <PropertyRef Name="KeywordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PhotoFrameTeamCModelStoreContainer">
+          <EntitySet Name="m_Keyword" EntityType="Self.m_Keyword" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="m_Photo" EntityType="Self.m_Photo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_m_Photo_m_Keyword1" Association="Self.FK_m_Photo_m_Keyword1">
+            <End Role="m_Keyword" EntitySet="m_Keyword" />
+            <End Role="m_Photo" EntitySet="m_Photo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PhotoFrameTeamCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="m_Keyword">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="m_Photo" Relationship="Self.FK_m_Photo_m_Keyword1" FromRole="m_Keyword" ToRole="m_Photo" />
+        </EntityType>
+        <EntityType Name="m_Photo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateTime" Type="DateTime" Precision="3" />
+          <Property Name="IsFavorite" Type="DateTime" Nullable="false" />
+          <Property Name="KeywordId" Type="Guid" />
+          <NavigationProperty Name="m_Keyword" Relationship="Self.FK_m_Photo_m_Keyword1" FromRole="m_Photo" ToRole="m_Keyword" />
+        </EntityType>
+        <Association Name="FK_m_Photo_m_Keyword1">
+          <End Role="m_Keyword" Type="Self.m_Keyword" Multiplicity="0..1" />
+          <End Role="m_Photo" Type="Self.m_Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="m_Keyword">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="m_Photo">
+              <PropertyRef Name="KeywordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PhotoFrameTeamCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="m_Keyword" EntityType="Self.m_Keyword" />
+          <EntitySet Name="m_Photo" EntityType="Self.m_Photo" />
+          <AssociationSet Name="FK_m_Photo_m_Keyword1" Association="Self.FK_m_Photo_m_Keyword1">
+            <End Role="m_Keyword" EntitySet="m_Keyword" />
+            <End Role="m_Photo" EntitySet="m_Photo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PhotoFrameTeamCModelStoreContainer" CdmEntityContainer="PhotoFrameTeamCEntities">
+          <EntitySetMapping Name="m_Keyword">
+            <EntityTypeMapping TypeName="PhotoFrameTeamCModel.m_Keyword">
+              <MappingFragment StoreEntitySet="m_Keyword">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="m_Photo">
+            <EntityTypeMapping TypeName="PhotoFrameTeamCModel.m_Photo">
+              <MappingFragment StoreEntitySet="m_Photo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="IsFavorite" ColumnName="IsFavorite" />
+                <ScalarProperty Name="KeywordId" ColumnName="KeywordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="なし" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
