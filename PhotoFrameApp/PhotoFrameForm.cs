@@ -17,9 +17,8 @@ namespace PhotoFrameApp
     public partial class PhotoFrameForm : Form
     {
         private IPhotoRepository photoRepository;
-        private IKeywordRepository albumRepository;
+        private IKeywordRepository keywordRepository;
         private IPhotoFileService photoFileService;
-        private PhotoFrameApplication application;
         private IEnumerable<Photo> searchedPhotos; // リストビュー上のフォトのリスト
         private Controller controller;
 
@@ -49,18 +48,18 @@ namespace PhotoFrameApp
             //RepositoryFactory repositoryFactory = new RepositoryFactory(PhotoFrame.Persistence.Type.EF);
             ServiceFactory serviceFactory = new ServiceFactory();
             photoRepository = repositoryFactory.PhotoRepository;
-            albumRepository = repositoryFactory.AlbumRepository;
+            keywordRepository = repositoryFactory.KeywordRepository;
             photoFileService = serviceFactory.PhotoFileService;
-            application = new PhotoFrameApplication(albumRepository, photoRepository, photoFileService);
             searchedPhotos = new List<Photo>().AsEnumerable();
 
 
             // 全アルバム名を取得し、アルバム変更リストをセット
-            IEnumerable<Keyword> allAlbums = albumRepository.Find((IQueryable<Keyword> albums) => albums);
+            // ここで直接Findを呼び出すのはまずいのでは？
+            IEnumerable<Keyword> allKeywords = keywordRepository.Find((IQueryable<Keyword> keywords) => keywords);
 
-            if (allAlbums != null)
+            if (allKeywords != null)
             {
-                foreach (Keyword album in allAlbums)
+                foreach (Keyword album in allKeywords)
                 {
                     comboBox_ChangeAlbum.Items.Add(album.Name);
                 }
@@ -168,7 +167,7 @@ namespace PhotoFrameApp
 
             for (int i = 0; i < indexList.Count; i++)
             {
-                Photo photo = controller.ToggleFavorite(searchedPhotos.ElementAt(indexList.ElementAt(i)));
+                Photo photo = controller.ExecuteToggleFavorite(searchedPhotos.ElementAt(indexList.ElementAt(i)));
                 //Photo photo = await application.ToggleFavoriteAsync(searchedPhotos.ElementAt(indexList.ElementAt(i)));
                 RenewPhotoListViewItem(indexList.ElementAt(i), photo);
             }
@@ -196,6 +195,37 @@ namespace PhotoFrameApp
         }
 
         /// <summary>
+        /// リストビューをダブルクリックしてプレビュー表示
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PhotoListPreviewDoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// リストビューをソートする順番を設定
+        /// </summary>
+        private int CheckSortList()
+        {
+            if(radioButtonOldNew.Checked)
+            {
+                return 1;
+            }
+            else if(radioButtonNewOld.Checked)
+            {
+                return 2;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+
+
+        /// <summary>
         /// 選択したリストビューのインデックス取得
         /// </summary>
         /// <returns></returns>
@@ -217,6 +247,7 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void ButtonStartSlideShowClick(object sender, EventArgs e)
         {
+            controller.ExecuteSortList(searchedPhotos, CheckSortList());
             if (this.searchedPhotos.Count() > 0)
             {
                 var slideShowForm = new SlideShowForm(this.searchedPhotos);
@@ -233,11 +264,12 @@ namespace PhotoFrameApp
         /// <param name="photo"></param>
         private void RenewPhotoListViewItem(int index, Photo photo)
         {
-            string albumName, isFavorite;
+            string albumName = "";
+            string isFavorite = "";
 
-            if (photo.Album != null)
+            if (photo.Keyword != null)
             {
-                albumName = photo.Album.Name;
+                albumName = photo.Keyword.Name;
             }
             else
             {
@@ -273,9 +305,9 @@ namespace PhotoFrameApp
                 {
                     string albumName, isFavorite;
 
-                    if (photo.Album != null)
+                    if (photo.Keyword != null)
                     {
-                        albumName = photo.Album.Name;
+                        albumName = photo.Keyword.Name;
                     }
                     else
                     {
