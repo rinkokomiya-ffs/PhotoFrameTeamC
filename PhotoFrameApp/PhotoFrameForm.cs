@@ -105,8 +105,8 @@ namespace PhotoFrameApp
         private void ButtonSearchFolderClick(object sender, EventArgs e)
         //private async void button_SearchAlbum_Click(object sender, EventArgs e)
         {
-            // フォルダパスを引数にとって、コントロールに渡す
-            this.searchedPhotos = application.SearchDirectory(folderPath);
+            // フォルダパスを引数にとって、コントローラーに渡す
+            this.searchedPhotos = controller.ExecuteSearchFolder(folderPath);
             //this.searchedPhotos = await application.SearchDirectoryAsync(textBox_Search.Text);
 
             RenewPhotoListView();
@@ -114,13 +114,17 @@ namespace PhotoFrameApp
         }
 
         /// <summary>
-        /// 
+        /// 条件絞り込みフォームを開く
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ButtonDetailSearchClick(object sender, EventArgs e)
         {
-
+            if(CheckExistListviewPhotos())
+            {
+                var detailSearchForm = new DetailSearchForm();
+                detailSearchForm.ShowDialog();
+            }
         }
 
         /// <summary>
@@ -130,7 +134,6 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         //private async void ButtonRegistKeyword(object sender, EventArgs e)
         private void ButtonRegistKeyword(object sender, EventArgs e)
-
         {
             string keyword = textBoxRegistKeyword.Text;
             var result = controller.ExecuteRegistKeyword(keyword);
@@ -293,6 +296,22 @@ namespace PhotoFrameApp
                     listView_PhotoList.Items.Add(new ListViewItem(item));
 
                 }
+            }
+        }
+
+        /// <summary>
+        /// リストビューに写真があるかどうか確認する
+        /// </summary>
+        private bool CheckExistListviewPhotos()
+        {
+            if (this.searchedPhotos.Count() == 0)
+            {
+                MessageBox.Show("リストビューに写真が存在しません。");
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }
