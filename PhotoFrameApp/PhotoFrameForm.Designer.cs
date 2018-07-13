@@ -188,7 +188,7 @@
             this.listView_PhotoList.TabIndex = 0;
             this.listView_PhotoList.UseCompatibleStateImageBehavior = false;
             this.listView_PhotoList.View = System.Windows.Forms.View.Details;
-            this.listView_PhotoList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.PhotoListPreviewDobleClick);
+            this.listView_PhotoList.DoubleClick += new System.EventHandler(this.PhotoListPreviewDoubleClick);
             // 
             // columnHeader_PhotoPath
             // 

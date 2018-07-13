@@ -197,15 +197,16 @@ namespace PhotoFrameApp
 
         }
 
-        private void PhotoListPreviewDobleClick(object sender, MouseEventArgs e)
+        //ダブルクリックした写真情報をpictureboxに描写
+        private void PhotoListPreviewDoubleClick(object sender, EventArgs e)
         {
             ListViewItem targetItem = (ListViewItem)sender;
-            var listviewitem = targetItem.ToString();//listViewに表示された文字列を返す
+            int index_number = listView_PhotoList.SelectedItems.IndexOf(targetItem);
 
-            pictureBoxShowPicture.ImageLocation = folderPath + listviewitem;
+            pictureBoxShowPicture.ImageLocation = searchedPhotos.ElementAt(index_number).File.FilePath;
         }
 
-       
+
 
         /// <summary>
         /// リストビューをソートする順番を設定
@@ -350,6 +351,6 @@ namespace PhotoFrameApp
             }
         }
 
-     
+       
     }
 }
