@@ -258,10 +258,11 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void ButtonStartSlideShowClick(object sender, EventArgs e)
         {
-            controller.ExecuteSortList(searchedPhotos, CheckSortList());
-            if (this.searchedPhotos.Count() > 0)
+            // ソートしたリストを渡す
+            IEnumerable<Photo> targetSlideshowPhotos = controller.ExecuteSortList(searchedPhotos, CheckSortList());
+            if (targetSlideshowPhotos.Count() > 0)
             {
-                var slideShowForm = new SlideShowForm(this.searchedPhotos);
+                var slideShowForm = new SlideShowForm(targetSlideshowPhotos);
                 slideShowForm.ShowDialog();
             }
 
