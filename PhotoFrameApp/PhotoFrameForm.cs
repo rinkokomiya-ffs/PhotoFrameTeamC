@@ -112,14 +112,20 @@ namespace PhotoFrameApp
         private void ButtonSearchFolderClick(object sender, EventArgs e)
         //private async void button_SearchAlbum_Click(object sender, EventArgs e)
         {
+            //ラベルにフォルダが表示されていない場合の例外処理
+            if (folderPath == null)
+            {
+                MessageBox.Show("フォルダ名が指定されていません","エラー" ,MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+
             // フォルダパスを引数にとって、コントローラーに渡す
-            // count0か判別する必要がある
-            // もしnullだったら写真が存在しない
-            this.searchedPhotos = controller.ExecuteSearchFolder(folderPath);
-            //this.searchedPhotos = await application.SearchDirectoryAsync(textBox_Search.Text);
+            else
+            {
+                this.searchedPhotos = controller.ExecuteSearchFolder(folderPath);
+                //this.searchedPhotos = await application.SearchDirectoryAsync(textBox_Search.Text);
 
-            RenewPhotoListView();
-
+                RenewPhotoListView();
+            }
         }
 
         /// <summary>
