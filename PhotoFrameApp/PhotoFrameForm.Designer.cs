@@ -55,7 +55,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBoxChangeKeyword = new System.Windows.Forms.ComboBox();
+            this.comboBox_ChangeAlbum = new System.Windows.Forms.ComboBox();
             this.buttonChangeAlbum = new System.Windows.Forms.Button();
             this.buttonToggleFavorite = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -326,7 +326,7 @@
             // 
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.comboBoxChangeKeyword);
+            this.groupBox2.Controls.Add(this.comboBox_ChangeAlbum);
             this.groupBox2.Controls.Add(this.buttonChangeAlbum);
             this.groupBox2.Controls.Add(this.buttonToggleFavorite);
             this.groupBox2.Location = new System.Drawing.Point(33, 12);
@@ -354,13 +354,13 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "お気に入り";
             // 
-            // comboBoxChangeKeyword
+            // comboBox_ChangeAlbum
             // 
-            this.comboBoxChangeKeyword.FormattingEnabled = true;
-            this.comboBoxChangeKeyword.Location = new System.Drawing.Point(71, 18);
-            this.comboBoxChangeKeyword.Name = "comboBoxChangeKeyword";
-            this.comboBoxChangeKeyword.Size = new System.Drawing.Size(190, 20);
-            this.comboBoxChangeKeyword.TabIndex = 0;
+            this.comboBox_ChangeAlbum.FormattingEnabled = true;
+            this.comboBox_ChangeAlbum.Location = new System.Drawing.Point(71, 18);
+            this.comboBox_ChangeAlbum.Name = "comboBox_ChangeAlbum";
+            this.comboBox_ChangeAlbum.Size = new System.Drawing.Size(190, 20);
+            this.comboBox_ChangeAlbum.TabIndex = 0;
             // 
             // buttonChangeAlbum
             // 
@@ -430,7 +430,7 @@
         private System.Windows.Forms.Button buttonReferenceFolder;
         private System.Windows.Forms.Label labelShowFolderPath;
         private System.Windows.Forms.Button ButtonDetailSearch;
-        private System.Windows.Forms.ComboBox comboBoxChangeKeyword;
+        private System.Windows.Forms.ComboBox comboBox_ChangeAlbum;
         private System.Windows.Forms.Button buttonChangeAlbum;
         private System.Windows.Forms.Button buttonToggleFavorite;
         private System.Windows.Forms.GroupBox groupBox1;
