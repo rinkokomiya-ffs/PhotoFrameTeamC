@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity.SqlServer;
+using PhotoFrame.Persistence.Repositories;
 
 namespace PhotoFrame.Persistence.EF
 {
@@ -63,25 +64,24 @@ namespace PhotoFrame.Persistence.EF
         public Keyword Store(Keyword entity)
         {
             // TODO: DBプログラミング講座で実装
-            var album = AlbumToTable(entity);
+            var keyword = KeywordToTable(entity);
           
-            using (var photoFrameEntity = new PhotoFrameDBEntities())
+            using (var photoFrameEntity = new PhotoFrameTeamCEntities())
             {
                 // トランザクション作成
                 using (var transaction = photoFrameEntity.Database.BeginTransaction())
                 {
                     try
                     {
-                        var searchedAlbum = photoFrameEntity.M_ALBUM.SingleOrDefault(p => p.Id == album.Id);
+                        var searchedKeyword = photoFrameEntity.m_Keyword.SingleOrDefault(p => p.Id == keyword.Id);
 
-                        if (searchedAlbum == null)
+                        if (searchedKeyword == null)
                         {
-                            photoFrameEntity.M_ALBUM.Add(album);
+                            photoFrameEntity.m_Keyword.Add(keyword);
                         }
                         else
                         {
-                            searchedAlbum.Name = album.Name;
-                            searchedAlbum.Descript = album.Descript;
+                            searchedKeyword.Name = keyword.Name;
                         }
 
                         photoFrameEntity.SaveChanges();
@@ -107,36 +107,35 @@ namespace PhotoFrame.Persistence.EF
         /// <returns></returns>
         private IQueryable<Keyword> FindAll()
         {
-            using (var photoFrameEntity = new PhotoFrameDBEntities())
+            using (var photoFrameEntity = new PhotoFrameTeamCEntities())
             {
-                var albums  = from p in photoFrameEntity.M_ALBUM.ToList() select TableToAlbum(p);
-                return albums.AsQueryable();
+                var keywords = from p in photoFrameEntity.m_Keyword.ToList() select TableToKeyword(p);
+                return keywords.AsQueryable();
             }
         }
 
         /// <summary>
-        /// DBのテーブルデータからAlbumオブジェクトへ変換
+        /// DBのテーブルデータからKeywordオブジェクトへ変換
         /// </summary>
-        /// <param name="m_album"></param>
+        /// <param name="m_keyword"></param>
         /// <returns></returns>
-        private Keyword TableToAlbum(M_ALBUM m_album)
+        private Keyword TableToKeyword(m_Keyword m_keyword)
         {
-            return new Keyword(m_album.Id.ToString(), m_album.Name, m_album.Descript);
+            return new Keyword(m_keyword.Id.ToString(), m_keyword.Name);
         }
 
         /// <summary>
         /// 逆変換
         /// </summary>
-        /// <param name="album"></param>
+        /// <param name="keyword"></param>
         /// <returns></returns>
-        private M_ALBUM AlbumToTable(Keyword album)
+        private m_Keyword KeywordToTable(Keyword keyword)
         {
-            var m_album = new M_ALBUM();
-            m_album.Id = Guid.Parse(album.Id);
-            m_album.Name = album.Name;
-            m_album.Descript = album.Description;
+            var m_keyword = new m_Keyword();
+            m_keyword.Id = Guid.Parse(keyword.Id);
+            m_keyword.Name = keyword.Name;
 
-            return m_album;
+            return m_keyword;
         }
 
     }

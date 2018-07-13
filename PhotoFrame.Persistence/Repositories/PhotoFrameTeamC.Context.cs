@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PhotoFrame.Persistence
+namespace PhotoFrame.Persistence.Repositories
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PhotoFrameDBEntities : DbContext
+    public partial class PhotoFrameTeamCEntities : DbContext
     {
-        public PhotoFrameDBEntities()
-            : base("name=PhotoFrameDBEntities")
+        public PhotoFrameTeamCEntities()
+            : base("name=PhotoFrameTeamCEntities")
         {
         }
     
@@ -25,7 +25,7 @@ namespace PhotoFrame.Persistence
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<M_ALBUM> M_ALBUM { get; set; }
-        public virtual DbSet<M_PHOTO> M_PHOTO { get; set; }
+        public virtual DbSet<m_Keyword> m_Keyword { get; set; }
+        public virtual DbSet<m_Photo> m_Photo { get; set; }
     }
 }

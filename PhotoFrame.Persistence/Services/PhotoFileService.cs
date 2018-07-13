@@ -34,6 +34,7 @@ namespace PhotoFrame.Persistence
                 }
 
             }
+
             //else
             //{
             //    throw new IOException("指定したディレクトリが存在しません");

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity.SqlServer;
+using PhotoFrame.Persistence.Repositories;
+
 
 namespace PhotoFrame.Persistence.EF
 {
@@ -14,11 +16,11 @@ namespace PhotoFrame.Persistence.EF
     class PhotoRepository : IPhotoRepository
     {
         private SqlProviderServices _sqlProviderServices;
-        private IKeywordRepository albumRepository;
+        private IKeywordRepository keywordRepository;
 
-        public PhotoRepository(IKeywordRepository albumRepository, SqlProviderServices sqlProviderServices)
+        public PhotoRepository(IKeywordRepository keywordRepository, SqlProviderServices sqlProviderServices)
         {
-            this.albumRepository = albumRepository;
+            this.keywordRepository = keywordRepository;
             _sqlProviderServices = sqlProviderServices;
         }
 
@@ -59,26 +61,27 @@ namespace PhotoFrame.Persistence.EF
         public Photo Store(Photo entity)
         {
             // TODO: DBプログラミング講座で実装
-            var photo = AlbumToTable(entity);
+            var photo = PhotoToTable(entity);
 
-            using (var photoFrameEntity = new PhotoFrameDBEntities())
+            using (var photoFrameEntity = new PhotoFrameTeamCEntities())
             {
                 // トランザクション作成
                 using (var transaction = photoFrameEntity.Database.BeginTransaction())
                 {
                     try
                     {
-                        var searchedPhoto = photoFrameEntity.M_PHOTO.SingleOrDefault(p => p.Id == photo.Id);
+                        var searchedPhoto = photoFrameEntity.m_Photo.SingleOrDefault(p => p.Id == photo.Id);
 
                         if (searchedPhoto == null)
                         {
-                            photoFrameEntity.M_PHOTO.Add(photo);
+                            photoFrameEntity.m_Photo.Add(photo);
                         }
                         else
                         {
                             searchedPhoto.FilePath = photo.FilePath;
+                            searchedPhoto.DateTime = photo.DateTime;
                             searchedPhoto.IsFavorite = photo.IsFavorite;
-                            searchedPhoto.AlbumId = photo.AlbumId;
+                            searchedPhoto.KeywordId = photo.KeywordId;
                         }
                         photoFrameEntity.SaveChanges();
                         transaction.Commit();
@@ -100,16 +103,16 @@ namespace PhotoFrame.Persistence.EF
         /// <returns></returns>
         private IQueryable<Photo> FindAll()
         {
-            var m_photos = new List<M_PHOTO>();
+            var m_photos = new List<m_Photo>();
 
-            // AlbumのFindAllでDBへアクセスするため、 一度DBのデータを格納して接続切る
-            using (var photoFrameEntity = new PhotoFrameDBEntities())
+            // KeywordのFindAllでDBへアクセスするため、 一度DBのデータを格納して接続切る
+            using (var photoFrameEntity = new PhotoFrameTeamCEntities())
             {
-                m_photos = photoFrameEntity.M_PHOTO.ToList();
+                m_photos = photoFrameEntity.m_Photo.ToList();
             }
 
             // DBのテーブルデータからPhotoオブジェクトへ変換メソッドTableToPhotoの呼び出し
-            // ここでAlbumのFindAllでDBへアクセスがある
+            // ここでKeywordのFindAllでDBへアクセスがある
             var photos = m_photos.Select(p => TableToPhoto(p));
             return photos.AsQueryable();
            
@@ -118,27 +121,27 @@ namespace PhotoFrame.Persistence.EF
         /// <summary>
         /// DBのテーブルデータからPhotoオブジェクトへ変換
         /// </summary>
-        /// <param name="m_album"></param>
+        /// <param name="m_Photo"></param>
         /// <returns></returns>
-        private Photo TableToPhoto(M_PHOTO m_photo)
+        private Photo TableToPhoto(m_Photo m_photo)
         {
             var file = new File(m_photo.FilePath);
-            var album = albumRepository.Find(allAlbum => allAlbum.FirstOrDefault(p => p.Id == m_photo.AlbumId.ToString()));
-            return new Photo(m_photo.Id.ToString(), file, m_photo.IsFavorite, m_photo.AlbumId.ToString(), album);
+            var keyword = keywordRepository.Find(allKeyword => allKeyword.FirstOrDefault(p => p.Id == m_photo.KeywordId.ToString()));
+            return new Photo(m_photo.Id.ToString(), file, m_photo.DateTime, m_photo.IsFavorite, m_photo.KeywordId.ToString(), keyword);
         }
 
         /// <summary>
         /// 逆変換
         /// </summary>
-        /// <param name="album"></param>
+        /// <param name="keyword"></param>
         /// <returns></returns>
-        private M_PHOTO AlbumToTable(Photo photo)
+        private m_Photo PhotoToTable(Photo photo)
         {
-            var m_photo = new M_PHOTO();
+            var m_photo = new m_Photo();
             m_photo.Id = Guid.Parse(photo.Id);
             m_photo.FilePath = photo.File.FilePath;
             m_photo.IsFavorite = photo.IsFavorite;
-            if (photo.AlbumId != null) m_photo.AlbumId = Guid.Parse(photo.AlbumId);
+            if (photo.KeywordId != null) m_photo.KeywordId = Guid.Parse(photo.KeywordId);
 
             return m_photo;
         }
