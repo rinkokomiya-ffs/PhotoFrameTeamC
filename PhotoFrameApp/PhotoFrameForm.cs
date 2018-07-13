@@ -64,7 +64,7 @@ namespace PhotoFrameApp
         /// </summary>
         private void UpdateKeywordList()
         {
-            allKeywords = controller.ExecuteInitializeKeywordList();
+            allKeywords = controller.ExecuteGetKeyword();
             if (allKeywords != null)
             {
                 foreach (Keyword album in allKeywords)
