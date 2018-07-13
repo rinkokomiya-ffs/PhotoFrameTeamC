@@ -55,20 +55,24 @@ namespace PhotoFrameApp
 
 
             // 全アルバム名を取得し、アルバム変更リストをセット
-            // ここで直接Findを呼び出すのはまずいのでは？
-            allKeywords = keywordRepository.Find((IQueryable<Keyword> keywords) => keywords);
+            UpdateKeywordList();
 
-            // InitializeKeywordList()を用意して、そこから全キーワードリストを取得する
+        }
 
-
+        /// <summary>
+        /// 全キーワードを取得してコンボボックスにセットする
+        /// </summary>
+        private void UpdateKeywordList()
+        {
+            allKeywords = controller.ExecuteInitializeKeywordList();
             if (allKeywords != null)
             {
                 foreach (Keyword album in allKeywords)
                 {
-                    comboBox_ChangeAlbum.Items.Add(album.Name);
+                    comboBoxChangeKeyword.Items.Add(album.Name);
                 }
+                comboBoxChangeKeyword.SelectedIndex = 0;
             }
-
         }
 
         /// <summary>
@@ -147,7 +151,7 @@ namespace PhotoFrameApp
             switch (result)
             {
                 case 0:
-                    comboBox_ChangeAlbum.Items.Add(keyword);
+                    comboBoxChangeKeyword.Items.Add(keyword);
                     break;
                 case 1:
                     MessageBox.Show("キーワードが未入力です");
@@ -188,7 +192,7 @@ namespace PhotoFrameApp
         //private async void ButtonChangeKeywordClick(object sender, EventArgs e)
         private void ButtonChangeKeywordClick(object sender, EventArgs e)
         {
-            string newAlbumName = comboBox_ChangeAlbum.Text;
+            string newAlbumName = comboBoxChangeKeyword.Text;
             var indexList = GetListviewIndex();
 
             for (int i = 0; i < indexList.Count; i++)
@@ -254,10 +258,11 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void ButtonStartSlideShowClick(object sender, EventArgs e)
         {
-            controller.ExecuteSortList(searchedPhotos, CheckSortList());
-            if (this.searchedPhotos.Count() > 0)
+            // ソートしたリストを渡す
+            IEnumerable<Photo> targetSlideshowPhotos = controller.ExecuteSortList(searchedPhotos, CheckSortList());
+            if (targetSlideshowPhotos.Count() > 0)
             {
-                var slideShowForm = new SlideShowForm(this.searchedPhotos);
+                var slideShowForm = new SlideShowForm(targetSlideshowPhotos);
                 slideShowForm.ShowDialog();
             }
 
@@ -271,16 +276,16 @@ namespace PhotoFrameApp
         /// <param name="photo"></param>
         private void RenewPhotoListViewItem(int index, Photo photo)
         {
-            string albumName = "";
+            string keyword = "";
             string isFavorite = "";
 
             if (photo.Keyword != null)
             {
-                albumName = photo.Keyword.Name;
+                keyword = photo.Keyword.Name;
             }
             else
             {
-                albumName = "";
+                keyword = "";
             }
 
 
@@ -294,7 +299,7 @@ namespace PhotoFrameApp
             }
 
             listView_PhotoList.Items[index].SubItems[0].Text = photo.File.FilePath;
-            listView_PhotoList.Items[index].SubItems[1].Text = albumName;
+            listView_PhotoList.Items[index].SubItems[1].Text = keyword;
             listView_PhotoList.Items[index].SubItems[2].Text = isFavorite;
         }
 
@@ -310,15 +315,15 @@ namespace PhotoFrameApp
             {
                 foreach (Photo photo in searchedPhotos)
                 {
-                    string albumName, isFavorite;
+                    string keyword, isFavorite;
 
                     if (photo.Keyword != null)
                     {
-                        albumName = photo.Keyword.Name;
+                        keyword = photo.Keyword.Name;
                     }
                     else
                     {
-                        albumName = "";
+                        keyword = "";
                     }
 
 
@@ -331,7 +336,7 @@ namespace PhotoFrameApp
                         isFavorite = "";
                     }
 
-                    string[] item = { photo.File.FilePath, albumName, isFavorite };
+                    string[] item = { photo.File.FilePath, keyword, isFavorite };
                     listView_PhotoList.Items.Add(new ListViewItem(item));
 
                 }

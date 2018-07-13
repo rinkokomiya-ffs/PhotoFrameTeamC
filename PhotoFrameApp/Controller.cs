@@ -23,6 +23,11 @@ namespace PhotoFrameApp
      
         }
 
+        public IEnumerable<Photo> ExecuteInitializeKeywordList()
+        {
+            return application.InitializeKeywordList();
+        }
+
         public int ExecuteRegistKeyword(string keyword)
         {
             return application.RegistKeyword(keyword);
