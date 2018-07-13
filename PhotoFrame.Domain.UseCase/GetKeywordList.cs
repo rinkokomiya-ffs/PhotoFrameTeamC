@@ -18,7 +18,7 @@ namespace PhotoFrame.Domain.UseCase
         }
         public IEnumerable<Keyword> Execute()
         {
-            // 全アルバム名を取得し、アルバム変更リストをセット
+            // 全アルバム名を取得
             return keywordRepository.Find((IQueryable<Keyword> albums) => albums); 
         }
     }
