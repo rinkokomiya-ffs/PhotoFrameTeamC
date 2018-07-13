@@ -13,6 +13,7 @@ using PhotoFrame.Domain.Model;
 using PhotoFrame.Domain.UseCase;
 using PhotoFrame.Persistence;
 using PhotoFrame.Persistence.Csv;
+using Microsoft.SmallBasic.Library;
 
 namespace PhotoFrameApp
 {
@@ -20,12 +21,6 @@ namespace PhotoFrameApp
     {
         IEnumerable<Photo> photos;
         int photo_index;
-
-        public SlideShowForm()
-        {
-            InitializeComponent();
-            Environment.Exit(1);
-        }
 
         /// <summary>
         /// コンストラクタ
@@ -36,7 +31,7 @@ namespace PhotoFrameApp
             InitializeComponent();
             this.photos = photos;
             this.photo_index = 0;
-        }
+        }   
 
         /// <summary>
         /// スライドショー画面の初期設定
@@ -46,13 +41,22 @@ namespace PhotoFrameApp
         private void SlideShow_Load(object sender, EventArgs e)
         {
             if(photos.Count() > 0)
-            {
+            {　 
                 pictureBox_SelectedPhotos.ImageLocation = photos.ElementAt(photo_index).File.FilePath;
                 timer_ChangePhoto.Interval = 3000;
+
                 if (checkBox_AutoPlay.Checked)
                 {
                     timer_ChangePhoto.Start();
                 }
+
+                if (checkBox_MusicPlay.Checked)
+                {
+                    Microsoft.SmallBasic.Library.Sound.Play("Music.mp3");
+                }
+
+                timer_CloseForm.Interval = 600000;//Form画面終了時間　10分
+                timer_CloseForm.Start();
             }
 
         }
@@ -96,7 +100,7 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_Next_Click(object sender, EventArgs e)
+        private void ButtonNextClick(object sender, EventArgs e)
         {
             checkBox_AutoPlay.Checked = false;
             timer_ChangePhoto.Stop();
@@ -116,7 +120,7 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_Back_Click(object sender, EventArgs e)
+        private void ButtonBackClick(object sender, EventArgs e)
         {
             checkBox_AutoPlay.Checked = false;
             timer_ChangePhoto.Stop();
@@ -129,6 +133,32 @@ namespace PhotoFrameApp
             }
 
             pictureBox_SelectedPhotos.ImageLocation = photos.ElementAt(photo_index).File.FilePath;
+        }
+
+
+        /// <summary>
+        /// 音楽再生
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CheckPlayMusic(object sender, EventArgs e)
+        {
+            if (checkBox_MusicPlay.Checked)
+            {
+                Microsoft.SmallBasic.Library.Sound.Play("Music.mp3");
+            }
+
+            else
+            {
+                Microsoft.SmallBasic.Library.Sound.Stop("Music.mp3");
+            }
+        }
+
+        // Form画面の終了
+        private void timer_CloseForm_Tick(object sender, EventArgs e)
+        {
+            timer_CloseForm.Stop();
+            this.Close();
         }
     }
 }
