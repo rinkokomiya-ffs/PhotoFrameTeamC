@@ -10,13 +10,13 @@ namespace PhotoFrame.Domain.UseCase
     public class ChangeKeyword
     {
 
-        private readonly IKeywordRepository keywordRepository;
-        private readonly IPhotoRepository photoRepository;
+        private readonly IKeywordRepository _keywordRepository;
+        private readonly IPhotoRepository _photoRepository;
 
         public ChangeKeyword(IKeywordRepository keywordRepository, IPhotoRepository photoRepository)
         {
-            this.keywordRepository = keywordRepository;
-            this.photoRepository = photoRepository;
+            _keywordRepository = keywordRepository;
+            _photoRepository = photoRepository;
         }
 
         /// <summary>
@@ -28,17 +28,13 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns></returns>
         public Photo Execute(Photo photo, string keywordName)
         {
-           
-            Func<IQueryable<Keyword>, Keyword> query = allKeywords => allKeywords.FirstOrDefault(keyword => keyword.Name == keywordName);
-
-            var result = keywordRepository.Find(query);
+            var result = _keywordRepository.Find(keywords => keywords.FirstOrDefault(keyword => keyword.Name == keywordName));
             if (result != null)
             {
                 photo.IsAssignedTo(result);
             }
 
-            photoRepository.Store(photo);
-           
+            _photoRepository.Store(photo);
             return photo;
         }
 

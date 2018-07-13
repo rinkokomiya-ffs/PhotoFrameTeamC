@@ -9,38 +9,28 @@ namespace PhotoFrame.Domain.UseCase
 {
     public class DetailSearch
     {
-
-        private readonly IPhotoRepository photoRepository;
-
-        public DetailSearch(IPhotoRepository repository)
-        {
-            this.photoRepository = repository;
-        }
+        public DetailSearch(){}
 
         /// <summary>
         /// 指定した名前のアルバムに属するフォトのリストを返す
         /// </summary>
         /// <param name="albumName"></param>
         /// <returns></returns>
-        public IEnumerable<Photo> Execute(IEnumerable<Photo> photoList, string keyword, string isFavorite, DateTime firstData, DateTime lastData)
+        public IEnumerable<Photo> Execute(IEnumerable<Photo> photoList, string keyword, string isFavorite, DateTime? firstData, DateTime? lastData)
         {
-            IEnumerable<Photo> searchedPhotos;
             if(keyword != null)
             {
-                searchedPhotos = photoList.Where(photo => photo.Keyword.Name == keyword);
-                photoList = searchedPhotos;
+                photoList = photoList.Where(photo => photo.Keyword.Name == keyword);
             }
 
             if(isFavorite != null)
             {
-                searchedPhotos = photoList.Where(photo => photo.IsFavorite == Convert.ToBoolean(isFavorite));
-                photoList = searchedPhotos;
+                photoList = photoList.Where(photo => photo.IsFavorite == Convert.ToBoolean(isFavorite));
             }
 
             if(firstData != null && lastData != null)
             {
-                searchedPhotos = photoList.Where(photo => photo.DateTime >= firstData && photo.DateTime <= lastData);
-                photoList = searchedPhotos;
+                photoList = photoList.Where(photo => photo.DateTime >= firstData && photo.DateTime <= lastData);
             }
             return photoList;
         }

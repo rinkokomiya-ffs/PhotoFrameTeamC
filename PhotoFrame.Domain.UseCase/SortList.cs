@@ -7,32 +7,28 @@ using PhotoFrame.Domain.Model;
 
 namespace PhotoFrame.Domain.UseCase
 {
-    class SortList
+    public class SortList
     {
 
-        public SortList()
-        {
-
-        }
+        public SortList(){}
 
         /// <summary>
         /// ソート実行
         /// </summary>
         /// <param name="photoList"></param>
-        /// <param name="searchMethod"0,1,2></param>
+        /// <param name="sortMethod"0,1,2></param>
         /// <returns></returns>
-        public IEnumerable<Photo> Execute(IEnumerable<Photo> photoList, int searchMethod)
-        {
-            
-            if (searchMethod == 0)
+        public IEnumerable<Photo> Execute(IEnumerable<Photo> photoList, int sortMethod)
+        {            
+            if (sortMethod == 0)
             {
                 return photoList;
             }
-            else if (searchMethod == 1)
+            else if (sortMethod == 1)
             {
                 return photoList.OrderBy(photo => photo.DateTime);
             }
-            else if (searchMethod == 2)
+            else if (sortMethod == 2)
             {
                 return photoList.OrderByDescending(photo => photo.DateTime);
             }
@@ -41,6 +37,5 @@ namespace PhotoFrame.Domain.UseCase
                 return null;
             }
         }
-
     }
 }

@@ -9,11 +9,11 @@ namespace PhotoFrame.Domain.UseCase
 {
     public class ToggleFavorite
     {
-        private readonly IPhotoRepository photoRepository;
+        private readonly IPhotoRepository _photoRepository;
 
         public ToggleFavorite(IPhotoRepository photoRepository)
         {
-            this.photoRepository = photoRepository;
+            _photoRepository = photoRepository;
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace PhotoFrame.Domain.UseCase
                 photo.MarkAsFavorite();
             }
 
-            photoRepository.Store(photo);
+            _photoRepository.Store(photo);
 
             return photo;
         }

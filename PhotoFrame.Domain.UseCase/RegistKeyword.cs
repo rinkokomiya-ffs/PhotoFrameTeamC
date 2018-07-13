@@ -14,11 +14,11 @@ namespace PhotoFrame.Domain.UseCase
     // TODO: 仮実装
     public class RegistKeyword
     {
-        private readonly IKeywordRepository keywordRepository;
+        private readonly IKeywordRepository _keywordRepository;
         
-        public RegistKeyword(IKeywordRepository albumRepository)
+        public RegistKeyword(IKeywordRepository keywordRepository)
         {
-            this.keywordRepository = albumRepository;
+            _keywordRepository = keywordRepository;
           
         }
 
@@ -29,8 +29,7 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns>終了状態を数値で返す</returns>
         public int Execute(string keywordName)
         {
-            Keyword result = keywordRepository.Find((IQueryable<Keyword> keywords) => (keywords.SingleOrDefault(keyword => keyword.Name == keywordName)));
-
+            var result = _keywordRepository.Find(keywords => keywords.SingleOrDefault(keyword => keyword.Name == keywordName));
             if (keywordName != "")
             {
                 // 登録済みのアルバム名でない場合
@@ -38,7 +37,7 @@ namespace PhotoFrame.Domain.UseCase
                 {
 
                     var keyword = Keyword.Create(keywordName);
-                    keywordRepository.Store(keyword);
+                    _keywordRepository.Store(keyword);
 
                     // 正常終了
                     return 0;
@@ -54,7 +53,6 @@ namespace PhotoFrame.Domain.UseCase
                 // アルバム名未入力
                 return 1;
             }
-
         }
 
         /// <summary>

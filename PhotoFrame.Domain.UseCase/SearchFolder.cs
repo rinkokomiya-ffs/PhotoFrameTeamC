@@ -10,13 +10,13 @@ namespace PhotoFrame.Domain.UseCase
 {
     public class SearchFolder
     {
-        private readonly IPhotoRepository photoRepository;
-        private readonly IPhotoFileService photoFileService;
+        private readonly IPhotoRepository _photoRepository;
+        private readonly IPhotoFileService _photoFileService;
 
         public SearchFolder(IPhotoRepository photoRepository, IPhotoFileService photoFileService)
         {
-            this.photoRepository = photoRepository;
-            this.photoFileService = photoFileService;
+            _photoRepository = photoRepository;
+            _photoFileService = photoFileService;
         }
 
         /// <summary>
@@ -26,14 +26,17 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns></returns>
         public IEnumerable<Photo> Execute(string directoryName)
         {
-            var files = photoFileService.FindAllPhotoFilesFromDirectory(directoryName);
+            var files = _photoFileService.FindAllPhotoFilesFromDirectory(directoryName);
             var photosInDirectory = new List<Photo>();
 
-            foreach (var file in files)
+            if(directoryName == null || directoryName == "")
             {
-                Func<IQueryable<Photo>, Photo> query = allPhotos => allPhotos.SingleOrDefault(a => a.File.FilePath == file.FilePath);
-               
-                var hitPhoto = photoRepository.Find(query);
+                return photosInDirectory;
+            }
+
+            foreach (var file in files)
+            {          
+                var hitPhoto = _photoRepository.Find(photos => photos.SingleOrDefault(photo => photo.File.FilePath == file.FilePath));
 
                 if (hitPhoto != null)
                 {
@@ -41,10 +44,9 @@ namespace PhotoFrame.Domain.UseCase
                 }
                 else
                 {
-                    Photo photo = Photo.CreateFromFile(file, GetDateTime(file.FilePath));
+                    var photo = Photo.CreateFromFile(file, GetDateTime(file.FilePath));
                     photosInDirectory.Add(photo);
-                    photoRepository.Store(photo);
-
+                    _photoRepository.Store(photo);
 
                 }
             }
@@ -60,26 +62,25 @@ namespace PhotoFrame.Domain.UseCase
         private DateTime GetDateTime(string filePath)
         {
             //読み込む
-            Bitmap bmp = new System.Drawing.Bitmap(filePath);
+            var bmp = new System.Drawing.Bitmap(filePath);
             //Exif情報を列挙する
             var exifItem = bmp.PropertyItems.SingleOrDefault(item => item.Id == 0x9003 && item.Type == 2);
             if(exifItem != null)
             {
                 //文字列に変換する
-                string val = Encoding.ASCII.GetString(exifItem.Value);
+                var val = Encoding.ASCII.GetString(exifItem.Value);
                 val = val.Trim(new char[] {'\0'});
                 //DateTimeに変換
-                DateTime date = DateTime.ParseExact(val, "yyyy:MM:dd HH:mm:ss", null);
+                var date = DateTime.ParseExact(val, "yyyy:MM:dd HH:mm:ss", null);
                 return date;
             }
             else
             {
                 // 作成日時を取得する
-                DateTime date = System.IO.File.GetCreationTime(filePath);
+                var date = System.IO.File.GetCreationTime(filePath);
                 return date;
             }
-           
-                
+                   
         }
 
         /// <summary>
