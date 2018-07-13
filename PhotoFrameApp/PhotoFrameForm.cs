@@ -276,16 +276,16 @@ namespace PhotoFrameApp
         /// <param name="photo"></param>
         private void RenewPhotoListViewItem(int index, Photo photo)
         {
-            string albumName = "";
+            string keyword = "";
             string isFavorite = "";
 
             if (photo.Keyword != null)
             {
-                albumName = photo.Keyword.Name;
+                keyword = photo.Keyword.Name;
             }
             else
             {
-                albumName = "";
+                keyword = "";
             }
 
 
@@ -299,7 +299,7 @@ namespace PhotoFrameApp
             }
 
             listView_PhotoList.Items[index].SubItems[0].Text = photo.File.FilePath;
-            listView_PhotoList.Items[index].SubItems[1].Text = albumName;
+            listView_PhotoList.Items[index].SubItems[1].Text = keyword;
             listView_PhotoList.Items[index].SubItems[2].Text = isFavorite;
         }
 
@@ -315,15 +315,15 @@ namespace PhotoFrameApp
             {
                 foreach (Photo photo in searchedPhotos)
                 {
-                    string albumName, isFavorite;
+                    string keyword, isFavorite;
 
                     if (photo.Keyword != null)
                     {
-                        albumName = photo.Keyword.Name;
+                        keyword = photo.Keyword.Name;
                     }
                     else
                     {
-                        albumName = "";
+                        keyword = "";
                     }
 
 
@@ -336,7 +336,7 @@ namespace PhotoFrameApp
                         isFavorite = "";
                     }
 
-                    string[] item = { photo.File.FilePath, albumName, isFavorite };
+                    string[] item = { photo.File.FilePath, keyword, isFavorite };
                     listView_PhotoList.Items.Add(new ListViewItem(item));
 
                 }
