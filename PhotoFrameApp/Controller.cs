@@ -48,6 +48,11 @@ namespace PhotoFrameApp
             return application.SortList(photoList, sortMethod);
         }
 
+        public IEnumerable<Photo> ExecuteDetailSearch(IEnumerable<Photo> photoList, string keyword, string isFavorite, DateTime? firstDate, DateTime? lastDate)
+        {
+            return application.searchDetail(photoList, keyword, isFavorite, firstDate, lastDate);
+        }
+
         // ここより下は非同期用のユースケースの呼び出しメソッド
         //public async Task<int> CreateAlbumAsync(string albumName)
         //{

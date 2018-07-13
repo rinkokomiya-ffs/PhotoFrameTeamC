@@ -38,6 +38,7 @@
             this.dateTimePickerFirstDate = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePickerLastDate = new System.Windows.Forms.DateTimePicker();
+            this.ButtonFinishDecide = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -90,6 +91,7 @@
             // radioButtonFavoriteTrue
             // 
             this.radioButtonFavoriteTrue.AutoSize = true;
+            this.radioButtonFavoriteTrue.Checked = true;
             this.radioButtonFavoriteTrue.Location = new System.Drawing.Point(135, 106);
             this.radioButtonFavoriteTrue.Name = "radioButtonFavoriteTrue";
             this.radioButtonFavoriteTrue.Size = new System.Drawing.Size(41, 16);
@@ -105,7 +107,6 @@
             this.radioButtonFavoriteFalse.Name = "radioButtonFavoriteFalse";
             this.radioButtonFavoriteFalse.Size = new System.Drawing.Size(42, 16);
             this.radioButtonFavoriteFalse.TabIndex = 6;
-            this.radioButtonFavoriteFalse.TabStop = true;
             this.radioButtonFavoriteFalse.Text = "なし";
             this.radioButtonFavoriteFalse.UseVisualStyleBackColor = true;
             // 
@@ -132,11 +133,22 @@
             this.dateTimePickerLastDate.Size = new System.Drawing.Size(121, 19);
             this.dateTimePickerLastDate.TabIndex = 9;
             // 
+            // ButtonFinishDecide
+            // 
+            this.ButtonFinishDecide.Location = new System.Drawing.Point(181, 192);
+            this.ButtonFinishDecide.Name = "ButtonFinishDecide";
+            this.ButtonFinishDecide.Size = new System.Drawing.Size(75, 23);
+            this.ButtonFinishDecide.TabIndex = 10;
+            this.ButtonFinishDecide.Text = "決定";
+            this.ButtonFinishDecide.UseVisualStyleBackColor = true;
+            this.ButtonFinishDecide.Click += new System.EventHandler(this.ButtonFinishDecideClick);
+            // 
             // DetailSearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(449, 217);
+            this.ClientSize = new System.Drawing.Size(449, 236);
+            this.Controls.Add(this.ButtonFinishDecide);
             this.Controls.Add(this.dateTimePickerLastDate);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dateTimePickerFirstDate);
@@ -166,5 +178,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerFirstDate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePickerLastDate;
+        private System.Windows.Forms.Button ButtonFinishDecide;
     }
 }

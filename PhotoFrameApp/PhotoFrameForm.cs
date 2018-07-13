@@ -23,6 +23,7 @@ namespace PhotoFrameApp
         private Controller controller;
 
         public string folderPath { set; get; }
+        public IEnumerable<Keyword> allKeywords { set; get; }
 
         /// <summary>
         /// コンストラクタ
@@ -55,7 +56,7 @@ namespace PhotoFrameApp
 
             // 全アルバム名を取得し、アルバム変更リストをセット
             // ここで直接Findを呼び出すのはまずいのでは？
-            IEnumerable<Keyword> allKeywords = keywordRepository.Find((IQueryable<Keyword> keywords) => keywords);
+            allKeywords = keywordRepository.Find((IQueryable<Keyword> keywords) => keywords);
 
             // InitializeKeywordList()を用意して、そこから全キーワードリストを取得する
 
@@ -108,6 +109,8 @@ namespace PhotoFrameApp
         //private async void button_SearchAlbum_Click(object sender, EventArgs e)
         {
             // フォルダパスを引数にとって、コントローラーに渡す
+            // count0か判別する必要がある
+            // もしnullだったら写真が存在しない
             this.searchedPhotos = controller.ExecuteSearchFolder(folderPath);
             //this.searchedPhotos = await application.SearchDirectoryAsync(textBox_Search.Text);
 
@@ -124,7 +127,7 @@ namespace PhotoFrameApp
         {
             if(CheckExistListviewPhotos())
             {
-                var detailSearchForm = new DetailSearchForm();
+                var detailSearchForm = new DetailSearchForm(allKeywords, searchedPhotos);
                 detailSearchForm.ShowDialog();
             }
         }
