@@ -197,16 +197,15 @@ namespace PhotoFrameApp
 
         }
 
-        /// <summary>
-        /// リストビューをダブルクリックしてプレビュー表示
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void PhotoListPreviewDoubleClick(object sender, EventArgs e)
+        private void PhotoListPreviewDobleClick(object sender, MouseEventArgs e)
         {
             ListViewItem targetItem = (ListViewItem)sender;
+            var listviewitem = targetItem.ToString();//listViewに表示された文字列を返す
 
+            pictureBoxShowPicture.ImageLocation = folderPath + listviewitem;
         }
+
+       
 
         /// <summary>
         /// リストビューをソートする順番を設定
@@ -350,5 +349,7 @@ namespace PhotoFrameApp
                 return true;
             }
         }
+
+     
     }
 }
