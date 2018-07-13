@@ -32,11 +32,12 @@
             this.timer_ChangePhoto = new System.Windows.Forms.Timer(this.components);
             this.pictureBox_SelectedPhotos = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button_Back = new System.Windows.Forms.Button();
             this.button_Next = new System.Windows.Forms.Button();
+            this.button_Back = new System.Windows.Forms.Button();
             this.checkBox_AutoPlay = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkBox_MusicPlay = new System.Windows.Forms.CheckBox();
+            this.timer_CloseForm = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_SelectedPhotos)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -64,17 +65,6 @@
             this.panel2.Size = new System.Drawing.Size(296, 54);
             this.panel2.TabIndex = 7;
             // 
-            // button_Back
-            // 
-            this.button_Back.Font = new System.Drawing.Font("HGP創英角ｺﾞｼｯｸUB", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Back.Location = new System.Drawing.Point(3, 3);
-            this.button_Back.Name = "button_Back";
-            this.button_Back.Size = new System.Drawing.Size(63, 45);
-            this.button_Back.TabIndex = 7;
-            this.button_Back.Text = "◀";
-            this.button_Back.UseVisualStyleBackColor = true;
-            this.button_Back.Click += new System.EventHandler(this.ButtonBackClick);
-            // 
             // button_Next
             // 
             this.button_Next.Font = new System.Drawing.Font("HGP創英角ｺﾞｼｯｸUB", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -85,6 +75,17 @@
             this.button_Next.Text = "▶";
             this.button_Next.UseVisualStyleBackColor = true;
             this.button_Next.Click += new System.EventHandler(this.ButtonNextClick);
+            // 
+            // button_Back
+            // 
+            this.button_Back.Font = new System.Drawing.Font("HGP創英角ｺﾞｼｯｸUB", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Back.Location = new System.Drawing.Point(3, 3);
+            this.button_Back.Name = "button_Back";
+            this.button_Back.Size = new System.Drawing.Size(63, 45);
+            this.button_Back.TabIndex = 7;
+            this.button_Back.Text = "◀";
+            this.button_Back.UseVisualStyleBackColor = true;
+            this.button_Back.Click += new System.EventHandler(this.ButtonBackClick);
             // 
             // checkBox_AutoPlay
             // 
@@ -125,6 +126,10 @@
             this.checkBox_MusicPlay.UseVisualStyleBackColor = true;
             this.checkBox_MusicPlay.CheckedChanged += new System.EventHandler(this.CheckPlayMusic);
             // 
+            // timer_CloseForm
+            // 
+            this.timer_CloseForm.Tick += new System.EventHandler(this.timer_CloseForm_Tick);
+            // 
             // SlideShowForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -151,5 +156,6 @@
         private System.Windows.Forms.CheckBox checkBox_AutoPlay;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox checkBox_MusicPlay;
+        private System.Windows.Forms.Timer timer_CloseForm;
     }
 }

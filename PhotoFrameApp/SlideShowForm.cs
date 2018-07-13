@@ -26,6 +26,7 @@ namespace PhotoFrameApp
         {
             InitializeComponent();
             Environment.Exit(1);
+
         }
 
         /// <summary>
@@ -37,7 +38,7 @@ namespace PhotoFrameApp
             InitializeComponent();
             this.photos = photos;
             this.photo_index = 0;
-        }
+        }   
 
         /// <summary>
         /// スライドショー画面の初期設定
@@ -50,10 +51,19 @@ namespace PhotoFrameApp
             {
                 pictureBox_SelectedPhotos.ImageLocation = photos.ElementAt(photo_index).File.FilePath;
                 timer_ChangePhoto.Interval = 3000;
+
                 if (checkBox_AutoPlay.Checked)
                 {
                     timer_ChangePhoto.Start();
                 }
+
+                if (checkBox_MusicPlay.Checked)
+                {
+                    Microsoft.SmallBasic.Library.Sound.Play("Music.mp3");
+                }
+
+                timer_CloseForm.Interval = 600000;//Form画面終了時間　10分
+                timer_CloseForm.Start();
             }
 
         }
@@ -144,6 +154,17 @@ namespace PhotoFrameApp
             {
                 Microsoft.SmallBasic.Library.Sound.Play("Music.mp3");
             }
+
+            else
+            {
+                Microsoft.SmallBasic.Library.Sound.Stop("Music.mp3");
+            }
+        }
+
+        // Form画面の終了
+        private void timer_CloseForm_Tick(object sender, EventArgs e)
+        {   
+            this.Close();
         }
     }
 }
