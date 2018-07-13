@@ -13,6 +13,7 @@ using PhotoFrame.Domain.Model;
 using PhotoFrame.Domain.UseCase;
 using PhotoFrame.Persistence;
 using PhotoFrame.Persistence.Csv;
+using Microsoft.SmallBasic.Library;
 
 namespace PhotoFrameApp
 {
@@ -96,7 +97,7 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_Next_Click(object sender, EventArgs e)
+        private void ButtonNextClick(object sender, EventArgs e)
         {
             checkBox_AutoPlay.Checked = false;
             timer_ChangePhoto.Stop();
@@ -116,7 +117,7 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_Back_Click(object sender, EventArgs e)
+        private void ButtonBackClick(object sender, EventArgs e)
         {
             checkBox_AutoPlay.Checked = false;
             timer_ChangePhoto.Stop();
@@ -129,6 +130,20 @@ namespace PhotoFrameApp
             }
 
             pictureBox_SelectedPhotos.ImageLocation = photos.ElementAt(photo_index).File.FilePath;
+        }
+
+
+        /// <summary>
+        /// 音楽再生
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CheckPlayMusic(object sender, EventArgs e)
+        {
+            if (checkBox_MusicPlay.Checked)
+            {
+                Microsoft.SmallBasic.Library.Sound.Play("Music.mp3");
+            }
         }
     }
 }
