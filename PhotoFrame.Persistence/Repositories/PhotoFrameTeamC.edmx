@@ -61,7 +61,7 @@
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DateTime" Type="DateTime" Precision="3" />
-          <Property Name="IsFavorite" Type="DateTime" Nullable="false" />
+          <Property Name="IsFavorite" Type="Boolean" Nullable="false" />
           <Property Name="KeywordId" Type="Guid" />
           <NavigationProperty Name="m_Keyword" Relationship="Self.FK_m_Photo_m_Keyword1" FromRole="m_Photo" ToRole="m_Keyword" />
         </EntityType>
