@@ -55,20 +55,24 @@ namespace PhotoFrameApp
 
 
             // 全アルバム名を取得し、アルバム変更リストをセット
-            // ここで直接Findを呼び出すのはまずいのでは？
-            allKeywords = keywordRepository.Find((IQueryable<Keyword> keywords) => keywords);
+            UpdateKeywordList();
 
-            // InitializeKeywordList()を用意して、そこから全キーワードリストを取得する
+        }
 
-
+        /// <summary>
+        /// 全キーワードを取得してコンボボックスにセットする
+        /// </summary>
+        private void UpdateKeywordList()
+        {
+            allKeywords = controller.ExecuteInitializeKeywordList();
             if (allKeywords != null)
             {
                 foreach (Keyword album in allKeywords)
                 {
-                    comboBox_ChangeAlbum.Items.Add(album.Name);
+                    comboBoxChangeKeyword.Items.Add(album.Name);
                 }
+                comboBoxChangeKeyword.SelectedIndex = 0;
             }
-
         }
 
         /// <summary>
