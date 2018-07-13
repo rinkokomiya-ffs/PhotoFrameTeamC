@@ -30,6 +30,7 @@ namespace PhotoFrameApp
                 {
                     comboBoxSelectKeyword.Items.Add(keyword.Name);
                 }
+                comboBoxSelectKeyword.SelectedIndex = 0;
             }
 
             // 初期状態で表示する撮影日を設定する
@@ -43,7 +44,7 @@ namespace PhotoFrameApp
             int compareValue = 0;
             bool isOldDate = false;
             bool isNewDate = false;
-            for(int i =0; i < photoList.Count()-1; i++)
+            for(int i = 0; i < photoList.Count()-1; i++)
             {
                 compareValue = photoList.ElementAt(i).DateTime.CompareTo(photoList.ElementAt(i+1).DateTime);
                 if (compareValue < 0)
