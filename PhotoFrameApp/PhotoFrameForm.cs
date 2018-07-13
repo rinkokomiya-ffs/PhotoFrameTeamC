@@ -151,7 +151,7 @@ namespace PhotoFrameApp
             switch (result)
             {
                 case 0:
-                    comboBox_ChangeAlbum.Items.Add(keyword);
+                    comboBoxChangeKeyword.Items.Add(keyword);
                     break;
                 case 1:
                     MessageBox.Show("キーワードが未入力です");
@@ -192,7 +192,7 @@ namespace PhotoFrameApp
         //private async void ButtonChangeKeywordClick(object sender, EventArgs e)
         private void ButtonChangeKeywordClick(object sender, EventArgs e)
         {
-            string newAlbumName = comboBox_ChangeAlbum.Text;
+            string newAlbumName = comboBoxChangeKeyword.Text;
             var indexList = GetListviewIndex();
 
             for (int i = 0; i < indexList.Count; i++)
