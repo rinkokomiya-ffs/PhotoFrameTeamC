@@ -22,13 +22,6 @@ namespace PhotoFrameApp
         IEnumerable<Photo> photos;
         int photo_index;
 
-        public SlideShowForm()
-        {
-            InitializeComponent();
-            Environment.Exit(1);
-
-        }
-
         /// <summary>
         /// コンストラクタ
         /// </summary>
@@ -48,7 +41,7 @@ namespace PhotoFrameApp
         private void SlideShow_Load(object sender, EventArgs e)
         {
             if(photos.Count() > 0)
-            {
+            {　 
                 pictureBox_SelectedPhotos.ImageLocation = photos.ElementAt(photo_index).File.FilePath;
                 timer_ChangePhoto.Interval = 3000;
 
@@ -163,7 +156,8 @@ namespace PhotoFrameApp
 
         // Form画面の終了
         private void timer_CloseForm_Tick(object sender, EventArgs e)
-        {   
+        {
+            timer_CloseForm.Stop();
             this.Close();
         }
     }
