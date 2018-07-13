@@ -20,8 +20,9 @@ namespace PhotoFrame.Application
         private readonly SearchFolder searchFolder;
         private readonly ToggleFavorite toggleFavorite;
         private readonly ChangeKeyword changeKeyword;
+        private readonly GetKeywordList getKeywordList;
 
-        public PhotoFrameApplication(IAlbumRepository albumRepository, IPhotoRepository photoRepository, IPhotoFileService photoFileService)
+        public PhotoFrameApplication(IKeywordRepository albumRepository, IPhotoRepository photoRepository, IPhotoFileService photoFileService)
         {
             this.registKeyword = new RegistKeyword(albumRepository);
             this.detailSearch = new DetailSearch(photoRepository);
@@ -55,6 +56,11 @@ namespace PhotoFrame.Application
             return changeKeyword.Execute(photo, keyword);
         }
 
+        public IEnumerable<Keyword> GetKeyword()
+        {
+            return getKeywordList.Execute();
+        }
+
         // ここより下は非同期用のユースケースの呼び出しメソッド
         //public async Task<int> CreateAlbumAsync(string albumName)
         //{
@@ -84,7 +90,7 @@ namespace PhotoFrame.Application
         //{
         //    var retPhoto = await changeAlbum.ExecuteAsync(photo, newAlbumName);
         //    return retPhoto;
-            
+
         //}
     }
 }
