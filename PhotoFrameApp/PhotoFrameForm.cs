@@ -203,6 +203,7 @@ namespace PhotoFrameApp
             ListViewItem targetItem = (ListViewItem)sender;
             int index_number = listView_PhotoList.SelectedItems.IndexOf(targetItem);
 
+            this.Controls.Remove(labelPictureBox);
             pictureBoxShowPicture.ImageLocation = searchedPhotos.ElementAt(index_number).File.FilePath;
         }
 
