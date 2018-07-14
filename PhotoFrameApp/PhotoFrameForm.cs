@@ -18,7 +18,8 @@ namespace PhotoFrameApp
     {
         private IPhotoRepository photoRepository;
         private IKeywordRepository keywordRepository;
-        private IPhotoFileService photoFileService;
+        //private IPhotoFileService photoFileService;
+        public IPhotoFileService photoFileService{set; get;}
         private IEnumerable<Photo> searchedPhotos; // リストビュー上のフォトのリスト
         private Controller controller;
 
@@ -137,7 +138,7 @@ namespace PhotoFrameApp
         {
             if(CheckExistListviewPhotos())
             {
-                var detailSearchForm = new DetailSearchForm(allKeywords, searchedPhotos);
+                var detailSearchForm = new DetailSearchForm(this, allKeywords, searchedPhotos);
                 detailSearchForm.ShowDialog();
             }
         }
