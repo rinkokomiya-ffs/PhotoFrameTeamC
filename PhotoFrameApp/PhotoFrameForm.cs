@@ -65,7 +65,7 @@ namespace PhotoFrameApp
         /// </summary>
         private void UpdateKeywordList()
         {
-            allKeywords = controller.ExecuteInitializeKeywordList();
+            allKeywords = controller.ExecuteGetKeyword();
             if (allKeywords != null)
             {
                 foreach (Keyword album in allKeywords)
@@ -118,6 +118,16 @@ namespace PhotoFrameApp
             {
                 MessageBox.Show("フォルダ名が指定されていません","エラー" ,MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
+
+            //// フォルダパスを引数にとって、コントローラーに渡す
+            //if (controller.ExecuteSearchFolder(folderPath).Count() == 0)
+            //{
+            //    MessageBox.Show("写真が存在しません");
+            //}
+            //else if (controller.ExecuteSearchFolder(folderPath).Count() == null)
+            //{
+            //    MessageBox.Show("フォルダが存在しません");
+            //}
 
             // フォルダパスを引数にとって、コントローラーに渡す
             else
