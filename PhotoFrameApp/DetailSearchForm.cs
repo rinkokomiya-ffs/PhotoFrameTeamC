@@ -14,14 +14,18 @@ namespace PhotoFrameApp
 {
     public partial class DetailSearchForm : Form
     {
+        PhotoFrameForm mainForm;
         private readonly Controller controller;
         public IEnumerable<Photo> photoList { get; set; }
         private DateTime oldDate;
         private DateTime newDate;
 
-        public DetailSearchForm(IEnumerable<Keyword> allKeywords, IEnumerable<Photo> photoList)
+        public DetailSearchForm(PhotoFrameForm mainForm, IEnumerable<Keyword> allKeywords, IEnumerable<Photo> photoList)
         {
+            this.mainForm = mainForm;
             InitializeComponent();
+            
+            
 
             // キーワードを選択できるようにコンボボックスに表示する
             if (allKeywords != null)
@@ -78,14 +82,14 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void ButtonFinishDecideClick(object sender, EventArgs e)
         {
-            CheckParameter();
+            mainForm.searchedPhotos = CheckParameter();
             this.Close();
         }
 
         /// <summary>
         /// 決定ボタンクリック時の絞り込み条件を取得してコントローラに送る
         /// </summary>
-        private void CheckParameter()
+        private IEnumerable<Photo> CheckParameter()
         {
             string keyword = null;
             string isFavorite = null;
@@ -128,7 +132,7 @@ namespace PhotoFrameApp
             }
 
             // コントローラに投げる
-            controller.ExecuteDetailSearch(photoList, keyword, isFavorite, firstDate, lastDate);
+            return controller.ExecuteDetailSearch(photoList, keyword, isFavorite, firstDate, lastDate);
         }
     }
 }
