@@ -23,9 +23,9 @@ namespace PhotoFrameApp
      
         }
 
-        public IEnumerable<Photo> ExecuteInitializeKeywordList()
+        public IEnumerable<Keyword> ExecuteGetKeyword()
         {
-            return application.InitializeKeywordList();
+            return application.GetKeyword();
         }
 
         public int ExecuteRegistKeyword(string keyword)
@@ -55,7 +55,7 @@ namespace PhotoFrameApp
 
         public IEnumerable<Photo> ExecuteDetailSearch(IEnumerable<Photo> photoList, string keyword, string isFavorite, DateTime? firstDate, DateTime? lastDate)
         {
-            return application.searchDetail(photoList, keyword, isFavorite, firstDate, lastDate);
+            return application.DetailSearch(photoList, keyword, isFavorite, firstDate, lastDate);
         }
 
         // ここより下は非同期用のユースケースの呼び出しメソッド
