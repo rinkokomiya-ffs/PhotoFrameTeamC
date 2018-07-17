@@ -180,6 +180,7 @@ namespace PhotoFrameApp
                     {
                         case 0:
                             comboBoxChangeKeyword.Items.Add(keyword);
+                            UpdateKeywordList();
                             break;
                         case 1:
                             MessageBox.Show("既存のキーワードです");
