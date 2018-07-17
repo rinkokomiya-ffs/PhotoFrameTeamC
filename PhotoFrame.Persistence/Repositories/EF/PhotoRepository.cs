@@ -140,6 +140,7 @@ namespace PhotoFrame.Persistence.EF
             var m_photo = new m_Photo();
             m_photo.Id = Guid.Parse(photo.Id);
             m_photo.FilePath = photo.File.FilePath;
+            m_photo.DateTime = photo.DateTime;
             m_photo.IsFavorite = photo.IsFavorite;
             if (photo.KeywordId != null) m_photo.KeywordId = Guid.Parse(photo.KeywordId);
 

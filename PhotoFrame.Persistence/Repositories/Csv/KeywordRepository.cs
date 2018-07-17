@@ -20,7 +20,7 @@ namespace PhotoFrame.Persistence.Csv
 
         public KeywordRepository(string databaseName)
         {
-            this.CsvFilePath = $"{databaseName}_Album.csv"; // $"{...}" : 文字列展開
+            this.CsvFilePath = $"{databaseName}_Keyword.csv"; // $"{...}" : 文字列展開
 
             if (!System.IO.File.Exists(CsvFilePath))
             {
@@ -94,15 +94,15 @@ namespace PhotoFrame.Persistence.Csv
             return entity;
         }
 
-        // Album型のデータをCSVの1行に変換する
-        private string Serialize(Keyword album)
-            => $"{album.Id},{album.Name},{album.Description ?? ""}";
+        // Keyword型のデータをCSVの1行に変換する
+        private string Serialize(Keyword keyword)
+            => $"{keyword.Id},{keyword.Name}";
 
-        // CSVの1行をAlbum型のデータに変換する
+        // CSVの1行をKeyword型のデータに変換する
         private Keyword Deserialize(string csvRow)
         {
             var split = csvRow.Split(',');
-            return new Keyword(split[0], split[1], split[2]);
+            return new Keyword(split[0], split[1]);
         }
 
         // CSVの行データをすべて取得する

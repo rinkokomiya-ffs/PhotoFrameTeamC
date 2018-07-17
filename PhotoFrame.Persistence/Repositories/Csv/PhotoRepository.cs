@@ -18,12 +18,12 @@ namespace PhotoFrame.Persistence.Csv
         /// 永続化ストアとして利用するCSVファイルパス
         /// </summary>
         private string CsvFilePath { get; }
-        private IKeywordRepository albumRepository;
+        private IKeywordRepository keywordRepository;
 
-        public PhotoRepository(string databaseName, IKeywordRepository albumRepository)
+        public PhotoRepository(string databaseName, IKeywordRepository keywordRepository)
         {
             this.CsvFilePath = $"{databaseName}_Photo.csv"; // $"{...}" : 文字列展開
-            this.albumRepository = albumRepository;
+            this.keywordRepository = keywordRepository;
         }
 
         public bool Exists(Photo entity)
@@ -169,17 +169,18 @@ namespace PhotoFrame.Persistence.Csv
 
         }
 
-        // Album型のデータをCSVの1行に変換する（＝シリアライズ）
+        // Keyword型のデータをCSVの1行に変換する（＝シリアライズ）
         private string Serialize(Photo photo)
-            => $"{photo.Id},{photo.File.FilePath},{photo.IsFavorite.ToString()},{photo.AlbumId ?? ""}";
+            => $"{photo.Id},{photo.File.FilePath},{photo.IsFavorite.ToString()},{photo.KeywordId ?? ""}";
 
-        // CSVの1行をAlbum型のデータに変換する（＝デシリアライズ）
+        // CSVの1行をKeyword型のデータに変換する（＝デシリアライズ）
         private Photo Deserialize(string csvRow)
         {
             var split = csvRow.Split(',');
             var file = new Domain.Model.File(split[1]);
-            var album = albumRepository.FindBy(split[3]);
-            return new Photo(split[0], file, Convert.ToBoolean(split[2]), split[3], album);
+            var keyword = keywordRepository.FindBy(split[3]);
+            var dateTime = new DateTime(1993, 05, 15, 15, 00, 00);
+            return new Photo(split[0], file, dateTime, Convert.ToBoolean(split[2]), split[3], keyword);
         }
 
     }
