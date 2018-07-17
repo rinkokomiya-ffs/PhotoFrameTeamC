@@ -204,7 +204,7 @@ namespace PhotoFrameApp
             {
                 var indexList = GetListviewIndex();
             
-                if(indexList == null)
+                if(indexList.Count() == 0)
                 {
                     MessageBox.Show("写真が選択されていません");
                 }
@@ -238,7 +238,7 @@ namespace PhotoFrameApp
                 string newKeywordName = comboBoxChangeKeyword.Text;
                 var indexList = GetListviewIndex();
                 
-                if(indexList == null)
+                if(indexList.Count() == 0)
                 {
                     MessageBox.Show("写真が選択されていません");
                 }
