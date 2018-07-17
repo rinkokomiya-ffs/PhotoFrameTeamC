@@ -29,11 +29,6 @@ namespace PhotoFrame.Domain.UseCase
             var files = _photoFileService.FindAllPhotoFilesFromDirectory(directoryName);
             var photosInDirectory = new List<Photo>();
 
-            if(directoryName == null || directoryName == "")
-            {
-                return photosInDirectory;
-            }
-
             if (!System.IO.File.Exists(directoryName))
             {
                 return null;
