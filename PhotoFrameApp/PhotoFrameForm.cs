@@ -18,8 +18,8 @@ namespace PhotoFrameApp
     {
         private IPhotoRepository photoRepository;
         private IKeywordRepository keywordRepository;
-        //private IPhotoFileService photoFileService;
-        public IPhotoFileService photoFileService{set; get;}
+        private IPhotoFileService photoFileService;
+
         public IEnumerable<Photo> searchedPhotos { set; get; } // リストビュー上のフォトのリスト
         private Controller controller;
 
@@ -33,21 +33,9 @@ namespace PhotoFrameApp
         {
             InitializeComponent();
 
-            // 各テストごとにデータベースファイルを削除
-            if (System.IO.File.Exists("_Photo.csv"))
-            {
-                System.IO.File.Delete("_Photo.csv");
-            }
-            if (System.IO.File.Exists("_Album.csv"))
-            {
-                System.IO.File.Delete("_Album.csv");
-            }
-
-
-
             // リポジトリ生成・初期化
-            RepositoryFactory repositoryFactory = new RepositoryFactory(PhotoFrame.Persistence.Type.Csv);
-            //RepositoryFactory repositoryFactory = new RepositoryFactory(PhotoFrame.Persistence.Type.EF);
+            //RepositoryFactory repositoryFactory = new RepositoryFactory(PhotoFrame.Persistence.Type.Csv);
+            RepositoryFactory repositoryFactory = new RepositoryFactory(PhotoFrame.Persistence.Type.EF);
             ServiceFactory serviceFactory = new ServiceFactory();
             photoRepository = repositoryFactory.PhotoRepository;
             keywordRepository = repositoryFactory.KeywordRepository;
@@ -68,9 +56,9 @@ namespace PhotoFrameApp
             allKeywords = controller.ExecuteGetKeyword();
             if (allKeywords != null)
             {
-                foreach (Keyword album in allKeywords)
+                foreach (Keyword keyword in allKeywords)
                 {
-                    comboBoxChangeKeyword.Items.Add(album.Name);
+                    comboBoxChangeKeyword.Items.Add(keyword.Name);
                 }
                 comboBoxChangeKeyword.SelectedIndex = 0;
             }
@@ -114,20 +102,20 @@ namespace PhotoFrameApp
         //private async void button_SearchAlbum_Click(object sender, EventArgs e)
         {
             //ラベルにフォルダが表示されていない場合の例外処理
-            if (folderPath == null)
+            if (folderPath == null || folderPath == "")
             {
-                MessageBox.Show("フォルダ名が指定されていません","エラー" ,MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("フォルダ名が指定されていません");
             }
 
-            //// フォルダパスを引数にとって、コントローラーに渡す
-            //if (controller.ExecuteSearchFolder(folderPath).Count() == 0)
-            //{
-            //    MessageBox.Show("写真が存在しません");
-            //}
-            //else if (controller.ExecuteSearchFolder(folderPath).Count() == null)
-            //{
-            //    MessageBox.Show("フォルダが存在しません");
-            //}
+            // フォルダパスを引数にとって、コントローラーに渡す
+            if (controller.ExecuteSearchFolder(folderPath).Count() == 0)
+            {
+                MessageBox.Show("写真が存在しません");
+            }
+            else if (controller.ExecuteSearchFolder(folderPath) == null)
+            {
+                MessageBox.Show("フォルダが存在しません");
+            }
 
             // フォルダパスを引数にとって、コントローラーに渡す
             else
@@ -240,7 +228,7 @@ namespace PhotoFrameApp
             }
             if(CheckExistListviewPhotos())
             {
-                string newAlbumName = comboBoxChangeKeyword.Text;
+                string newKeywordName = comboBoxChangeKeyword.Text;
                 var indexList = GetListviewIndex();
                 
                 if(indexList == null)
@@ -251,7 +239,7 @@ namespace PhotoFrameApp
                 {
                     for (int i = 0; i < indexList.Count; i++)
                     {
-                        Photo photo = controller.ExecuteChangeKeyword(searchedPhotos.ElementAt(indexList.ElementAt(i)), newAlbumName);
+                        Photo photo = controller.ExecuteChangeKeyword(searchedPhotos.ElementAt(indexList.ElementAt(i)), newKeywordName);
                         //Photo photo = await application.ChangeAlbumAsync(searchedPhotos.ElementAt(indexList.ElementAt(i)), newAlbumName);
                         RenewPhotoListViewItem(indexList.ElementAt(i), photo);
                     }
