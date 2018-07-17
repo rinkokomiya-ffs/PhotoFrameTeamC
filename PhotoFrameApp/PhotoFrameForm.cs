@@ -22,6 +22,12 @@ namespace PhotoFrameApp
 
         public IEnumerable<Photo> searchedPhotos { set; get; } // リストビュー上のフォトのリスト
         private Controller controller;
+        
+        // 定数
+        // キーワード登録上限値
+        private readonly int MAX_REGIST_KEYWORD = 50;
+        // キーワード文字数上限値
+        private readonly int MAX_KEYWORD_LENGTH = 20;
 
         public string folderPath { set; get; }
         public IEnumerable<Keyword> allKeywords { set; get; }
@@ -147,9 +153,9 @@ namespace PhotoFrameApp
         /// <param name="sender"></param>
         /// <param name="e"></param>
         //private async void ButtonRegistKeyword(object sender, EventArgs e)
-        private void ButtonRegistKeyword(object sender, EventArgs e)
+        private void ButtonRegistKeywordClick(object sender, EventArgs e)
         {
-            if(allKeywords.Count() > 50)
+            if(allKeywords.Count() > MAX_REGIST_KEYWORD)
             {
                 MessageBox.Show("作成できるキーワード数の上限値に達しています");
             }
@@ -157,7 +163,11 @@ namespace PhotoFrameApp
             else
             {
                 string keyword = textBoxRegistKeyword.Text;
-                if(keyword.Length >= 21)
+                if(keyword == "")
+                {
+                    MessageBox.Show("キーワードが未入力です");
+                }
+                else if(keyword.Length > MAX_KEYWORD_LENGTH)
                 {
                     MessageBox.Show("作成できるキーワードの文字数は20字以内です");
                 }
@@ -170,11 +180,9 @@ namespace PhotoFrameApp
                     {
                         case 0:
                             comboBoxChangeKeyword.Items.Add(keyword);
+                            UpdateKeywordList();
                             break;
                         case 1:
-                            MessageBox.Show("キーワードが未入力です");
-                            break;
-                        case 2:
                             MessageBox.Show("既存のキーワードです");
                             break;
                         default:
@@ -197,7 +205,7 @@ namespace PhotoFrameApp
             {
                 var indexList = GetListviewIndex();
             
-                if(indexList == null)
+                if(indexList.Count() == 0)
                 {
                     MessageBox.Show("写真が選択されていません");
                 }
@@ -231,7 +239,7 @@ namespace PhotoFrameApp
                 string newKeywordName = comboBoxChangeKeyword.Text;
                 var indexList = GetListviewIndex();
                 
-                if(indexList == null)
+                if(indexList.Count() == 0)
                 {
                     MessageBox.Show("写真が選択されていません");
                 }
@@ -254,21 +262,24 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void PhotoListPreviewDoubleClick(object sender, EventArgs e)
         {
-            try
+            if (CheckExistListviewPhotos())
             {
-                ListViewItem targetItem = (ListViewItem)sender;
-                int index_number = listView_PhotoList.SelectedItems.IndexOf(targetItem);
+                try
+                {
+                    ListViewItem targetItem = (ListViewItem)sender;
+                    int indexNumber = listViewPhotoList.SelectedItems.IndexOf(targetItem);
 
-                this.Controls.Remove(labelPictureBox);
-                pictureBoxShowPicture.ImageLocation = searchedPhotos.ElementAt(index_number).File.FilePath;
-            }
-            catch(ArgumentException)
-            {
-                MessageBox.Show("ファイルが壊れています");
-            }
-            catch(FileNotFoundException)
-            {
-                MessageBox.Show("ファイルが存在しません");
+                    labelPictureBox.Visible = false;
+                    pictureBoxShowPicture.ImageLocation = searchedPhotos.ElementAt(indexNumber).File.FilePath;
+                }
+                catch (ArgumentException)
+                {
+                    MessageBox.Show("ファイルが壊れています");
+                }
+                catch (FileNotFoundException)
+                {
+                    MessageBox.Show("ファイルが存在しません");
+                }
             }
             // FileStreamを使うほうが本当はいいらしい
             //fs = new FIleStream ( filepath, FileMode.Open, FileAccess.Read);
@@ -305,9 +316,9 @@ namespace PhotoFrameApp
         private List<int> GetListviewIndex()
         {
             var indexList = new List<int>();
-            for (int i = 0; i < listView_PhotoList.SelectedItems.Count; i++)
+            for (int i = 0; i < listViewPhotoList.SelectedItems.Count; i++)
             {
-                indexList.Add(listView_PhotoList.SelectedItems[i].Index);
+                indexList.Add(listViewPhotoList.SelectedItems[i].Index);
             }
 
             return indexList;
@@ -363,9 +374,9 @@ namespace PhotoFrameApp
                 isFavorite = "";
             }
 
-            listView_PhotoList.Items[index].SubItems[0].Text = photo.File.FilePath;
-            listView_PhotoList.Items[index].SubItems[1].Text = keyword;
-            listView_PhotoList.Items[index].SubItems[2].Text = isFavorite;
+            listViewPhotoList.Items[index].SubItems[0].Text = photo.File.FilePath;
+            listViewPhotoList.Items[index].SubItems[1].Text = keyword;
+            listViewPhotoList.Items[index].SubItems[2].Text = isFavorite;
         }
 
         /// <summary>
@@ -374,7 +385,7 @@ namespace PhotoFrameApp
         /// <param name="photos"></param>
         public void RenewPhotoListView()
         {
-            listView_PhotoList.Items.Clear();
+            listViewPhotoList.Items.Clear();
 
             if (this.searchedPhotos != null)
             {
@@ -402,7 +413,7 @@ namespace PhotoFrameApp
                     }
 
                     string[] item = { photo.File.FilePath, keyword, isFavorite };
-                    listView_PhotoList.Items.Add(new ListViewItem(item));
+                    listViewPhotoList.Items.Add(new ListViewItem(item));
 
                 }
             }

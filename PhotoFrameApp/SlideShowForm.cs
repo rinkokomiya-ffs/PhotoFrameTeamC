@@ -48,15 +48,15 @@ namespace PhotoFrameApp
         {
             if(photos.Count() > 0)
             {　 
-                pictureBox_SelectedPhotos.ImageLocation = photos.ElementAt(photo_index).File.FilePath;
+                pictureBoxSelectedPhotos.ImageLocation = photos.ElementAt(photo_index).File.FilePath;
                 timer_ChangePhoto.Interval = 3000;
 
-                if (checkBox_AutoPlay.Checked)
+                if (checkBoxAutoSlideShow.Checked)
                 {
                     timer_ChangePhoto.Start();
                 }
 
-                if (checkBox_MusicPlay.Checked)
+                if (checkBoxPlayMusic.Checked)
                 {
                     // 音楽再生メソッドを呼び出す
                     PlayMusic();
@@ -74,7 +74,7 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void CheckPlayMusic(object sender, EventArgs e)
         {
-            if (checkBox_MusicPlay.Checked)
+            if (checkBoxPlayMusic.Checked)
             {
                 PlayMusic();
             }
@@ -133,7 +133,7 @@ namespace PhotoFrameApp
                 photo_index = 0;
             }
 
-            pictureBox_SelectedPhotos.ImageLocation = photos.ElementAt(photo_index).File.FilePath;
+            pictureBoxSelectedPhotos.ImageLocation = photos.ElementAt(photo_index).File.FilePath;
         }
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void CheckAutoSlideShow(object sender, EventArgs e)
         {
-            if (checkBox_AutoPlay.Checked)
+            if (checkBoxAutoSlideShow.Checked)
             {
                 timer_ChangePhoto.Start();
             }
@@ -160,7 +160,7 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void ButtonNextClick(object sender, EventArgs e)
         {
-            checkBox_AutoPlay.Checked = false;
+            checkBoxAutoSlideShow.Checked = false;
             timer_ChangePhoto.Stop();
 
             photo_index++;
@@ -170,7 +170,7 @@ namespace PhotoFrameApp
                 photo_index = 0;
             }
 
-            pictureBox_SelectedPhotos.ImageLocation = photos.ElementAt(photo_index).File.FilePath;
+            pictureBoxSelectedPhotos.ImageLocation = photos.ElementAt(photo_index).File.FilePath;
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void ButtonBackClick(object sender, EventArgs e)
         {
-            checkBox_AutoPlay.Checked = false;
+            checkBoxAutoSlideShow.Checked = false;
             timer_ChangePhoto.Stop();
 
             photo_index--;
@@ -190,7 +190,7 @@ namespace PhotoFrameApp
                 photo_index = photos.Count() - 1;
             }
 
-            pictureBox_SelectedPhotos.ImageLocation = photos.ElementAt(photo_index).File.FilePath;
+            pictureBoxSelectedPhotos.ImageLocation = photos.ElementAt(photo_index).File.FilePath;
         }
 
         // Form画面の終了
