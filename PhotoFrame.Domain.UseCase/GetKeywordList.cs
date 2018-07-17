@@ -12,14 +12,19 @@ namespace PhotoFrame.Domain.UseCase
 
         private readonly IKeywordRepository _keywordRepository;
 
-        public GetKeywordList(IKeywordRepository photoRepository)
+        public GetKeywordList(IKeywordRepository keywordRepository)
         {
-            _keywordRepository = photoRepository;
+            _keywordRepository = keywordRepository;
         }
+
+        /// <summary>
+        /// DB内の全キーワードデータを取得
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Keyword> Execute()
         {
             // 全アルバム名を取得
-            return _keywordRepository.Find(albums => albums); 
+            return _keywordRepository.Find(keywords => keywords); 
         }
     }
 }

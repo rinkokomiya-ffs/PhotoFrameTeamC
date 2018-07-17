@@ -23,14 +23,15 @@ namespace PhotoFrame.Application
         private readonly SortList _sortList;
         private readonly GetKeywordList _getKeywordList;
 
-        public PhotoFrameApplication(IKeywordRepository albumRepository, IPhotoRepository photoRepository, IPhotoFileService photoFileService)
+        public PhotoFrameApplication(IKeywordRepository keywordRepository, IPhotoRepository photoRepository, IPhotoFileService photoFileService)
         {
-            _registKeyword = new RegistKeyword(albumRepository);
+            _registKeyword = new RegistKeyword(keywordRepository);
             _detailSearch = new DetailSearch();
             _searchFolder = new SearchFolder(photoRepository, photoFileService);
             _toggleFavorite = new ToggleFavorite(photoRepository);
             _sortList = new SortList();
-            _changeKeyword = new ChangeKeyword(albumRepository, photoRepository);
+            _changeKeyword = new ChangeKeyword(keywordRepository, photoRepository);
+            _getKeywordList = new GetKeywordList(keywordRepository);
         }
 
         public int RegistKeyword(string keyword)
@@ -38,7 +39,7 @@ namespace PhotoFrame.Application
             return _registKeyword.Execute(keyword);
         }
 
-        public IEnumerable<Photo> DetailSearch(IEnumerable<Photo> photoList, string keyword, string isFavorite, DateTime firstData, DateTime lastData)
+        public IEnumerable<Photo> DetailSearch(IEnumerable<Photo> photoList, string keyword, string isFavorite, DateTime? firstData, DateTime? lastData)
         {
             return _detailSearch.Execute(photoList, keyword, isFavorite, firstData, lastData);
         }
@@ -63,7 +64,7 @@ namespace PhotoFrame.Application
             return _sortList.Execute(photoList, sortMethod);
         }
 
-        public IEnumerable<Keyword> GetKeyword()
+        public IEnumerable<Keyword> GetKeywordList()
         {
             return _getKeywordList.Execute();
         }
