@@ -20,9 +20,10 @@ namespace PhotoFrameApp
         private DateTime oldDate;
         private DateTime newDate;
 
-        public DetailSearchForm(PhotoFrameForm mainForm, IEnumerable<Keyword> allKeywords, IEnumerable<Photo> photoList)
+        public DetailSearchForm(PhotoFrameForm mainForm, Controller controller, IEnumerable<Keyword> allKeywords, IEnumerable<Photo> photoList)
         {
             this.mainForm = mainForm;
+            this.controller = controller;
             InitializeComponent();
             
             
