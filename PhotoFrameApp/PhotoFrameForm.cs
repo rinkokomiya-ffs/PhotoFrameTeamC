@@ -41,7 +41,7 @@ namespace PhotoFrameApp
             keywordRepository = repositoryFactory.KeywordRepository;
             photoFileService = serviceFactory.PhotoFileService;
             searchedPhotos = new List<Photo>().AsEnumerable();
-
+            controller = new Controller(keywordRepository, photoRepository, photoFileService);
 
             // 全アルバム名を取得し、アルバム変更リストをセット
             UpdateKeywordList();
@@ -136,7 +136,7 @@ namespace PhotoFrameApp
         {
             if(CheckExistListviewPhotos())
             {
-                var detailSearchForm = new DetailSearchForm(this, allKeywords, searchedPhotos);
+                var detailSearchForm = new DetailSearchForm(this, controller, allKeywords, searchedPhotos);
                 detailSearchForm.ShowDialog();
             }
         }
