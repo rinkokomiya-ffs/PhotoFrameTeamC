@@ -20,7 +20,7 @@ namespace PhotoFrameApp
         private IKeywordRepository keywordRepository;
         //private IPhotoFileService photoFileService;
         public IPhotoFileService photoFileService{set; get;}
-        private IEnumerable<Photo> searchedPhotos; // リストビュー上のフォトのリスト
+        public IEnumerable<Photo> searchedPhotos { set; get; } // リストビュー上のフォトのリスト
         private Controller controller;
 
         public string folderPath { set; get; }
@@ -384,7 +384,7 @@ namespace PhotoFrameApp
         /// リストビューの更新
         /// </summary>
         /// <param name="photos"></param>
-        private void RenewPhotoListView()
+        public void RenewPhotoListView()
         {
             listView_PhotoList.Items.Clear();
 
