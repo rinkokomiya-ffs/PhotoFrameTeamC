@@ -147,7 +147,7 @@ namespace PhotoFrameApp
         /// <param name="sender"></param>
         /// <param name="e"></param>
         //private async void ButtonRegistKeyword(object sender, EventArgs e)
-        private void ButtonRegistKeyword(object sender, EventArgs e)
+        private void ButtonRegistKeywordClick(object sender, EventArgs e)
         {
             if(allKeywords.Count() > 50)
             {

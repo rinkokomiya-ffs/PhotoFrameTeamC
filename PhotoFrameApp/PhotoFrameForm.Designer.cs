@@ -244,7 +244,7 @@
             this.buttonCreateKeyword.TabIndex = 1;
             this.buttonCreateKeyword.Text = "作成";
             this.buttonCreateKeyword.UseVisualStyleBackColor = true;
-            this.buttonCreateKeyword.Click += new System.EventHandler(this.ButtonRegistKeyword);
+            this.buttonCreateKeyword.Click += new System.EventHandler(this.ButtonRegistKeywordClick);
             // 
             // groupBox4
             // 
