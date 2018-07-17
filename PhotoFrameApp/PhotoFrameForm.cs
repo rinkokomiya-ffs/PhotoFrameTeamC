@@ -262,21 +262,24 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void PhotoListPreviewDoubleClick(object sender, EventArgs e)
         {
-            try
+            if (CheckExistListviewPhotos())
             {
-                ListViewItem targetItem = (ListViewItem)sender;
-                int index_number = listViewPhotoList.SelectedItems.IndexOf(targetItem);
+                try
+                {
+                    ListViewItem targetItem = (ListViewItem)sender;
+                    int indexNumber = listViewPhotoList.SelectedItems.IndexOf(targetItem);
 
-                this.Controls.Remove(labelPictureBox);
-                pictureBoxShowPicture.ImageLocation = searchedPhotos.ElementAt(index_number).File.FilePath;
-            }
-            catch(ArgumentException)
-            {
-                MessageBox.Show("ファイルが壊れています");
-            }
-            catch(FileNotFoundException)
-            {
-                MessageBox.Show("ファイルが存在しません");
+                    labelPictureBox.Visible = false;
+                    pictureBoxShowPicture.ImageLocation = searchedPhotos.ElementAt(indexNumber).File.FilePath;
+                }
+                catch (ArgumentException)
+                {
+                    MessageBox.Show("ファイルが壊れています");
+                }
+                catch (FileNotFoundException)
+                {
+                    MessageBox.Show("ファイルが存在しません");
+                }
             }
             // FileStreamを使うほうが本当はいいらしい
             //fs = new FIleStream ( filepath, FileMode.Open, FileAccess.Read);
