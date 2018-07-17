@@ -36,7 +36,7 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.labelPictureBox = new System.Windows.Forms.Label();
             this.pictureBoxShowPicture = new System.Windows.Forms.PictureBox();
-            this.listView_PhotoList = new System.Windows.Forms.ListView();
+            this.listViewPhotoList = new System.Windows.Forms.ListView();
             this.columnHeader_PhotoPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader_Keyword = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader_Favorite = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -145,7 +145,7 @@
             // 
             this.splitContainer2.Panel1.Controls.Add(this.labelPictureBox);
             this.splitContainer2.Panel1.Controls.Add(this.pictureBoxShowPicture);
-            this.splitContainer2.Panel1.Controls.Add(this.listView_PhotoList);
+            this.splitContainer2.Panel1.Controls.Add(this.listViewPhotoList);
             this.splitContainer2.Panel1.Controls.Add(this.panel1);
             // 
             // splitContainer2.Panel2
@@ -176,19 +176,19 @@
             // 
             // listView_PhotoList
             // 
-            this.listView_PhotoList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewPhotoList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader_PhotoPath,
             this.columnHeader_Keyword,
             this.columnHeader_Favorite,
             this.columnHeader_Date});
-            this.listView_PhotoList.FullRowSelect = true;
-            this.listView_PhotoList.Location = new System.Drawing.Point(33, 0);
-            this.listView_PhotoList.Name = "listView_PhotoList";
-            this.listView_PhotoList.Size = new System.Drawing.Size(530, 311);
-            this.listView_PhotoList.TabIndex = 0;
-            this.listView_PhotoList.UseCompatibleStateImageBehavior = false;
-            this.listView_PhotoList.View = System.Windows.Forms.View.Details;
-            this.listView_PhotoList.DoubleClick += new System.EventHandler(this.PhotoListPreviewDoubleClick);
+            this.listViewPhotoList.FullRowSelect = true;
+            this.listViewPhotoList.Location = new System.Drawing.Point(33, 0);
+            this.listViewPhotoList.Name = "listView_PhotoList";
+            this.listViewPhotoList.Size = new System.Drawing.Size(530, 311);
+            this.listViewPhotoList.TabIndex = 0;
+            this.listViewPhotoList.UseCompatibleStateImageBehavior = false;
+            this.listViewPhotoList.View = System.Windows.Forms.View.Details;
+            this.listViewPhotoList.DoubleClick += new System.EventHandler(this.PhotoListPreviewDoubleClick);
             // 
             // columnHeader_PhotoPath
             // 
@@ -418,7 +418,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button buttonCreateKeyword;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.ListView listView_PhotoList;
+        private System.Windows.Forms.ListView listViewPhotoList;
         private System.Windows.Forms.ColumnHeader columnHeader_PhotoPath;
         private System.Windows.Forms.ColumnHeader columnHeader_Keyword;
         private System.Windows.Forms.ColumnHeader columnHeader_Favorite;
