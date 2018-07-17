@@ -82,8 +82,19 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void ButtonFinishDecideClick(object sender, EventArgs e)
         {
-            mainForm.searchedPhotos = CheckParameter();
-            this.Close();
+            var searchResultPhotos = CheckParameter();
+            // 絞り込み結果がなかった場合
+            if (searchResultPhotos.Count() == 0)
+            {
+                MessageBox.Show("条件にあう写真は存在しません");
+            }
+            // 結果があった場合
+            else
+            {
+                mainForm.searchedPhotos = CheckParameter();
+                mainForm.RenewPhotoListView();
+                this.Close();
+            }
         }
 
         /// <summary>

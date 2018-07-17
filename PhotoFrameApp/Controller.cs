@@ -43,9 +43,9 @@ namespace PhotoFrameApp
             return application.ToggleFavorite(photo);
         }
 
-        public Photo ExecuteChangeKeyword(Photo photo, string newAlbumName)
+        public Photo ExecuteChangeKeyword(Photo photo, string keyword)
         {
-            return application.ChangeKeyword(photo, newAlbumName);
+            return application.ChangeKeyword(photo, keyword);
         }
 
         public IEnumerable<Photo> ExecuteSortList(IEnumerable<Photo> photoList, int sortMethod)

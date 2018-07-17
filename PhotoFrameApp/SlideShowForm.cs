@@ -13,7 +13,8 @@ using PhotoFrame.Domain.Model;
 using PhotoFrame.Domain.UseCase;
 using PhotoFrame.Persistence;
 using PhotoFrame.Persistence.Csv;
-using Microsoft.SmallBasic.Library;
+using System.Media;
+using System.Threading;
 
 namespace PhotoFrameApp
 {
@@ -21,6 +22,11 @@ namespace PhotoFrameApp
     {
         IEnumerable<Photo> photos;
         int photo_index;
+
+        private CancellationTokenSource tokenSource;
+        private CancellationToken cancelToken;
+        private SoundPlayer player = null;
+        private string musicFile = "music.mp3";
 
         /// <summary>
         /// コンストラクタ
@@ -38,7 +44,7 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SlideShow_Load(object sender, EventArgs e)
+        private void SlideShowLoad(object sender, EventArgs e)
         {
             if(photos.Count() > 0)
             {　 
@@ -52,21 +58,73 @@ namespace PhotoFrameApp
 
                 if (checkBox_MusicPlay.Checked)
                 {
-                    Microsoft.SmallBasic.Library.Sound.Play("Music.mp3");
+                    // 音楽再生メソッドを呼び出す
+                    PlayMusic();
                 }
 
                 timer_CloseForm.Interval = 600000;//Form画面終了時間　10分
                 timer_CloseForm.Start();
             }
+        }
+
+        /// <summary>
+        /// 音楽再生チェックボックス制御
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CheckPlayMusic(object sender, EventArgs e)
+        {
+            if (checkBox_MusicPlay.Checked)
+            {
+                PlayMusic();
+            }
+
+            else
+            {
+                StopMusic();
+            }
+        }
+
+        /// <summary>
+        /// 音楽再生
+        /// </summary>
+        private void PlayMusic()
+        {
+            //再生されているときは止める
+            if (player != null)
+                StopMusic();
+
+            //読み込む
+            player = new SoundPlayer(musicFile);
+            //非同期再生する
+            //player.Play();
+     
+            //ループ再生される
+            player.PlayLooping();
 
         }
+
+        /// <summary>
+        /// 音楽停止
+        /// </summary>
+        private void StopMusic()
+        {
+            if (player != null)
+            {
+                player.Stop();
+                player.Dispose();
+                player = null;
+            }
+        }
+
+
 
         /// <summary>
         /// 一定時間ごとに画像を切り替え
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void timer_ChangePhoto_Tick(object sender, EventArgs e)
+        private void TimerChangePhotoTick(object sender, EventArgs e)
         {
             photo_index++;
 
@@ -83,7 +141,7 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void checkBox_AutoPlay_CheckedChanged(object sender, EventArgs e)
+        private void CheckAutoSlideShow(object sender, EventArgs e)
         {
             if (checkBox_AutoPlay.Checked)
             {
@@ -135,27 +193,8 @@ namespace PhotoFrameApp
             pictureBox_SelectedPhotos.ImageLocation = photos.ElementAt(photo_index).File.FilePath;
         }
 
-
-        /// <summary>
-        /// 音楽再生
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CheckPlayMusic(object sender, EventArgs e)
-        {
-            if (checkBox_MusicPlay.Checked)
-            {
-                Microsoft.SmallBasic.Library.Sound.Play("Music.mp3");
-            }
-
-            else
-            {
-                Microsoft.SmallBasic.Library.Sound.Stop("Music.mp3");
-            }
-        }
-
         // Form画面の終了
-        private void timer_CloseForm_Tick(object sender, EventArgs e)
+        private void TimerCloseFormTick(object sender, EventArgs e)
         {
             timer_CloseForm.Stop();
             this.Close();
