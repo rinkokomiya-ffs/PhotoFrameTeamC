@@ -44,7 +44,7 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SlideShow_Load(object sender, EventArgs e)
+        private void SlideShowLoad(object sender, EventArgs e)
         {
             if(photos.Count() > 0)
             {　 
@@ -124,7 +124,7 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void timer_ChangePhoto_Tick(object sender, EventArgs e)
+        private void TimerChangePhotoTick(object sender, EventArgs e)
         {
             photo_index++;
 
@@ -141,7 +141,7 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void checkBox_AutoPlay_CheckedChanged(object sender, EventArgs e)
+        private void CheckAutoSlideShow(object sender, EventArgs e)
         {
             if (checkBox_AutoPlay.Checked)
             {
@@ -194,7 +194,7 @@ namespace PhotoFrameApp
         }
 
         // Form画面の終了
-        private void timer_CloseForm_Tick(object sender, EventArgs e)
+        private void TimerCloseFormTick(object sender, EventArgs e)
         {
             timer_CloseForm.Stop();
             this.Close();

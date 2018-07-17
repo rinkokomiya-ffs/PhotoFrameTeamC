@@ -45,7 +45,7 @@
             // 
             // timer_ChangePhoto
             // 
-            this.timer_ChangePhoto.Tick += new System.EventHandler(this.timer_ChangePhoto_Tick);
+            this.timer_ChangePhoto.Tick += new System.EventHandler(this.TimerChangePhotoTick);
             // 
             // pictureBox_SelectedPhotos
             // 
@@ -99,7 +99,7 @@
             this.checkBox_AutoPlay.TabIndex = 9;
             this.checkBox_AutoPlay.Text = "自動再生";
             this.checkBox_AutoPlay.UseVisualStyleBackColor = true;
-            this.checkBox_AutoPlay.CheckedChanged += new System.EventHandler(this.checkBox_AutoPlay_CheckedChanged);
+            this.checkBox_AutoPlay.CheckedChanged += new System.EventHandler(this.CheckAutoSlideShow);
             // 
             // panel1
             // 
@@ -128,7 +128,7 @@
             // 
             // timer_CloseForm
             // 
-            this.timer_CloseForm.Tick += new System.EventHandler(this.timer_CloseForm_Tick);
+            this.timer_CloseForm.Tick += new System.EventHandler(this.TimerCloseFormTick);
             // 
             // SlideShowForm
             // 
@@ -138,7 +138,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "SlideShowForm";
             this.Text = "SlideShow";
-            this.Load += new System.EventHandler(this.SlideShow_Load);
+            this.Load += new System.EventHandler(this.SlideShowLoad);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_SelectedPhotos)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
