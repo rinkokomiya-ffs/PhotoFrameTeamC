@@ -22,36 +22,37 @@ namespace PhotoFrame.Domain.UseCase
         /// <summary>
         /// 指定したディレクトリ直下のフォトのリストを返す
         /// </summary>
-        /// <param name="directoryName"></param>
+        /// <param name="folderPath"></param>
         /// <returns></returns>
-        public IEnumerable<Photo> Execute(string directoryName)
+        public IEnumerable<Photo> Execute(string folderPath)
         {
-            var files = _photoFileService.FindAllPhotoFilesFromDirectory(directoryName);
-            var photosInDirectory = new List<Photo>();
+            var files = _photoFileService.FindAllPhotoFilesFromDirectory(folderPath);
+            var photosInFolder = new List<Photo>();
 
-            if (!System.IO.File.Exists(directoryName))
+            if (!System.IO.File.Exists(folderPath))
             {
                 return null;
             }
 
+            var photos = _photoRepository.Find(allPhoto => allPhoto);
             foreach (var file in files)
             {          
-                var hitPhoto = _photoRepository.Find(photos => photos.SingleOrDefault(photo => photo.File.FilePath == file.FilePath));
+                var hitPhoto = photos.SingleOrDefault(photo => photo.File.FilePath == file.FilePath);
 
                 if (hitPhoto != null)
                 {
-                    photosInDirectory.Add(hitPhoto);
+                    photosInFolder.Add(hitPhoto);
                 }
                 else
                 {
                     var photo = Photo.CreateFromFile(file, GetDateTime(file.FilePath));
-                    photosInDirectory.Add(photo);
+                    photosInFolder.Add(photo);
                     _photoRepository.Store(photo);
 
                 }
             }
 
-            return photosInDirectory;
+            return photosInFolder;
         }
 
         /// <summary>
