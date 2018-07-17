@@ -25,7 +25,7 @@ namespace PhotoFrameApp
 
         public IEnumerable<Keyword> ExecuteGetKeyword()
         {
-            return application.GetKeyword();
+            return application.GetKeywordList();
         }
 
         public int ExecuteRegistKeyword(string keyword)
