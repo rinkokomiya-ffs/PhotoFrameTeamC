@@ -26,7 +26,7 @@ namespace PhotoFrameApp
         private CancellationTokenSource tokenSource;
         private CancellationToken cancelToken;
         private SoundPlayer player = null;
-        private string musicFile = "music.mp3";
+        private string musicFile = "music.wav";
 
         /// <summary>
         /// コンストラクタ

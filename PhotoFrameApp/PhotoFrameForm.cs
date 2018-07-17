@@ -335,11 +335,8 @@ namespace PhotoFrameApp
             {
                 // ソートしたリストを渡す
                 IEnumerable<Photo> targetSlideshowPhotos = controller.ExecuteSortList(searchedPhotos, CheckSortList());
-                if (targetSlideshowPhotos.Count() > 0)
-                {
-                    var slideShowForm = new SlideShowForm(targetSlideshowPhotos);
-                    slideShowForm.ShowDialog();
-                }
+                var slideShowForm = new SlideShowForm(targetSlideshowPhotos);
+                slideShowForm.ShowDialog();
             }
 
         }
