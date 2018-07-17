@@ -4,9 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1a51f21375464255850959836f66d831" Name="Diagram1">
+      <Diagram DiagramId="f9937e8c14c1426aa0c0d416eea846b6" Name="Diagram1">
         <EntityTypeShape EntityType="PhotoFrameTeamCModel.m_Keyword" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="PhotoFrameTeamCModel.m_Photo" Width="1.5" PointX="3.625" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PhotoFrameTeamCModel.m_Photo" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="PhotoFrameTeamCModel.FK_m_Photo_m_Keyword1" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

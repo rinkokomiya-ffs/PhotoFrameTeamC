@@ -56,18 +56,17 @@ namespace PhotoFrame.Persistence.Test
             Assert.AreNotEqual(null, result);
         }
 
-        [TestMethod]
-        public void 重複した写真は追加されないこと()
-        {
-            var photo = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993,05,15,15,00,00));
-            photoRepository.Store(photo);
+        //[TestMethod]
+        //public void 重複した写真は追加されないこと()
+        //{
+        //    var photo = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993,05,15,15,00,00));
+        //    photoRepository.Store(photo);
 
-            var same_photo = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
-            photoRepository.Store(same_photo);
+        //    var same_photo = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
+        //    photoRepository.Store(same_photo);
+        
 
-
-
-        }
+        //}
 
 
         [TestMethod]
@@ -107,16 +106,19 @@ namespace PhotoFrame.Persistence.Test
         {
             var old_keyword = Keyword.Create("old_keyword");
             keywordRepository.Store(old_keyword);
-            var photo = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
-
-            photoRepository.Store(photo);
-
-            photo.IsAssignedTo(old_keyword);
-
             var new_keyword = Keyword.Create("new_keyword");
             keywordRepository.Store(new_keyword);
 
+
+            var photo = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
+
+            photo.IsAssignedTo(old_keyword);
+            photoRepository.Store(photo);
+
+
             photo.IsAssignedTo(new_keyword);
+            photoRepository.Store(photo);
+
 
             var result = photoRepository.Find(allPhoto => allPhoto.FirstOrDefault(p => p.Id == photo.Id));
             Assert.AreEqual(new_keyword.Name, result.Keyword.Name);
