@@ -30,29 +30,23 @@ namespace PhotoFrame.Domain.UseCase
         public int Execute(string keywordName)
         {
             var result = _keywordRepository.Find(keywords => keywords.SingleOrDefault(keyword => keyword.Name == keywordName));
-            if (keywordName != "")
+
+            // 登録済みのアルバム名でない場合
+            if (result == null)
             {
-                // 登録済みのアルバム名でない場合
-                if (result == null)
-                {
 
-                    var keyword = Keyword.Create(keywordName);
-                    _keywordRepository.Store(keyword);
+                var keyword = Keyword.Create(keywordName);
+                _keywordRepository.Store(keyword);
 
-                    // 正常終了
-                    return 0;
-                }
-                else
-                {
-                    // 既存のアルバム名
-                    return 2;
-                }
+                // 正常終了
+                return 0;
             }
             else
             {
-                // アルバム名未入力
+                // 既存のアルバム名
                 return 1;
             }
+          
         }
 
         /// <summary>
