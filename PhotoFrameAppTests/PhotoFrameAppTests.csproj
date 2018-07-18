@@ -64,6 +64,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PhotoFrame.Domain.Model\PhotoFrame.Domain.Model.csproj">
+      <Project>{B52F9308-D188-424D-AE76-5AA8180B6E13}</Project>
+      <Name>PhotoFrame.Domain.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotoFrame.Persistence\PhotoFrame.Persistence.csproj">
+      <Project>{7041975E-6418-4F89-8276-BD0A5CF14BC8}</Project>
+      <Name>PhotoFrame.Persistence</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PhotoFrameApp\PhotoFrameApp.csproj">
       <Project>{32E837CF-0149-4010-8E3E-7B19F1BD69E1}</Project>
       <Name>PhotoFrameApp</Name>

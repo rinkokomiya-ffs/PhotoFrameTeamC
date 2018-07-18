@@ -18,9 +18,9 @@ namespace PhotoFrameApp
         private readonly PhotoFrameApplicationStub application;
 
 
-        private IPhotoRepository photoRepository;
-        private IKeywordRepository albumRepository;
-        private IPhotoFileService photoFileService;
+        private readonly IPhotoRepository photoRepository;
+        private readonly IKeywordRepository albumRepository;
+        private readonly IPhotoFileService photoFileService;
 
         public Controller(IKeywordRepository keywordRepository, IPhotoRepository photoRepository, IPhotoFileService photoFileService)
         {
