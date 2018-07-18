@@ -58,14 +58,6 @@ namespace PhotoFrameApp.Tests
         }
 
         [TestMethod()]
-        public void テキストを取得する()
-        {
-            var text = privateObject.Invoke("GetStrings") as string;
-
-            Assert.AreEqual("hoge", text);
-        }
-
-        [TestMethod()]
         public void AllKeywordFromController()
         {
             Assert.IsTrue(dummyKeywordList.SequenceEqual(photoFrameForm.allKeywords));
@@ -93,10 +85,6 @@ namespace PhotoFrameApp.Tests
             Assert.AreEqual(false, checkExistListview);
         }
 
-        [TestMethod()]
-        public void RenewPhotoListViewTest()
-        {
-            Assert.Fail();
-        }
+       
     }
 }
