@@ -54,6 +54,11 @@ namespace PhotoFrameApp
 
         }
 
+        private string GetString()
+        {
+            return "hoge";
+        }
+
         /// <summary>
         /// 全キーワードを取得してコンボボックスにセットする
         /// </summary>

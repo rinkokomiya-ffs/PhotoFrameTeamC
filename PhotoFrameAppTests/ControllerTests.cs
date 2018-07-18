@@ -64,6 +64,12 @@ namespace PhotoFrameApp.Tests
         }
 
         [TestMethod()]
+        public void ExecuteGetKeywordTest_null()
+        {
+            Assert.AreEqual(null, controller.ExecuteGetKeyword());
+        }
+
+        [TestMethod()]
         public void ExecuteRegistKeywordTest()
         {
             string keyword = "keyword";

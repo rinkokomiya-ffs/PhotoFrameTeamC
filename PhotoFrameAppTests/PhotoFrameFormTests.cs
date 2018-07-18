@@ -54,6 +54,16 @@ namespace PhotoFrameApp.Tests
         }
 
         [TestMethod()]
+        public void テキストを取得する()
+        {
+            var hoge = new PhotoFrameForm();
+            var pbObj = new PrivateObject(hoge);
+            var text = pbObj.Invoke("GetString") as string;
+
+            Assert.AreEqual("hoge", text);
+        }
+
+        [TestMethod()]
         public void UpdateKeywordListTest()
         {
             Assert.Fail();

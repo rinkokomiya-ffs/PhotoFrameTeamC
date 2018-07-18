@@ -79,7 +79,8 @@ namespace PhotoFrame.Application
         public IEnumerable<Keyword> GetKeywordList()
         {
             Console.WriteLine("Application.GetKeywordListは呼び出されました");
-            return dummyKeywordList;
+            //return dummyKeywordList;
+            return null;
         }
     }
 }
