@@ -29,7 +29,7 @@ namespace PhotoFrame.Domain.UseCase
             var files = _photoFileService.FindAllPhotoFilesFromDirectory(folderPath);
             var photosInFolder = new List<Photo>();
 
-            if (files.Count() == 0)
+            if (files == null)
             {
                 return null;
             }
@@ -37,11 +37,11 @@ namespace PhotoFrame.Domain.UseCase
             var photos = _photoRepository.Find(allPhoto => allPhoto);
             foreach (var file in files)
             {          
-                var hitPhoto = photos.SingleOrDefault(photo => photo.File.FilePath == file.FilePath);
+                var searchedPhoto = photos.SingleOrDefault(photo => photo.File.FilePath == file.FilePath);
 
-                if (hitPhoto != null)
+                if (searchedPhoto != null)
                 {
-                    photosInFolder.Add(hitPhoto);
+                    photosInFolder.Add(searchedPhoto);
                 }
                 else
                 {

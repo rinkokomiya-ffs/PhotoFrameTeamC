@@ -20,7 +20,7 @@ namespace PhotoFrame.Domain.UseCase
         {
             if(keyword != null)
             {
-                photoList = photoList.Where(photo => photo.Keyword.Name == keyword);
+                photoList = photoList.Where(photo => photo.Keyword != null && photo.Keyword.Name == keyword);
             }
 
             if(isFavorite != null)
