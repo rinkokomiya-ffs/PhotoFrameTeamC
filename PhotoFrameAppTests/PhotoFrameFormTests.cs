@@ -17,7 +17,9 @@ namespace PhotoFrameApp.Tests
         private static IKeywordRepository keywordRepository;
         private static IPhotoFileService photoFileService;
 
+        private PhotoFrameForm photoFrameForm;
         private Controller controller;
+        private PrivateObject privateObject; 
 
         private List<Photo> dummyPhotoList;
         private List<Keyword> dummyKeywordList;
@@ -37,6 +39,8 @@ namespace PhotoFrameApp.Tests
         public void SetUp()
         {
             controller = new Controller(keywordRepository, photoRepository, photoFileService);
+            photoFrameForm = new PhotoFrameForm();
+            privateObject = new PrivateObject(photoFrameForm);
 
             // ダミーデータ作成
             dummyPhotoList = new List<Photo>();
@@ -56,17 +60,37 @@ namespace PhotoFrameApp.Tests
         [TestMethod()]
         public void テキストを取得する()
         {
-            var hoge = new PhotoFrameForm();
-            var pbObj = new PrivateObject(hoge);
-            var text = pbObj.Invoke("GetString") as string;
+            var text = privateObject.Invoke("GetStrings") as string;
 
             Assert.AreEqual("hoge", text);
         }
 
         [TestMethod()]
-        public void UpdateKeywordListTest()
+        public void AllKeywordFromController()
         {
-            Assert.Fail();
+            Assert.IsTrue(dummyKeywordList.SequenceEqual(photoFrameForm.allKeywords));
+        }
+
+        [TestMethod()]
+        public void AllKeywordFromController_null()
+        {
+            Assert.AreEqual(null, photoFrameForm.allKeywords);
+        }
+
+        [TestMethod()]
+        public void CheckExistListviewPhotosTest()
+        {
+            photoFrameForm.searchedPhotos = dummyPhotoList;
+            var checkExistListview = privateObject.Invoke("CheckExistListviewPhotos") as bool?;
+            Assert.AreEqual(true, checkExistListview);
+        }
+
+        [TestMethod()]
+        public void CheckExistListviewPhotosTest_null()
+        {
+            //photoFrameForm.searchedPhotos = dummyPhotoList;
+            var checkExistListview = privateObject.Invoke("CheckExistListviewPhotos") as bool?;
+            Assert.AreEqual(false, checkExistListview);
         }
 
         [TestMethod()]

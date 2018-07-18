@@ -54,7 +54,7 @@ namespace PhotoFrameApp
 
         }
 
-        private string GetString()
+        private string GetStrings()
         {
             return "hoge";
         }
