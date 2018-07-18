@@ -23,10 +23,10 @@ namespace PhotoFrameApp
         IEnumerable<Photo> photos;
         int photo_index;
 
-        private CancellationTokenSource tokenSource;
-        private CancellationToken cancelToken;
+        //private CancellationTokenSource tokenSource;
+        //private CancellationToken cancelToken;
         private SoundPlayer player = null;
-        private string musicFile = "music.wav";
+        public string musicFile = "music.wav";
 
         /// <summary>
         /// コンストラクタ
@@ -44,7 +44,7 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SlideShowLoad(object sender, EventArgs e)
+        public void SlideShowLoad(object sender, EventArgs e)
         {
             if(photos.Count() > 0)
             {　 
@@ -102,6 +102,11 @@ namespace PhotoFrameApp
             //ループ再生される
             player.PlayLooping();
 
+        }
+
+        public string test()
+        {
+            return "hoge";
         }
 
         /// <summary>
