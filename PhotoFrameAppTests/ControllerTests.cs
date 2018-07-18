@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace PhotoFrameApp.Tests
 {
+    /// <summary>
+    /// コントローラがアプリケーションを正しく呼び出しているかどうかのテスト
+    /// </summary>
     [TestClass()]
     public class ControllerTests
     {
@@ -63,25 +66,48 @@ namespace PhotoFrameApp.Tests
         [TestMethod()]
         public void ExecuteRegistKeywordTest()
         {
-            Assert.Fail();
+            string keyword = "keyword";
+            Assert.AreEqual(0, controller.ExecuteRegistKeyword(keyword));
         }
 
         [TestMethod()]
         public void ExecuteSearchFolderTest()
         {
-            Assert.Fail();
+            string folderPath = "test\\test";
+            Assert.IsTrue(dummyPhotoList.SequenceEqual(controller.ExecuteSearchFolder(folderPath)));
         }
 
         [TestMethod()]
         public void ExecuteToggleFavoriteTest()
         {
-            Assert.Fail();
+            var photo = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
+            Assert.AreEqual(photo, controller.ExecuteToggleFavorite(photo));
         }
 
         [TestMethod()]
         public void ExecuteChangeKeywordTest()
         {
-            Assert.Fail();
+            var photo = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
+            string keyword = "keyword";
+            Assert.AreEqual(photo, controller.ExecuteChangeKeyword(photo, keyword));
+        }
+
+        [TestMethod()]
+        public void ExecuteSortListTest()
+        {
+            int sortMethod = 0;
+            Assert.IsTrue(dummyPhotoList.SequenceEqual(controller.ExecuteSortList(dummyPhotoList,sortMethod)));
+        }
+
+        [TestMethod()]
+        public void ExecuteDetailSearchTest()
+        {
+            string keyword = "keyword";
+            string isFavorite = "true";
+            DateTime? firstDate = new DateTime(1993, 05, 15, 15, 00, 00);
+            DateTime? lastDate = new DateTime(1993, 05, 15, 15, 00, 00);
+            Assert.IsTrue(dummyPhotoList.SequenceEqual(controller.ExecuteDetailSearch(dummyPhotoList, keyword, isFavorite, firstDate, lastDate)));
+
         }
     }
 }
