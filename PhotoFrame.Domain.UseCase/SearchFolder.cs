@@ -29,7 +29,7 @@ namespace PhotoFrame.Domain.UseCase
             var files = _photoFileService.FindAllPhotoFilesFromDirectory(folderPath);
             var photosInFolder = new List<Photo>();
 
-            if (!System.IO.File.Exists(folderPath))
+            if (files.Count() == 0)
             {
                 return null;
             }
