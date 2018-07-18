@@ -76,15 +76,20 @@ namespace PhotoFrameApp
         private void ButtonFinishDecideClick(object sender, EventArgs e)
         {
             var searchResultPhotos = CheckParameter();
-            // 絞り込み結果がなかった場合
-            if (searchResultPhotos.Count() == 0)
+            // 撮影日設定に不備があった場合
+            if (searchResultPhotos == null)
             {
-                MessageBox.Show("条件にあう写真は存在しません");
+                MessageBox.Show("指定した撮影期間が正しくありません");
+            }
+            // 絞り込み結果がなかった場合
+            else if (searchResultPhotos.Count() == 0)
+            {
+                MessageBox.Show("該当する写真は存在しません");
             }
             // 結果があった場合
             else
             {
-                mainForm.searchedPhotos = CheckParameter();
+                mainForm.searchedPhotos = searchResultPhotos;
                 mainForm.RenewPhotoListView();
                 this.Close();
             }
@@ -133,6 +138,10 @@ namespace PhotoFrameApp
             {
                 firstDate = dateTimePickerFirstDate.Value;
                 lastDate = dateTimePickerLastDate.Value;
+                if (firstDate > lastDate)
+                {
+                    return null;
+                }
             }
 
             // コントローラに投げる
