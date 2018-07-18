@@ -20,23 +20,29 @@ namespace PhotoFrame.Persistence.Test
         }
 
         [TestMethod]
-        public void 指定されたフォルダの写真ファイルが取得できること()
+        public void 指定されたフォルダの画像データのみを全て取得できること()
         {
             // テストデータをどう与えるかなどはお任せします
-            var result = service.FindAllPhotoFilesFromDirectory("TestDir");
+            var result = service.FindAllPhotoFilesFromDirectory(@"\\CFS-01\HOME0\12810470\Desktop\ミニシステム開発\TestPicture");
 
-            // テストデータに応じたアサーション
-            string[] test = { @"TestDir\sample1.bmp" , @"TestDir\sample2.bmp", @"TestDir\SubTestDir\sample3.bmp" };
+            string[] test = {@"\\CFS-01\HOME0\12810470\Desktop\ミニシステム開発\TestPicture\Penguins.jpg", @"\\CFS-01\HOME0\12810470\Desktop\ミニシステム開発\TestPicture\Koala.jpg" };
+
             int i = 0;
 
             foreach(Domain.Model.File file in result)
             {
                 Assert.AreEqual(file.FilePath, test[i]);
                 i++;
-
             }
+        }
 
-            //Assert.AreEqual(result.Count(), 0);
+        [TestMethod]
+        public void 画像データを含まないディレクトリを受け取った場合空のリストを返すこと()
+        {
+            // テストデータをどう与えるかなどはお任せします
+            var result = service.FindAllPhotoFilesFromDirectory(@"\\CFS-01\HOME0\12810470\Desktop\ミニシステム開発\TestDummyPicture");
+            
+            Assert.AreEqual(0, result.Count());
         }
 
         // テストの観点としてはエッジケース（0枚時など）やディレクトリのネスト、存在しないディレクトリの指定やパーミッションがないなどの例外処理など

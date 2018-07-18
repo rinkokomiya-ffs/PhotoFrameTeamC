@@ -127,7 +127,16 @@ namespace PhotoFrame.Persistence.EF
         {
             var file = new File(m_photo.FilePath);
             var keyword = keywordRepository.Find(allKeyword => allKeyword.FirstOrDefault(p => p.Id == m_photo.KeywordId.ToString()));
-            return new Photo(m_photo.Id.ToString(), file, m_photo.DateTime, m_photo.IsFavorite, m_photo.KeywordId.ToString(), keyword);
+
+            if (keyword == null)
+            {
+                return new Photo(m_photo.Id.ToString(), file, m_photo.DateTime, m_photo.IsFavorite);
+            }
+            else
+            {
+                return new Photo(m_photo.Id.ToString(), file, m_photo.DateTime, m_photo.IsFavorite, m_photo.KeywordId.ToString(), keyword);
+
+            }
         }
 
         /// <summary>

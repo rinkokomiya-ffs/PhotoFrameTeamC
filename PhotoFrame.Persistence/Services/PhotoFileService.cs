@@ -16,11 +16,12 @@ namespace PhotoFrame.Persistence
         public IEnumerable<Domain.Model.File> FindAllPhotoFilesFromDirectory(string directory)
         {
             // TODO: コレクション講座で実装予定
-            List<Domain.Model.File> file_list = new List<Domain.Model.File>();
+            List<Domain.Model.File> file_list = null;
 
             // directoryが存在する場合
             if (Directory.Exists(directory))
             {
+                file_list = new List<Domain.Model.File>();
                 List<string> path_list = Enumerate(directory);
 
                 foreach (string filePath in path_list)
@@ -35,13 +36,8 @@ namespace PhotoFrame.Persistence
 
             }
 
-            //else
-            //{
-            //    throw new IOException("指定したディレクトリが存在しません");
-            //}
-
             return file_list;
-            
+
         }
 
         public List<string> Enumerate(string dir)
