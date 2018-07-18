@@ -58,6 +58,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ControllerTests.cs" />
+    <Compile Include="DetailSearchFormTests.cs" />
     <Compile Include="PhotoFrameFormTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
