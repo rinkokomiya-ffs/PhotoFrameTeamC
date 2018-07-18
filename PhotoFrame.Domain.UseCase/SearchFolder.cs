@@ -29,7 +29,7 @@ namespace PhotoFrame.Domain.UseCase
             var files = _photoFileService.FindAllPhotoFilesFromDirectory(folderPath);
             var photosInFolder = new List<Photo>();
 
-            if (files.Count() == 0)
+            if (files == null)
             {
                 return null;
             }
@@ -37,11 +37,11 @@ namespace PhotoFrame.Domain.UseCase
             var photos = _photoRepository.Find(allPhoto => allPhoto);
             foreach (var file in files)
             {          
-                var hitPhoto = photos.SingleOrDefault(photo => photo.File.FilePath == file.FilePath);
+                var searchedPhoto = photos.SingleOrDefault(photo => photo.File.FilePath == file.FilePath);
 
-                if (hitPhoto != null)
+                if (searchedPhoto != null)
                 {
-                    photosInFolder.Add(hitPhoto);
+                    photosInFolder.Add(searchedPhoto);
                 }
                 else
                 {
@@ -84,37 +84,5 @@ namespace PhotoFrame.Domain.UseCase
                    
         }
 
-        /// <summary>
-        /// 非同期処理
-        /// </summary>
-        /// <param name="directoryName"></param>
-        /// <returns></returns>
-        //public async Task<IEnumerable<Photo>> ExecuteAsync(string directoryName)
-        //{
-        //    var files = photoFileService.FindAllPhotoFilesFromDirectory(directoryName);
-        //    var photosInDirectory = await Task.Run(() =>
-        //    {
-        //        var photosList = new List<Photo>();
-        //        foreach (var file in files)
-        //        {
-        //            Func<IQueryable<Photo>, Photo> query = allPhotos => allPhotos.FirstOrDefault(a => a.File.FilePath == file.FilePath);
-
-        //            var hitPhoto = photoRepository.Find(query);
-
-        //            if (hitPhoto != null)
-        //            {
-        //                photosList.Add(hitPhoto);
-        //            }
-        //            else
-        //            {
-        //                photosList.Add(Photo.CreateFromFile(file));
-        //            }
-        //        }
-
-        //        return photosList;
-        //    });
-            
-        //    return photosInDirectory;
-        //}
     }
 }
