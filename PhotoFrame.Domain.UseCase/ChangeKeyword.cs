@@ -28,12 +28,21 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns></returns>
         public Photo Execute(Photo photo, string keywordName)
         {
-            var result = _keywordRepository.Find(keywords => keywords.SingleOrDefault(keyword => keyword.Name == keywordName));
-            if (result != null)
+            if(keywordName == "")
             {
-                photo.IsAssignedTo(result);
+                photo.IsAssignedTo(null);
                 _photoRepository.Store(photo);
             }
+            else
+            {
+                var result = _keywordRepository.Find(keywords => keywords.SingleOrDefault(keyword => keyword.Name == keywordName));
+                if (result != null)
+                {
+                    photo.IsAssignedTo(result);
+                    _photoRepository.Store(photo);
+                }
+            }
+           
             return photo;
         }
 

@@ -59,7 +59,15 @@ namespace PhotoFrame.Domain.Model
         public void IsAssignedTo(Keyword keyword)
         {
             Keyword = keyword;
-            KeywordId = keyword.Id;
+            if(keyword == null)
+            {
+                KeywordId = null;
+            }
+            else
+            {
+                KeywordId = keyword.Id;
+            }
+           
         }
 
         public void MarkAsFavorite()
