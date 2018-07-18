@@ -80,6 +80,7 @@ namespace PhotoFrame.Application
         {
             Console.WriteLine("Application.GetKeywordListは呼び出されました");
             return dummyKeywordList;
+            //return null;
         }
     }
 }
