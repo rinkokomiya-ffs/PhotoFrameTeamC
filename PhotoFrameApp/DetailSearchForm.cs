@@ -24,7 +24,7 @@ namespace PhotoFrameApp
         {
             this.mainForm = mainForm;
             this.controller = controller;
-            this.photoList = photoList;
+            this.photoList = new List<Photo>(photoList);
             InitializeComponent();
             
             
@@ -48,24 +48,10 @@ namespace PhotoFrameApp
 
         private void GetDateTime()
         {
-            int compareValue = 0;
-            for (int i = 0; i < photoList.Count()-1; i++)
-            {
-                compareValue = photoList.ElementAt(i).DateTime.CompareTo(photoList.ElementAt(i + 1).DateTime);
-                if (compareValue < 0)
-                {
-                    oldDate = photoList.ElementAt(i).DateTime;
-                }
-                else if (compareValue > 0)
-                {
-                    newDate = photoList.ElementAt(i).DateTime;
-                }
-                else
-                {
-                    oldDate = photoList.ElementAt(i).DateTime;
-                }
-
-            }
+            var tmpPhotoList = new List<Photo>(photoList);
+            oldDate = controller.ExecuteSortList(tmpPhotoList, 1).First().DateTime;
+            newDate = controller.ExecuteSortList(tmpPhotoList, 2).First().DateTime;
+            
         }
 
         /// <summary>
