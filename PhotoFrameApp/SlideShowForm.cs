@@ -90,10 +90,6 @@ namespace PhotoFrameApp
         /// </summary>
         private void PlayMusic()
         {
-            //再生されているときは止める
-            if (player != null)
-                StopMusic();
-
             //読み込む
             player = new SoundPlayer(musicFile);
             //非同期再生する

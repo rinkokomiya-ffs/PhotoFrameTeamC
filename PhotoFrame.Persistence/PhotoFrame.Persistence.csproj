@@ -61,24 +61,29 @@
     <Compile Include="Repositories\IRepositoryFactory.cs" />
     <Compile Include="Repositories\m_Keyword.cs">
       <DependentUpon>PhotoFrameTeamC.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Repositories\m_Photo.cs">
       <DependentUpon>PhotoFrameTeamC.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Repositories\PhotoFrameTeamC.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PhotoFrameTeamC.Context.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Repositories\PhotoFrameTeamC.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PhotoFrameTeamC.tt</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Repositories\PhotoFrameTeamC.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PhotoFrameTeamC.edmx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Repositories\RepositoryFactory.cs" />
     <Compile Include="Services\IServiceFactory.cs" />
@@ -97,9 +102,11 @@
     <EntityDeploy Include="Repositories\PhotoFrameTeamC.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>PhotoFrameTeamC.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EntityDeploy>
     <None Include="Repositories\PhotoFrameTeamC.edmx.diagram">
       <DependentUpon>PhotoFrameTeamC.edmx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -110,11 +117,13 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>PhotoFrameTeamC.edmx</DependentUpon>
       <LastGenOutput>PhotoFrameTeamC.Context.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Repositories\PhotoFrameTeamC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>PhotoFrameTeamC.edmx</DependentUpon>
       <LastGenOutput>PhotoFrameTeamC.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

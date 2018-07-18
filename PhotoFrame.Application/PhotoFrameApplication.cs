@@ -69,36 +69,5 @@ namespace PhotoFrame.Application
             return _getKeywordList.Execute();
         }
 
-        // ここより下は非同期用のユースケースの呼び出しメソッド
-        //public async Task<int> CreateAlbumAsync(string albumName)
-        //{
-        //    var judgement = await createAlbum.ExecuteAsync(albumName);
-        //    return judgement;
-        //}
-
-        //public async Task<IEnumerable<Photo>> SearchDirectoryAsync(string directoryName)
-        //{ 
-        //    var retPhotos = await searchDirectory.ExecuteAsync(directoryName);
-        //    return retPhotos;
-        //}
-
-        //public async Task<IEnumerable<Photo>> SearchAlbumAsync(string albumName)
-        //{
-        //    var retPhotos = await searchAlbum.ExecuteAsync(albumName);
-        //    return retPhotos;
-        //}
-
-        //public async Task<Photo> ToggleFavoriteAsync(Photo photo)
-        //{
-        //    var retPhoto = await toggleFavorite.ExecuteAsync(photo);
-        //    return retPhoto;
-        //}
-
-        //public async Task<Photo> ChangeAlbumAsync(Photo photo, string newAlbumName)
-        //{
-        //    var retPhoto = await changeAlbum.ExecuteAsync(photo, newAlbumName);
-        //    return retPhoto;
-
-        //}
     }
 }

@@ -20,7 +20,7 @@ namespace PhotoFrame.Domain.UseCase
         {
             if(keyword != null)
             {
-                photoList = photoList.Where(photo => photo.Keyword.Name == keyword);
+                photoList = photoList.Where(photo => photo.Keyword != null && photo.Keyword.Name == keyword);
             }
 
             if(isFavorite != null)
@@ -35,21 +35,5 @@ namespace PhotoFrame.Domain.UseCase
             return photoList;
         }
 
-        /// <summary>
-        /// 非同期処理用
-        /// </summary>
-        /// <param name="albumName"></param>
-        /// <returns></returns>
-        //public async Task<IEnumerable<Photo>> ExecuteAsync(string albumName)
-        //{
-        //    var searchedPhotos = await Task.Run(() =>
-        //    {
-        //        // アルバムが割り当てられていない写真とアルバム名が一致していない写真を取り除く
-        //        return photoRepository.Find(photos => photos.Where(p => p.Album != null && p.Album.Name == albumName));
-
-        //    });
-
-        //    return searchedPhotos.AsEnumerable();
-        //}
     }
 }
