@@ -38,29 +38,5 @@ namespace PhotoFrame.Domain.UseCase
             return photo;
         }
 
-        /// <summary>
-        /// 非同期用Execute()
-        /// </summary>
-        /// <param name="photo"></param>
-        /// <returns></returns>
-        //public async Task<Photo> ExecuteAsync(Photo photo)
-        //{
-
-        //    if (photo.IsFavorite)
-        //    {
-        //        photo.MarkAsUnFavorite();
-        //    }
-        //    else
-        //    {
-        //        photo.MarkAsFavorite();
-        //    }
-
-        //    await Task.Run(() =>
-        //    {
-        //        photoRepository.Store(photo);
-        //    });
-          
-        //    return photo;
-        //}
     }
 }

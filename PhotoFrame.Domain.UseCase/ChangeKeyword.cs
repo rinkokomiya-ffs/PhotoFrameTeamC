@@ -37,29 +37,5 @@ namespace PhotoFrame.Domain.UseCase
             return photo;
         }
 
-        /// <summary>
-        /// 非同期用Excute()
-        /// </summary>
-        /// <param name="photo"></param>
-        /// <param name="newAlbumName"></param>
-        /// <returns></returns>
-        //public async Task<Photo> ExecuteAsync(Photo photo, string newAlbumName)
-        //{
-        //    Func<IQueryable<Keyword>, Keyword> query = allAlbums => allAlbums.FirstOrDefault(a => a.Name == newAlbumName);
-
-        //    var newAlbum = keywordRepository.Find(query);
-
-        //    if (newAlbum != null)
-        //    {
-        //        photo.IsAssignedTo(newAlbum);
-        //    }
-
-        //    await Task.Run(() =>
-        //    {
-        //        photoRepository.Store(photo);
-        //    });
-
-        //    return photo;
-        //}
     }
 }
