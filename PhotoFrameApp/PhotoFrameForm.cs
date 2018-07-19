@@ -186,7 +186,7 @@ namespace PhotoFrameApp
 
                             break;
                         case 1:
-                            MessageBox.Show("既存のキーワードです");
+                            MessageBox.Show("そのキーワードはすでに作成されています");
                             break;
                         default:
                             break;
