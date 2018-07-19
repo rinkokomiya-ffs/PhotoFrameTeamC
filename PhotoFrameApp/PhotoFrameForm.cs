@@ -269,7 +269,9 @@ namespace PhotoFrameApp
                     int indexNumber = listViewPhotoList.SelectedItems[0].Index;
 
                     labelPictureBox.Visible = false;
-                    pictureBoxShowPicture.ImageLocation = searchedPhotos.ElementAt(indexNumber).File.FilePath;
+                    FileStream fs = System.IO.File.OpenRead(searchedPhotos.ElementAt(indexNumber).File.FilePath);
+                    Image img = Image.FromStream(fs, false, false); // 検証なし
+                    pictureBoxShowPicture.Image = img;
                 }
                 catch (ArgumentException)
                 {
