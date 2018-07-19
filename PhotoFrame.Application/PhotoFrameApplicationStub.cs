@@ -33,9 +33,22 @@ namespace PhotoFrame.Application
 
         public int RegistKeyword(string keyword)
         {
-            var keyword_test = keyword;
             Console.WriteLine("Application.RegistKeywordは呼び出されました");
-            return 0;
+
+            var keyword_test = keyword;
+            if(keyword_test == "Keyword")
+            {
+                return 1;
+            }
+            else if(keyword_test == "Keyword2")
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+
+            }
         }
 
         public IEnumerable<Photo> DetailSearch(IEnumerable<Photo> photoList, string keyword, string isFavorite, DateTime? firstData, DateTime? lastData)
