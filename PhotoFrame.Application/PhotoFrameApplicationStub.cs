@@ -20,8 +20,8 @@ namespace PhotoFrame.Application
             dummyPhotoList = new List<Photo>();
             dummyKeywordList = new List<Keyword>();
 
-            var photo = new Photo("f7e5586d-9c75-435c-a462-59fd3d50a154", new File("dummy.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
-            var photo2 = new Photo("f26ddb0b-3718-47f0-984e-8c99872c3077", new File("dummy2.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
+            var photo = new Photo("f7e5586d-9c75-435c-a462-59fd3d50a154", new File("Chrysanthemum.jpg"), new DateTime(1993, 05, 15, 15, 00, 00));
+            var photo2 = new Photo("f26ddb0b-3718-47f0-984e-8c99872c3077", new File("Desert.jpg"), new DateTime(1993, 05, 15, 15, 00, 00));
             dummyPhotoList.Add(photo);
             dummyPhotoList.Add(photo2);
 
