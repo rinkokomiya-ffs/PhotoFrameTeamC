@@ -26,7 +26,7 @@ namespace PhotoFrameApp
         private CancellationTokenSource tokenSource;
         private CancellationToken cancelToken;
         private SoundPlayer player = null;
-        private string musicFile = "music.wav";
+        public string musicFile = @"C:\\ミニシステム開発演習.ver2\\PhotoFrameTeamC\\PhotoFrameAppTests\\bin\\Debug\\music.wav";
 
         /// <summary>
         /// コンストラクタ
@@ -111,6 +111,8 @@ namespace PhotoFrameApp
                 player.Dispose();
                 player = null;
             }
+
+            //MessageBox.Show("停止します");
         }
 
 
