@@ -179,7 +179,6 @@ namespace PhotoFrameApp
                     switch (result)
                     {
                         case 0:
-                            comboBoxChangeKeyword.Items.Add(keyword);
                             UpdateKeywordList();
                             break;
                         case 1:
