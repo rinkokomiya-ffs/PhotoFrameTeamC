@@ -167,7 +167,7 @@ namespace PhotoFrameApp
                 string keyword = textBoxRegistKeyword.Text;
                 if(keyword == "")
                 {
-                    MessageBox.Show("キーワードが未入力です");
+                    MessageBox.Show("テキストボックスにキーワードが入力されていません");
                 }
                 else if(keyword.Length > MAX_KEYWORD_LENGTH)
                 {
