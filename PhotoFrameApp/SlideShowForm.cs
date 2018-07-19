@@ -23,8 +23,6 @@ namespace PhotoFrameApp
         IEnumerable<Photo> photos;
         int photo_index;
 
-        private CancellationTokenSource tokenSource;
-        private CancellationToken cancelToken;
         private SoundPlayer player = null;
         private string musicFile = "music.wav";
 

@@ -266,8 +266,7 @@ namespace PhotoFrameApp
             {
                 try
                 {
-                    ListViewItem targetItem = (ListViewItem)sender;
-                    int indexNumber = listViewPhotoList.SelectedItems.IndexOf(targetItem);
+                    int indexNumber = listViewPhotoList.SelectedItems[0].Index;
 
                     labelPictureBox.Visible = false;
                     pictureBoxShowPicture.ImageLocation = searchedPhotos.ElementAt(indexNumber).File.FilePath;
@@ -281,11 +280,6 @@ namespace PhotoFrameApp
                     MessageBox.Show("ファイルが存在しません");
                 }
             }
-            // FileStreamを使うほうが本当はいいらしい
-            //fs = new FIleStream ( filepath, FileMode.Open, FileAccess.Read);
-            //PictureBox1.Image = Image.FromStream(fs);
-            //fs.Close();
-
         }
 
         /// <summary>
