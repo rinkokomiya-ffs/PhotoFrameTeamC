@@ -56,6 +56,48 @@ namespace PhotoFrame.Domain.UseCase
         }
 
         /// <summary>
+        /// 非同期処理
+        /// </summary>
+        /// <param name="directoryName"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<Photo>> ExecuteAsync(string folderPath)
+        {
+            var files = _photoFileService.FindAllPhotoFilesFromDirectory(folderPath);
+            var photosInFolder = new List<Photo>();
+
+            if (files == null)
+            {
+                return null;
+            }
+
+            var photos = _photoRepository.Find(allPhoto => allPhoto);
+            var photosInDirectory = await Task.Run(() =>
+            {
+                var photosList = new List<Photo>();
+                foreach (var file in files)
+                {
+                    var searchedPhoto = photos.SingleOrDefault(photo => photo.File.FilePath == file.FilePath);
+
+                    if (searchedPhoto != null)
+                    {
+                        photosInFolder.Add(searchedPhoto);
+                    }
+                    else
+                    {
+                        var photo = Photo.CreateFromFile(file, GetDateTime(file.FilePath));
+                        photosInFolder.Add(photo);
+                        _photoRepository.Store(photo);
+
+                    }
+                }
+
+                return photosList;
+            });
+
+            return photosInDirectory;
+        }
+
+        /// <summary>
         /// 撮影日取得
         /// </summary>
         /// <param name="filePath"></param>

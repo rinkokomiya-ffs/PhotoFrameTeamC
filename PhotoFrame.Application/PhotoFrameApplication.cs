@@ -69,5 +69,11 @@ namespace PhotoFrame.Application
             return _getKeywordList.Execute();
         }
 
+        public async Task<IEnumerable<Photo>> SearchFolderAsync(string directoryName)
+        {
+            var retPhotos = await _searchFolder.ExecuteAsync(directoryName);
+            return retPhotos;
+        }
+
     }
 }
