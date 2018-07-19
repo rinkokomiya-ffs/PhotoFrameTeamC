@@ -75,7 +75,7 @@ namespace PhotoFrame.Application.Tests
         }
 
         [TestMethod()]
-        [DataRow(0)]
+        [DataRow(300)]
         public void GetKeywordListTest(int except)
         {
             // 初期データ
@@ -91,10 +91,7 @@ namespace PhotoFrame.Application.Tests
         }
 
         [TestMethod()]
-        [DataRow("album1", "album1")]
-        [DataRow("album2", "album2")]
-        [DataRow("album3", "album1")]
-        public void ChangeKeywordTest_KeywordNotNull(string changeKeyword, string except)
+        public void ChangeKeywordTest_Keyword()
         {
             // 初期データ
             var keyword1 = Keyword.Create("album1");
@@ -106,32 +103,21 @@ namespace PhotoFrame.Application.Tests
             photo.IsAssignedTo(keyword1);
 
             // テスト処理
-            var result = photoFrameApplication.ChangeKeyword(photo, changeKeyword);
-            Assert.AreEqual(except, photo.Keyword.Name);
-        }
-
-        [TestMethod()]
-        public void ChangeKeywordTest_KeywordNull()
-        {
-            // 初期データ
-            var keyword1 = Keyword.Create("album1");
-            var keyword2 = Keyword.Create("album2");
-            keywordRepository.Store(keyword1);
-            keywordRepository.Store(keyword2);
-
-            // テスト処理
-            var photo = Photo.CreateFromFile(new File("dummy.bmp"), DateTime.Now);
-            Assert.AreEqual(null, photoFrameApplication.ChangeKeyword(photo, "album3").Keyword);
-
-            photo = Photo.CreateFromFile(new File("dummy.bmp"), DateTime.Now);
             Assert.AreEqual("album1", photoFrameApplication.ChangeKeyword(photo, "album1").Keyword.Name);
-
             photo = Photo.CreateFromFile(new File("dummy.bmp"), DateTime.Now);
+            photo.IsAssignedTo(keyword1);
+
             Assert.AreEqual("album2", photoFrameApplication.ChangeKeyword(photo, "album2").Keyword.Name);
-            //Assert.AreEqual(null, photoFrameApplication.ChangeKeyword(photo, "").Keyword);
+            photo = Photo.CreateFromFile(new File("dummy.bmp"), DateTime.Now);
+            photo.IsAssignedTo(keyword1);
 
+            Assert.AreEqual(null, photoFrameApplication.ChangeKeyword(photo, "設定解除").Keyword);
+
+            Assert.AreEqual("album1", photoFrameApplication.ChangeKeyword(photo, "album1").Keyword.Name);
+            photo = Photo.CreateFromFile(new File("dummy.bmp"), DateTime.Now);
+
+            Assert.AreEqual("album2", photoFrameApplication.ChangeKeyword(photo, "album2").Keyword.Name);
         }
-
 
         [TestMethod()]
         [DataRow(0)]
