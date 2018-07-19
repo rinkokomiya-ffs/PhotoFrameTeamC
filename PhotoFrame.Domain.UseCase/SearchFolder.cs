@@ -105,7 +105,9 @@ namespace PhotoFrame.Domain.UseCase
         private DateTime GetDateTime(string filePath)
         {
             //読み込む
-            var bmp = new System.Drawing.Bitmap(filePath);
+            System.IO.FileStream stream = System.IO.File.OpenRead(filePath);
+            Image bmp = Image.FromStream(stream, false, false);
+            //var bmp = new System.Drawing.Bitmap(filePath);
             //Exif情報を列挙する
             var exifItem = bmp.PropertyItems.SingleOrDefault(item => item.Id == 0x9003 && item.Type == 2);
             if(exifItem != null)
