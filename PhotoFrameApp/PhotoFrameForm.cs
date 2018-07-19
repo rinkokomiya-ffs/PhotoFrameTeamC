@@ -114,6 +114,15 @@ namespace PhotoFrameApp
             }
 
             // フォルダパスを引数にとって、コントローラーに渡す
+            else
+            {
+                this.searchedPhotos = controller.ExecuteSearchFolder(folderPath);
+                //this.searchedPhotos = await application.SearchDirectoryAsync(textBox_Search.Text);
+
+                RenewPhotoListView();
+            }
+
+            // フォルダパスを引数にとって、コントローラーに渡す
             if (controller.ExecuteSearchFolder(folderPath).Count() == 0)
             {
                 MessageBox.Show("写真が存在しません");
@@ -123,14 +132,7 @@ namespace PhotoFrameApp
                 MessageBox.Show("フォルダが存在しません");
             }
 
-            // フォルダパスを引数にとって、コントローラーに渡す
-            else
-            {
-                this.searchedPhotos = controller.ExecuteSearchFolder(folderPath);
-                //this.searchedPhotos = await application.SearchDirectoryAsync(textBox_Search.Text);
-
-                RenewPhotoListView();
-            }
+            
         }
 
         /// <summary>
