@@ -36,7 +36,6 @@ namespace PhotoFrameApp
                 {
                     comboBoxSelectKeyword.Items.Add(keyword.Name);
                 }
-                comboBoxSelectKeyword.SelectedIndex = 0;
 
             }
 
