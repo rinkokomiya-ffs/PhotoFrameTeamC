@@ -106,15 +106,16 @@ namespace PhotoFrame.Domain.UseCase
         {
             //読み込む
             System.IO.FileStream stream = System.IO.File.OpenRead(filePath);
-            Image bmp = Image.FromStream(stream, false, false);
-            //var bmp = new System.Drawing.Bitmap(filePath);
+            Image image = Image.FromStream(stream, false, false);
+            
             //Exif情報を列挙する
-            var exifItem = bmp.PropertyItems.SingleOrDefault(item => item.Id == 0x9003 && item.Type == 2);
+            var exifItem = image.PropertyItems.SingleOrDefault(item => item.Id == 0x9003 && item.Type == 2);
             if(exifItem != null)
             {
                 //文字列に変換する
                 var val = Encoding.ASCII.GetString(exifItem.Value);
                 val = val.Trim(new char[] {'\0'});
+
                 //DateTimeに変換
                 var date = DateTime.ParseExact(val, "yyyy:MM:dd HH:mm:ss", null);
                 return date;
