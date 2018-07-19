@@ -19,6 +19,17 @@ namespace PhotoFrame.Persistence.Test
             service = new ServiceFactory().PhotoFileService;
         }
 
+
+        [TestMethod] //テスト13
+        public void 画像データを含まないディレクトリを受け取った場合空を返すこと()
+        {
+            // テストデータをどう与えるかなどはお任せします
+            var result = service.FindAllPhotoFilesFromDirectory(@"\\CFS-01\HOME0\12810470\Desktop\ミニシステム開発\TestDummyPicture");
+
+            Assert.AreEqual(0, result.Count());
+        }
+
+        
         [TestMethod] //テスト14
         public void 指定されたフォルダの画像データのみを全て取得できること()
         {
@@ -55,14 +66,6 @@ namespace PhotoFrame.Persistence.Test
         }
 
 
-        [TestMethod] //テスト13
-        public void 画像データを含まないディレクトリを受け取った場合空を返すこと()
-        {
-            // テストデータをどう与えるかなどはお任せします
-            var result = service.FindAllPhotoFilesFromDirectory(@"\\CFS-01\HOME0\12810470\Desktop\ミニシステム開発\TestDummyPicture");
-            
-            Assert.AreEqual(0, result.Count());
-        }
 
         
     }
