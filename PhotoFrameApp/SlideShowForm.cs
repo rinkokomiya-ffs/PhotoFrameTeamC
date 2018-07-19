@@ -111,8 +111,6 @@ namespace PhotoFrameApp
                 player.Dispose();
                 player = null;
             }
-
-            //MessageBox.Show("停止します");
         }
 
 
