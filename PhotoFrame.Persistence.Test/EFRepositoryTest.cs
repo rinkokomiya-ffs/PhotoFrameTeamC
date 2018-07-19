@@ -48,29 +48,19 @@ namespace PhotoFrame.Persistence.Test
 
 
 
-        [TestMethod]
+        [TestMethod] //テスト2　DBを全てDeleteしてテストを行う
         public void アプリ起動時にキーワードがなければ空を返す()
         {
-
-            var expectResult = new List<Keyword>();
-
+            
             var result = keywordRepository.Find(allKeyword => allKeyword);
-
-            List<Keyword> actualResult = new List<Keyword>();
-
-            foreach (var re in result)
-            {
-                actualResult.Add(re);
-            }
-
-            CollectionAssert.AreEqual(expectResult, actualResult);
+            Assert.AreEqual(0, result.Count());
 
         }
 
 
 
         
-        [TestMethod]
+        [TestMethod] //テスト5
         public void キーワードを新規登録できること()
         {
             var firstKeyword = Keyword.Create("firstKeyword");
@@ -84,39 +74,34 @@ namespace PhotoFrame.Persistence.Test
 
 
        
-        [TestMethod]
+        [TestMethod] // テスト1
         public void アプリ起動時にキーワードをすべて取得できること()
         {
             
             var result = keywordRepository.Find(allKeyword => allKeyword);
-            List<Keyword> actualResult = new List<Keyword>();
-
-            foreach (var re in result)
-            {
-                actualResult.Add(re);
-            }
+        
             
-            Assert.AreNotEqual(null, actualResult);
+            Assert.AreEqual(1, result.Count());
 
         } // 1番目と3番目のテストで KeywordRepository.Find(Func<IQueryable<Keyword>, IQueryable<Keyword>> query)のテスト完了
 
 
 
        
-        [TestMethod]
-        public void キーワード新規作成時にそのキーワードがDB上に存在する場合キーワードを返す()
+        [TestMethod] //テスト3
+        public void DB上に存在する同じ名前のキーワードを作成する場合DB上のそのキーワードを返す()
         {
-            var keyword = Keyword.Create("firstKeyword");
+            var keyword = Keyword.Create("海");
 
             var result = keywordRepository.Find(allKeyword => allKeyword.FirstOrDefault(k => k.Name == keyword.Name));
-            Assert.AreNotEqual(null, result);
+            Assert.AreEqual(keyword.Name, result.Name);
 
         } 
 
 
 
 
-        [TestMethod]
+        [TestMethod] //テスト4
         public void キーワード新規作成時にそのキーワードがDB上に存在しない場合nullを返す()
         {
             var newkeyword = Keyword.Create("newKeyword");
@@ -129,167 +114,85 @@ namespace PhotoFrame.Persistence.Test
 
 
 
-        [TestMethod]
-        public void SQL型からKeyword型に変換できること()
-        {
-
-        }
-
-        [TestMethod]
-        public void Keyword型からSQL型に変換できること()
-        {
-
-        }
+      
 
 
-
-
-        [TestMethod]
+        [TestMethod]//テスト8
         public void 写真を追加できること()
         {
-            var firstPhoto = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
-            var secondPhoto = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
+            var firstPhoto = Photo.CreateFromFile(new File("dummy1.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
+            var secondPhoto = Photo.CreateFromFile(new File("dummy2.bmp"), new DateTime(2018, 07, 18, 15, 00, 00));
 
             photoRepository.Store(firstPhoto);
             photoRepository.Store(secondPhoto);
         }
 
 
-        [TestMethod]
+        [TestMethod] //テスト6
+
         public void 写真を検索できること()
         {
             var result = photoRepository.Find(allphoto => allphoto);
-            Assert.AreNotEqual(null, result);
+            Assert.AreEqual(4, result.Count());
         }
 
 
-        [TestMethod]
-        public void 検索した結果写真がないときはnullを返すこと()
+        //DB内の写真を一度Deleteとして行う。テスト後Deleteした項目を再追加する
+        [TestMethod] //テスト7
+        public void 検索した結果写真がないときは空を返すこと()
         {
             var result = photoRepository.Find(allphoto => allphoto);
-            Assert.AreEqual(null, result);
-        }
-
-    //    photos => photos.SingleOrDefault(photo => photo.File.FilePath == file.FilePath)
-
-        [TestMethod]
-        public void フォルダ検索時に受け取った写真がDB内に存在するときにその写真を全て検索できること()
-        {
-            var photo = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
-
-            photoRepository.Store(photo);
+            Assert.AreEqual(0, result.Count());
         }
 
 
-
-      
-
-        //[TestMethod]
-        //public void 重複した写真は追加されないこと()
-        //{
-        //    var photo = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993,05,15,15,00,00));
-        //    photoRepository.Store(photo);
-
-        //    var same_photo = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
-        //    photoRepository.Store(same_photo);
         
 
-        //}
-
-
-        [TestMethod]
-        public void 写真のお気に入りを更新できること()
-        {
-            var photo = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
-
-            photoRepository.Store(photo);
-
-            photo.MarkAsFavorite();
-            photoRepository.Store(photo);
-
-            // var result = photoRepository.FindBy(photo.Id);
-            var result = photoRepository.Find(allPhoto => allPhoto.FirstOrDefault(p => p.Id == photo.Id));
-            Assert.AreEqual(true, result.IsFavorite);
-        }
-
-        [TestMethod]
+        [TestMethod] //テスト9
         public void 既存の写真にキーワードを追加できること()
         {
-            var keyword = Keyword.Create("Keyword1");
+            var keyword = Keyword.Create("haveKeyword");
             keywordRepository.Store(keyword);
-            var photo = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
 
-            photoRepository.Store(photo);
+            var haveKeyword = photoRepository.Find(allphoto => allphoto.FirstOrDefault(p => p.File.FilePath == "AddKeyword.bmp"));
 
-            photo.IsAssignedTo(keyword);
-            photoRepository.Store(photo);
-
-            //var result = photoRepository.FindBy(photo.Id);
-            var result = photoRepository.Find(allPhoto => allPhoto.FirstOrDefault(p => p.Keyword.Name == photo.Keyword.Name));
-            Assert.AreEqual(photo.Keyword.Name, result.Keyword.Name);
+            haveKeyword.IsAssignedTo(keyword);
+            photoRepository.Store(haveKeyword);
+           
         }
 
-        [TestMethod]
+        [TestMethod] //テスト10
         public void 写真のキーワードを更新できること()
         {
-            var old_keyword = Keyword.Create("old_keyword");
-            keywordRepository.Store(old_keyword);
-            var new_keyword = Keyword.Create("new_keyword");
-            keywordRepository.Store(new_keyword);
+            var keyword = Keyword.Create("newKeyword");
+            keywordRepository.Store(keyword);
 
+            var changedKeyword = photoRepository.Find(allphoto => allphoto.FirstOrDefault(p => p.File.FilePath == "ChangeKeyword.bmp"));
 
-            var photo = Photo.CreateFromFile(new File("dummy.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
-
-            photo.IsAssignedTo(old_keyword);
-            photoRepository.Store(photo);
-
-
-            photo.IsAssignedTo(new_keyword);
-            photoRepository.Store(photo);
-
-
-            var result = photoRepository.Find(allPhoto => allPhoto.FirstOrDefault(p => p.Id == photo.Id));
-            Assert.AreEqual(new_keyword.Name, result.Keyword.Name);
-
+            changedKeyword.IsAssignedTo(keyword);
+            photoRepository.Store(changedKeyword);
         }
 
 
+        [TestMethod] //テスト11
+        public void 写真のお気に入り情報を追加更新できること()
+        {
+            var changeFavorite = photoRepository.Find(allphoto => allphoto.FirstOrDefault(p => p.File.FilePath == "ChangeFavorite.bmp"));
+            
+            changeFavorite.MarkAsFavorite();
+            photoRepository.Store(changeFavorite);
 
+        }
 
-        //[TestMethod]
-        //public void キーワードを新規登録できること()
-        //{
-        //    var keyword = Keyword.Create("addKeyword");
-        //    keywordRepository.Store(keyword);
+        [TestMethod] //テスト12
+        public void 写真のお気に入り情報を取り消し更新できること()
+        {
+            var changeFavorite = photoRepository.Find(allphoto => allphoto.FirstOrDefault(p => p.File.FilePath == "ChangeFavorite.bmp"));
 
-        //    var result = keywordRepository.Find(allKeyword => allKeyword.FirstOrDefault(k => k.Id == keyword.Id));
-        //    Assert.AreEqual(keyword, result);
-        //}
+            changeFavorite.MarkAsUnFavorite();
+            photoRepository.Store(changeFavorite);
 
-        //[TestMethod]
-        //public void アプリ起動時にキーワードをすべて取得できること()
-        //{
-        //    var firstKeyword = Keyword.Create("firstKeyword");
-        //    var secondKeyword = Keyword.Create("secondKeyword");
-        //    keywordRepository.Store(firstKeyword);
-        //    keywordRepository.Store(secondKeyword);
-
-        //    var expectResult = new List<Keyword>();
-        //    expectResult.Add(firstKeyword);
-        //    expectResult.Add(secondKeyword);
-
-        //    var result = keywordRepository.Find(allKeyword => allKeyword);
-        //    List<Keyword> actualResult = new List<Keyword>();
-
-        //    foreach (var re in result)
-        //    {
-        //        actualResult.Add(re);
-        //    }
-
-        //    CollectionAssert.AreEqual(expectResult, actualResult);
-
-        //}
-
+        }
 
     }
 }
