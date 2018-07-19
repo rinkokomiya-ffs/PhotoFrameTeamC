@@ -171,6 +171,7 @@
             this.pictureBoxShowPicture.Location = new System.Drawing.Point(581, 3);
             this.pictureBoxShowPicture.Name = "pictureBoxShowPicture";
             this.pictureBoxShowPicture.Size = new System.Drawing.Size(397, 342);
+            this.pictureBoxShowPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxShowPicture.TabIndex = 1;
             this.pictureBoxShowPicture.TabStop = false;
             // 
@@ -284,6 +285,7 @@
             // radioButtonDefault
             // 
             this.radioButtonDefault.AutoSize = true;
+            this.radioButtonDefault.Checked = true;
             this.radioButtonDefault.Location = new System.Drawing.Point(24, 19);
             this.radioButtonDefault.Name = "radioButtonDefault";
             this.radioButtonDefault.Size = new System.Drawing.Size(59, 16);
@@ -356,6 +358,7 @@
             // 
             // comboBoxChangeKeyword
             // 
+            this.comboBoxChangeKeyword.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxChangeKeyword.FormattingEnabled = true;
             this.comboBoxChangeKeyword.Location = new System.Drawing.Point(71, 18);
             this.comboBoxChangeKeyword.Name = "comboBoxChangeKeyword";

@@ -22,7 +22,9 @@ namespace PhotoFrame.Persistence
             if (Directory.Exists(directory))
             {
                 file_list = new List<Domain.Model.File>();
-                List<string> path_list = Enumerate(directory);
+                // バグの危険性
+                //List<string> path_list = Enumerate(directory);
+                string[] path_list = Directory.GetFiles(directory);
 
                 foreach (string filePath in path_list)
                 {

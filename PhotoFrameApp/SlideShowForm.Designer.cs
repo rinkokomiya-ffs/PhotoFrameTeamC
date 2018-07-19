@@ -52,7 +52,7 @@
             this.pictureBoxSelectedPhotos.Location = new System.Drawing.Point(59, 13);
             this.pictureBoxSelectedPhotos.Name = "pictureBoxSelectedPhotos";
             this.pictureBoxSelectedPhotos.Size = new System.Drawing.Size(625, 337);
-            this.pictureBoxSelectedPhotos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxSelectedPhotos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxSelectedPhotos.TabIndex = 1;
             this.pictureBoxSelectedPhotos.TabStop = false;
             // 
