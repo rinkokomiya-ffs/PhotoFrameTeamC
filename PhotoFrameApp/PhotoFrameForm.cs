@@ -179,7 +179,7 @@ namespace PhotoFrameApp
                     switch (result)
                     {
                         case 0:
-                            comboBoxChangeKeyword.Items.Add(keyword);
+                            
                             UpdateKeywordList();
                             break;
                         case 1:
@@ -347,6 +347,7 @@ namespace PhotoFrameApp
         {
             string keyword = "";
             string isFavorite = "";
+            string datetime = "";
 
             if (photo.Keyword != null)
             {
@@ -367,9 +368,13 @@ namespace PhotoFrameApp
                 isFavorite = "";
             }
 
+            datetime = photo.DateTime.ToShortDateString();
+
             listViewPhotoList.Items[index].SubItems[0].Text = photo.File.FilePath;
             listViewPhotoList.Items[index].SubItems[1].Text = keyword;
             listViewPhotoList.Items[index].SubItems[2].Text = isFavorite;
+            listViewPhotoList.Items[index].SubItems[3].Text = datetime;
+
         }
 
         /// <summary>
@@ -384,7 +389,7 @@ namespace PhotoFrameApp
             {
                 foreach (Photo photo in searchedPhotos)
                 {
-                    string keyword, isFavorite;
+                    string keyword, isFavorite, datetime;
 
                     if (photo.Keyword != null)
                     {
@@ -405,7 +410,9 @@ namespace PhotoFrameApp
                         isFavorite = "";
                     }
 
-                    string[] item = { photo.File.FilePath, keyword, isFavorite };
+                    datetime = photo.DateTime.ToShortDateString();
+
+                    string[] item = { photo.File.FilePath, keyword, isFavorite, datetime };
                     listViewPhotoList.Items.Add(new ListViewItem(item));
 
                 }
