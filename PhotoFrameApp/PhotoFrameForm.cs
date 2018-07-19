@@ -347,6 +347,7 @@ namespace PhotoFrameApp
         {
             string keyword = "";
             string isFavorite = "";
+            string dateTime = "";
 
             if (photo.Keyword != null)
             {
@@ -367,9 +368,13 @@ namespace PhotoFrameApp
                 isFavorite = "";
             }
 
+            dateTime = photo.DateTime.ToShortDateString();
+
             listViewPhotoList.Items[index].SubItems[0].Text = photo.File.FilePath;
             listViewPhotoList.Items[index].SubItems[1].Text = keyword;
             listViewPhotoList.Items[index].SubItems[2].Text = isFavorite;
+            listViewPhotoList.Items[index].SubItems[3].Text = dateTime;
+
         }
 
         /// <summary>
@@ -384,7 +389,8 @@ namespace PhotoFrameApp
             {
                 foreach (Photo photo in searchedPhotos)
                 {
-                    string keyword, isFavorite;
+                    string keyword, isFavorite, dateTime;
+                    
 
                     if (photo.Keyword != null)
                     {
@@ -405,7 +411,9 @@ namespace PhotoFrameApp
                         isFavorite = "";
                     }
 
-                    string[] item = { photo.File.FilePath, keyword, isFavorite };
+                    dateTime = photo.DateTime.ToShortDateString();
+
+                    string[] item = { photo.File.FilePath, keyword, isFavorite, dateTime };
                     listViewPhotoList.Items.Add(new ListViewItem(item));
 
                 }
