@@ -179,7 +179,10 @@ namespace PhotoFrameApp
                     switch (result)
                     {
                         case 0:
-                            UpdateKeywordList();
+
+                            allKeywords = controller.ExecuteGetKeyword();
+                            comboBoxChangeKeyword.Items.Add(keyword);
+
                             break;
                         case 1:
                             MessageBox.Show("既存のキーワードです");
