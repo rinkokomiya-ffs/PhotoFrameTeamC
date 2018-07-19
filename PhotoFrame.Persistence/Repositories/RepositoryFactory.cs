@@ -38,8 +38,10 @@ namespace PhotoFrame.Persistence
                 case Type.EF:
                     // TODO: EFに適した生成に変更してください
                     SqlProviderServices sqlProviderServices = SqlProviderServices.Instance;
-                    KeywordRepository = new EF.KeywordRepository(sqlProviderServices);
-                    PhotoRepository = new EF.PhotoRepository(KeywordRepository, sqlProviderServices);
+                    //KeywordRepository = new EF.KeywordRepository(sqlProviderServices);
+                    //PhotoRepository = new EF.PhotoRepository(KeywordRepository, sqlProviderServices);
+                    KeywordRepository = new EF.KeywordRepository_test(sqlProviderServices);
+                    PhotoRepository = new EF.PhotoRepository_test(KeywordRepository, sqlProviderServices);
                     break;
                 default:
                     throw new ArgumentException("The specified type is not supported.");
