@@ -26,8 +26,8 @@ namespace PhotoFrame.Application
             dummyPhotoList.Add(photo2);
 
 
-            //var keyword1 = new Keyword("f7e5586d-9c75-435c-a462-59fd3d50a154", "Keyword");
-            //var keyword2 = new Keyword("f26ddb0b-3718-47f0-984e-8c99872c3077", "Keyword2");
+            var keyword1 = new Keyword("f7e5586d-9c75-435c-a462-59fd3d50a154", "Keyword");
+            var keyword2 = new Keyword("f26ddb0b-3718-47f0-984e-8c99872c3077", "Keyword2");
             //var keyword3 = new Keyword("f7e5586d-9c75-435c-a462-59fd3d50a154", "Keyword");
             //var keyword4 = new Keyword("f26ddb0b-3718-47f0-984e-8c99872c3077", "Keyword2");
             //var keyword5 = new Keyword("f7e5586d-9c75-435c-a462-59fd3d50a154", "Keyword");
@@ -77,8 +77,8 @@ namespace PhotoFrame.Application
             //var keyword49 = new Keyword("f26ddb0b-3718-47f0-984e-8c99872c3077", "Keyword2");
 
 
-            //dummyKeywordList.Add(keyword1);
-            //dummyKeywordList.Add(keyword2);
+            dummyKeywordList.Add(keyword1);
+            dummyKeywordList.Add(keyword2);
             //dummyKeywordList.Add(keyword3);
             //dummyKeywordList.Add(keyword4);
             //dummyKeywordList.Add(keyword5);
