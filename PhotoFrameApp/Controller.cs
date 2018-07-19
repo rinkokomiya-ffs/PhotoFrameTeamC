@@ -11,15 +11,20 @@ namespace PhotoFrameApp
     public class Controller
     {
         // アプリケーションのインスタンス
-        private readonly PhotoFrameApplication application;
+        // 本番用
+        //private readonly PhotoFrameApplication application;
 
-        private IPhotoRepository photoRepository;
-        private IKeywordRepository albumRepository;
-        private IPhotoFileService photoFileService;
+        // テスト用
+        private readonly PhotoFrameApplicationStub application;
+
+
+        private readonly IPhotoRepository photoRepository;
+        private readonly IKeywordRepository albumRepository;
+        private readonly IPhotoFileService photoFileService;
 
         public Controller(IKeywordRepository keywordRepository, IPhotoRepository photoRepository, IPhotoFileService photoFileService)
         {
-            this.application = new PhotoFrameApplication(keywordRepository, photoRepository, photoFileService);
+            this.application = new PhotoFrameApplicationStub(keywordRepository, photoRepository, photoFileService);
      
         }
 
