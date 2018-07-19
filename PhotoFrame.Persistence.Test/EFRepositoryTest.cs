@@ -16,8 +16,6 @@ namespace PhotoFrame.Persistence.Test
         private static IPhotoRepository photoRepository;
         private static IKeywordRepository keywordRepository;
 
-   
-
         [ClassInitialize]
         public static void SetUpTestCase(TestContext context)
         {
@@ -26,10 +24,6 @@ namespace PhotoFrame.Persistence.Test
             photoRepository = repos.PhotoRepository;
             keywordRepository = repos.KeywordRepository;
 
-            // テスト用データベースが存在していない場合は作りにいくが、
-            // Transaction中ではテーブルを作成できないため、ここで作成させる
-            //photoRepository.FindBy("dummy");
-            //keywordRepository.FindBy("dummy");
         }
 
         //private TransactionScope scope;
@@ -47,6 +41,18 @@ namespace PhotoFrame.Persistence.Test
         //}
 
 
+        [TestMethod] // テスト1
+        public void アプリ起動時にキーワードをすべて取得できること()
+        {
+
+            var result = keywordRepository.Find(allKeyword => allKeyword);
+
+
+            Assert.AreEqual(1, result.Count());
+
+        } // 1番目と3番目のテストで KeywordRepository.Find(Func<IQueryable<Keyword>, IQueryable<Keyword>> query)のテスト完了
+
+
 
         [TestMethod] //テスト2　DBを全てDeleteしてテストを行う
         public void アプリ起動時にキーワードがなければ空を返す()
@@ -58,36 +64,6 @@ namespace PhotoFrame.Persistence.Test
         }
 
 
-
-        
-        [TestMethod] //テスト5
-        public void キーワードを新規登録できること()
-        {
-            var firstKeyword = Keyword.Create("firstKeyword");
-            var secondKeyword = Keyword.Create("secondKeyword");
-
-            keywordRepository.Store(firstKeyword);
-            keywordRepository.Store(secondKeyword);
-
-        } // KeywordRepository.storeのテスト完了
-
-
-
-       
-        [TestMethod] // テスト1
-        public void アプリ起動時にキーワードをすべて取得できること()
-        {
-            
-            var result = keywordRepository.Find(allKeyword => allKeyword);
-        
-            
-            Assert.AreEqual(1, result.Count());
-
-        } // 1番目と3番目のテストで KeywordRepository.Find(Func<IQueryable<Keyword>, IQueryable<Keyword>> query)のテスト完了
-
-
-
-       
         [TestMethod] //テスト3
         public void DB上に存在する同じ名前のキーワードを作成する場合DB上のそのキーワードを返す()
         {
@@ -95,10 +71,7 @@ namespace PhotoFrame.Persistence.Test
 
             var result = keywordRepository.Find(allKeyword => allKeyword.FirstOrDefault(k => k.Name == keyword.Name));
             Assert.AreEqual(keyword.Name, result.Name);
-
-        } 
-
-
+        }
 
 
         [TestMethod] //テスト4
@@ -112,20 +85,16 @@ namespace PhotoFrame.Persistence.Test
 
 
 
-
-
-      
-
-
-        [TestMethod]//テスト8
-        public void 写真を追加できること()
+        [TestMethod] //テスト5
+        public void キーワードを新規登録できること()
         {
-            var firstPhoto = Photo.CreateFromFile(new File("dummy1.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
-            var secondPhoto = Photo.CreateFromFile(new File("dummy2.bmp"), new DateTime(2018, 07, 18, 15, 00, 00));
+            var firstKeyword = Keyword.Create("firstKeyword");
+            var secondKeyword = Keyword.Create("secondKeyword");
 
-            photoRepository.Store(firstPhoto);
-            photoRepository.Store(secondPhoto);
-        }
+            keywordRepository.Store(firstKeyword);
+            keywordRepository.Store(secondKeyword);
+
+        } // KeywordRepository.storeのテスト完了
 
 
         [TestMethod] //テスト6
@@ -146,7 +115,19 @@ namespace PhotoFrame.Persistence.Test
         }
 
 
-        
+
+        [TestMethod]//テスト8
+        public void 写真を追加できること()
+        {
+            var firstPhoto = Photo.CreateFromFile(new File("dummy1.bmp"), new DateTime(1993, 05, 15, 15, 00, 00));
+            var secondPhoto = Photo.CreateFromFile(new File("dummy2.bmp"), new DateTime(2018, 07, 18, 15, 00, 00));
+
+            photoRepository.Store(firstPhoto);
+            photoRepository.Store(secondPhoto);
+        }
+
+
+      
 
         [TestMethod] //テスト9
         public void 既存の写真にキーワードを追加できること()
@@ -193,6 +174,5 @@ namespace PhotoFrame.Persistence.Test
             photoRepository.Store(changeFavorite);
 
         }
-
     }
 }
