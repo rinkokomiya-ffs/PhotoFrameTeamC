@@ -24,7 +24,7 @@ namespace PhotoFrameApp
         int photo_index;
 
         private SoundPlayer player = null;
-        private string musicFile = "music.wav";
+        public string musicFile = @"C:\\ミニシステム開発演習.ver2\\PhotoFrameTeamC\\PhotoFrameAppTests\\bin\\Debug\\music.wav";
 
         /// <summary>
         /// コンストラクタ
