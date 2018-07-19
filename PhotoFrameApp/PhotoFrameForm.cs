@@ -172,15 +172,18 @@ namespace PhotoFrameApp
                     MessageBox.Show("作成できるキーワードの文字数は20字以内です");
                 }
                 else
-                {   
+                {
                     var result = controller.ExecuteRegistKeyword(keyword);
                     //var result = await application.CreateAlbumAsync(keyword);
 
                     switch (result)
                     {
                         case 0:
-                            
-                            UpdateKeywordList();
+
+                            allKeywords = controller.ExecuteGetKeyword();
+                            comboBoxChangeKeyword.Items.Add(keyword);                          
+                          
+
                             break;
                         case 1:
                             MessageBox.Show("既存のキーワードです");
