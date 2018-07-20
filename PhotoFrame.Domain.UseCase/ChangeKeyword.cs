@@ -29,7 +29,7 @@ namespace PhotoFrame.Domain.UseCase
         public Photo Execute(Photo photo, string keywordName)
         {
 
-            if(keywordName == "設定解除")
+            if(keywordName == null)
             {
                 photo.IsAssignedTo(null);
                 _photoRepository.Store(photo);
