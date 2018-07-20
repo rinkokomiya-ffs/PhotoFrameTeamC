@@ -34,6 +34,7 @@ namespace PhotoFrame.Application
             _getKeywordList = new GetKeywordList(keywordRepository);
         }
 
+ 
         public int RegistKeyword(string keyword)
         {
             return _registKeyword.Execute(keyword);
@@ -69,11 +70,6 @@ namespace PhotoFrame.Application
             return _getKeywordList.Execute();
         }
 
-        public async Task<IEnumerable<Photo>> SearchFolderAsync(string directoryName)
-        {
-            var retPhotos = await _searchFolder.ExecuteAsync(directoryName);
-            return retPhotos;
-        }
-
+     
     }
 }

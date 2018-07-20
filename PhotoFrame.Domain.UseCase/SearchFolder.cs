@@ -36,48 +36,14 @@ namespace PhotoFrame.Domain.UseCase
 
             var photos = _photoRepository.Find(allPhoto => allPhoto);
             foreach (var file in files)
-            {          
+            {
                 var searchedPhoto = photos.SingleOrDefault(photo => photo.File.FilePath == file.FilePath);
-
-                if (searchedPhoto != null)
+                var getDateTime = GetDateTime(file.FilePath);
+                
+                // 有効データでない場合(初期値と比較)
+                if (getDateTime.CompareTo(new DateTime()) != 0)
                 {
-                    photosInFolder.Add(searchedPhoto);
-                }
-                else
-                {
-                    var photo = Photo.CreateFromFile(file, GetDateTime(file.FilePath));
-                    photosInFolder.Add(photo);
-                    _photoRepository.Store(photo);
-
-                }
-            }
-
-            return photosInFolder;
-        }
-
-        /// <summary>
-        /// 非同期処理
-        /// </summary>
-        /// <param name="directoryName"></param>
-        /// <returns></returns>
-        public async Task<IEnumerable<Photo>> ExecuteAsync(string folderPath)
-        {
-            var files = _photoFileService.FindAllPhotoFilesFromDirectory(folderPath);
-            var photosInFolder = new List<Photo>();
-
-            if (files == null)
-            {
-                return null;
-            }
-
-            var photos = _photoRepository.Find(allPhoto => allPhoto);
-            var photosInDirectory = await Task.Run(() =>
-            {
-                var photosList = new List<Photo>();
-                foreach (var file in files)
-                {
-                    var searchedPhoto = photos.SingleOrDefault(photo => photo.File.FilePath == file.FilePath);
-
+                    // 既存のデータの場合
                     if (searchedPhoto != null)
                     {
                         photosInFolder.Add(searchedPhoto);
@@ -89,13 +55,13 @@ namespace PhotoFrame.Domain.UseCase
                         _photoRepository.Store(photo);
 
                     }
-                }
+                } 
 
-                return photosList;
-            });
+            }
 
-            return photosInDirectory;
+            return photosInFolder;
         }
+
 
         /// <summary>
         /// 撮影日取得
@@ -105,18 +71,24 @@ namespace PhotoFrame.Domain.UseCase
         private DateTime GetDateTime(string filePath)
         {
             //読み込む
-            System.IO.FileStream stream = System.IO.File.OpenRead(filePath);
-            Image bmp = Image.FromStream(stream, false, false);
-            //var bmp = new System.Drawing.Bitmap(filePath);
+            var image = IsValidImage(filePath);
+  
+            // 有効データでない場合初期値を返す
+            if(image == null)
+            {
+                return new DateTime();
+            }
+
             //Exif情報を列挙する
-            var exifItem = bmp.PropertyItems.SingleOrDefault(item => item.Id == 0x9003 && item.Type == 2);
+            var exifItem = image.PropertyItems.SingleOrDefault(item => item.Id == 0x9003 && item.Type == 2);
             if(exifItem != null)
             {
                 //文字列に変換する
-                var val = Encoding.ASCII.GetString(exifItem.Value);
-                val = val.Trim(new char[] {'\0'});
+                var dateString = Encoding.ASCII.GetString(exifItem.Value);
+                dateString = dateString.Trim(new char[] {'\0'});
+
                 //DateTimeに変換
-                var date = DateTime.ParseExact(val, "yyyy:MM:dd HH:mm:ss", null);
+                var date = DateTime.ParseExact(dateString, "yyyy:MM:dd HH:mm:ss", null);
                 return date;
             }
             else
@@ -126,6 +98,27 @@ namespace PhotoFrame.Domain.UseCase
                 return date;
             }
                    
+        }
+
+        /// <summary>
+        /// 有効データの抽出
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        private Image IsValidImage(string filePath)
+        {
+            try
+            {
+                System.IO.FileStream stream = System.IO.File.OpenRead(filePath);
+                Image image = Image.FromStream(stream, false, false);
+                return image;
+
+            }
+            catch (Exception ex)
+            { 
+                return null;
+            }
+            
         }
 
     }

@@ -193,7 +193,7 @@
             // columnHeader_PhotoPath
             // 
             this.columnHeader_PhotoPath.Text = "ファイルパス";
-            this.columnHeader_PhotoPath.Width = 204;
+            this.columnHeader_PhotoPath.Width = 177;
             // 
             // columnHeader_Keyword
             // 
