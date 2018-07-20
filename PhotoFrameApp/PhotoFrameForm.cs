@@ -233,11 +233,11 @@ namespace PhotoFrameApp
         //private async void ButtonChangeKeywordClick(object sender, EventArgs e)
         private void ButtonChangeKeywordClick(object sender, EventArgs e)
         {
-            if(allKeywords.Count() == 0)
+            if (allKeywords.Count() == 0)
             {
                 MessageBox.Show("キーワードが作成されていません");
             }
-            if(CheckExistListviewPhotos())
+            if (CheckExistListviewPhotos())
             {
                 string newKeywordName = null;
 
@@ -247,8 +247,8 @@ namespace PhotoFrameApp
                 }
 
                 var indexList = GetListviewIndex();
-                
-                if(indexList.Count() == 0)
+
+                if (indexList.Count() == 0)
                 {
                     MessageBox.Show("写真が選択されていません");
                 }
