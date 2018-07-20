@@ -39,9 +39,9 @@ namespace PhotoFrame.Domain.UseCase
             {
                 var searchedPhoto = photos.SingleOrDefault(photo => photo.File.FilePath == file.FilePath);
                 var getDateTime = GetDateTime(file.FilePath);
-                
+
                 // 有効データでない場合(初期値と比較)
-                if (getDateTime.CompareTo(new DateTime()) != 0)
+                if (getDateTime != null)
                 {
                     // 既存のデータの場合
                     if (searchedPhoto != null)
@@ -50,7 +50,8 @@ namespace PhotoFrame.Domain.UseCase
                     }
                     else
                     {
-                        var photo = Photo.CreateFromFile(file, GetDateTime(file.FilePath));
+                        var dateTime = (DateTime)getDateTime;
+                        var photo = Photo.CreateFromFile(file, dateTime);
                         photosInFolder.Add(photo);
                         _photoRepository.Store(photo);
 
@@ -68,7 +69,7 @@ namespace PhotoFrame.Domain.UseCase
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        private DateTime GetDateTime(string filePath)
+        private DateTime? GetDateTime(string filePath)
         {
             //読み込む
 
@@ -77,7 +78,7 @@ namespace PhotoFrame.Domain.UseCase
             // 有効データでない場合初期値を返す
             if(image == null)
             {
-                return new DateTime();
+                return null;
             }
 
             //Exif情報を列挙する
@@ -116,7 +117,7 @@ namespace PhotoFrame.Domain.UseCase
                 return image;
 
             }
-            catch (Exception ex)
+            catch
             { 
                 return null;
             }

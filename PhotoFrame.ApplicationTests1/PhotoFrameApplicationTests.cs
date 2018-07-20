@@ -54,7 +54,7 @@ namespace PhotoFrame.Application.Tests
         {
             // テスト処理
             Assert.AreEqual(3, photoFrameApplication.SearchFolder(@"C:\test1").Count());
-            Assert.AreEqual(0, photoFrameApplication.SearchFolder(@"C:\test2").Count());
+            Assert.AreEqual(3, photoFrameApplication.SearchFolder(@"C:\test2").Count());
             Assert.AreEqual(null, photoFrameApplication.SearchFolder(@"C:\test3"));
             
         }
