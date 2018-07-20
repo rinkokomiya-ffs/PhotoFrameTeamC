@@ -52,11 +52,11 @@ namespace PhotoFrameApp
             // キーワード解除用文字列の登録
             comboBoxChangeKeyword.Items.Add("設定解除");
 
-            // キーワード解除用文字列の登録
-            comboBoxChangeKeyword.Items.Add("設定解除");
-
             // 全アルバム名を取得し、アルバム変更リストをセット
             UpdateKeywordList();
+
+            comboBoxChangeKeyword.SelectedIndex = 0;
+
 
         }
 
