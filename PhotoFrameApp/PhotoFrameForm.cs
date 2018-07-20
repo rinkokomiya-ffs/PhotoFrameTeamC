@@ -159,7 +159,7 @@ namespace PhotoFrameApp
         //private async void ButtonRegistKeyword(object sender, EventArgs e)
         private void ButtonRegistKeywordClick(object sender, EventArgs e)
         {
-            if(allKeywords.Count() > MAX_REGIST_KEYWORD)
+            if(allKeywords.Count() >= MAX_REGIST_KEYWORD)
             {
                 MessageBox.Show("作成できるキーワード数の上限値に達しています");
             }
