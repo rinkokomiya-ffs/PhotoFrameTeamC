@@ -164,7 +164,7 @@
             this.labelPictureBox.Name = "labelPictureBox";
             this.labelPictureBox.Size = new System.Drawing.Size(126, 12);
             this.labelPictureBox.TabIndex = 2;
-            this.labelPictureBox.Text = "ここに写真が表示されます";
+            this.labelPictureBox.Text = "写真がここに表示されます";
             // 
             // pictureBoxShowPicture
             // 
@@ -266,7 +266,6 @@
             this.radioButtonNewOld.Name = "radioButtonNewOld";
             this.radioButtonNewOld.Size = new System.Drawing.Size(83, 16);
             this.radioButtonNewOld.TabIndex = 2;
-            this.radioButtonNewOld.TabStop = true;
             this.radioButtonNewOld.Text = "撮影日降順";
             this.radioButtonNewOld.UseVisualStyleBackColor = true;
             // 
@@ -277,13 +276,13 @@
             this.radioButtonOldNew.Name = "radioButtonOldNew";
             this.radioButtonOldNew.Size = new System.Drawing.Size(83, 16);
             this.radioButtonOldNew.TabIndex = 1;
-            this.radioButtonOldNew.TabStop = true;
             this.radioButtonOldNew.Text = "撮影日昇順";
             this.radioButtonOldNew.UseVisualStyleBackColor = true;
             // 
             // radioButtonDefault
             // 
             this.radioButtonDefault.AutoSize = true;
+            this.radioButtonDefault.Checked = true;
             this.radioButtonDefault.Location = new System.Drawing.Point(24, 19);
             this.radioButtonDefault.Name = "radioButtonDefault";
             this.radioButtonDefault.Size = new System.Drawing.Size(59, 16);
