@@ -197,11 +197,10 @@ namespace PhotoFrameApp
             //pictureBoxSelectedPhotos.ImageLocation = photos.ElementAt(photo_index).File.FilePath;
         }
 
-        // Form画面の終了
-        private void TimerCloseFormTick(object sender, EventArgs e)
+
+        private void SlideShowForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            timer_CloseForm.Stop();
-            this.Close();
+            this.StopMusic();
         }
     }
 }
