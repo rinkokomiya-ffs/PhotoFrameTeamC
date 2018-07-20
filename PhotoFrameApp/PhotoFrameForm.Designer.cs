@@ -164,7 +164,7 @@
             this.labelPictureBox.Name = "labelPictureBox";
             this.labelPictureBox.Size = new System.Drawing.Size(126, 12);
             this.labelPictureBox.TabIndex = 2;
-            this.labelPictureBox.Text = "ここに写真が表示されます";
+            this.labelPictureBox.Text = "写真がここに表示されます";
             // 
             // pictureBoxShowPicture
             // 
