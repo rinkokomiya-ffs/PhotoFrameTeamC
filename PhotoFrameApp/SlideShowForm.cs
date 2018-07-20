@@ -49,7 +49,7 @@ namespace PhotoFrameApp
                 System.IO.FileStream fs = System.IO.File.OpenRead(photos.ElementAt(photo_index).File.FilePath);
                 Image img = Image.FromStream(fs, false, false); // 検証なし
                 pictureBoxSelectedPhotos.Image = img;
-                //pictureBoxSelectedPhotos.ImageLocation = photos.ElementAt(photo_index).File.FilePath;
+              
                 timer_ChangePhoto.Interval = 3000;
 
                 if (checkBoxAutoSlideShow.Checked)
@@ -131,7 +131,7 @@ namespace PhotoFrameApp
             System.IO.FileStream fs = System.IO.File.OpenRead(photos.ElementAt(photo_index).File.FilePath);
             Image img = Image.FromStream(fs, true, true); // 検証なし
             pictureBoxSelectedPhotos.Image = img;
-           // pictureBoxSelectedPhotos.ImageLocation = photos.ElementAt(photo_index).File.FilePath;
+
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace PhotoFrameApp
             System.IO.FileStream fs = System.IO.File.OpenRead(photos.ElementAt(photo_index).File.FilePath);
             Image img = Image.FromStream(fs, false, false); // 検証なし
             pictureBoxSelectedPhotos.Image = img;
-            //pictureBoxSelectedPhotos.ImageLocation = photos.ElementAt(photo_index).File.FilePath;
+            
         }
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace PhotoFrameApp
             System.IO.FileStream fs = System.IO.File.OpenRead(photos.ElementAt(photo_index).File.FilePath);
             Image img = Image.FromStream(fs, false, false); // 検証なし
             pictureBoxSelectedPhotos.Image = img;
-            //pictureBoxSelectedPhotos.ImageLocation = photos.ElementAt(photo_index).File.FilePath;
+           
         }
 
        

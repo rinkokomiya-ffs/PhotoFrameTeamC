@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PhotoFrame.Domain.Model;
+using System.Drawing;
 
 namespace PhotoFrame.Domain.UseCase
 {
@@ -19,7 +20,7 @@ namespace PhotoFrame.Domain.UseCase
         /// <param name="sortMethod"0,1,2></param>
         /// <returns></returns>
         public IEnumerable<Photo> Execute(IEnumerable<Photo> photoList, int sortMethod)
-        {            
+        {
             if (sortMethod == 0)
             {
                 return photoList;
@@ -37,5 +38,7 @@ namespace PhotoFrame.Domain.UseCase
                 return null;
             }
         }
+
+       
     }
 }

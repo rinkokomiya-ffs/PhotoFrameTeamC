@@ -48,6 +48,9 @@ namespace PhotoFrameApp
             photoFileService = serviceFactory.PhotoFileService;
             searchedPhotos = new List<Photo>().AsEnumerable();
             controller = new Controller(keywordRepository, photoRepository, photoFileService);
+            
+            // キーワード解除用文字列の登録
+            comboBoxChangeKeyword.Items.Add("設定解除");
 
             // キーワード解除用文字列の登録
             comboBoxChangeKeyword.Items.Add("設定解除");
