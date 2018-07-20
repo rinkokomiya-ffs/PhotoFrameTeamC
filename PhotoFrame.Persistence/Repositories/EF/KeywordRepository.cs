@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity.SqlServer;
-using PhotoFrame.Persistence.Repositories;
+using PhotoFrame.Persistence.Repositories.EF;
 
 namespace PhotoFrame.Persistence.EF
 {
@@ -67,7 +67,7 @@ namespace PhotoFrame.Persistence.EF
             // TODO: DBプログラミング講座で実装
             var keyword = KeywordToTable(entity);
           
-            using (var photoFrameEntity = new PhotoFrameTeamCEntities())
+            using (var photoFrameEntity = new PhotoFrameTeamCEntities2())
             {
                 // トランザクション作成
                 using (var transaction = photoFrameEntity.Database.BeginTransaction())
@@ -108,7 +108,7 @@ namespace PhotoFrame.Persistence.EF
         /// <returns></returns>
         private IQueryable<Keyword> FindAll()
         {
-            using (var photoFrameEntity = new PhotoFrameTeamCEntities())
+            using (var photoFrameEntity = new PhotoFrameTeamCEntities2())
             {
                 var keywords = from p in photoFrameEntity.m_Keyword.ToList() select TableToKeyword(p);
                 return keywords.AsQueryable();

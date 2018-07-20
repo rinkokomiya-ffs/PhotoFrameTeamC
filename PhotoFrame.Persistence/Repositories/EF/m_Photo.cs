@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PhotoFrame.Persistence.Repositories
+namespace PhotoFrame.Persistence.Repositories.EF
 {
     using System;
     using System.Collections.Generic;

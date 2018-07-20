@@ -10,7 +10,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="m_Photo">
           <Key>
@@ -22,7 +22,7 @@
           <Property Name="IsFavorite" Type="bit" Nullable="false" />
           <Property Name="KeywordId" Type="uniqueidentifier" />
         </EntityType>
-        <Association Name="FK_m_Photo_m_Keyword1">
+        <Association Name="FK_m_Photo_m_Keyword">
           <End Role="m_Keyword" Type="Self.m_Keyword" Multiplicity="0..1" />
           <End Role="m_Photo" Type="Self.m_Photo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -37,7 +37,7 @@
         <EntityContainer Name="PhotoFrameTeamCModelStoreContainer">
           <EntitySet Name="m_Keyword" EntityType="Self.m_Keyword" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="m_Photo" EntityType="Self.m_Photo" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_m_Photo_m_Keyword1" Association="Self.FK_m_Photo_m_Keyword1">
+          <AssociationSet Name="FK_m_Photo_m_Keyword" Association="Self.FK_m_Photo_m_Keyword">
             <End Role="m_Keyword" EntitySet="m_Keyword" />
             <End Role="m_Photo" EntitySet="m_Photo" />
           </AssociationSet>
@@ -52,8 +52,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="m_Photo" Relationship="Self.FK_m_Photo_m_Keyword1" FromRole="m_Keyword" ToRole="m_Photo" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="m_Photo" Relationship="Self.FK_m_Photo_m_Keyword" FromRole="m_Keyword" ToRole="m_Photo" />
         </EntityType>
         <EntityType Name="m_Photo">
           <Key>
@@ -64,9 +64,9 @@
           <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsFavorite" Type="Boolean" Nullable="false" />
           <Property Name="KeywordId" Type="Guid" />
-          <NavigationProperty Name="m_Keyword" Relationship="Self.FK_m_Photo_m_Keyword1" FromRole="m_Photo" ToRole="m_Keyword" />
+          <NavigationProperty Name="m_Keyword" Relationship="Self.FK_m_Photo_m_Keyword" FromRole="m_Photo" ToRole="m_Keyword" />
         </EntityType>
-        <Association Name="FK_m_Photo_m_Keyword1">
+        <Association Name="FK_m_Photo_m_Keyword">
           <End Role="m_Keyword" Type="Self.m_Keyword" Multiplicity="0..1" />
           <End Role="m_Photo" Type="Self.m_Photo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -78,10 +78,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PhotoFrameTeamCEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="PhotoFrameTeamCEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="m_Keyword" EntityType="Self.m_Keyword" />
           <EntitySet Name="m_Photo" EntityType="Self.m_Photo" />
-          <AssociationSet Name="FK_m_Photo_m_Keyword1" Association="Self.FK_m_Photo_m_Keyword1">
+          <AssociationSet Name="FK_m_Photo_m_Keyword" Association="Self.FK_m_Photo_m_Keyword">
             <End Role="m_Keyword" EntitySet="m_Keyword" />
             <End Role="m_Photo" EntitySet="m_Photo" />
           </AssociationSet>
@@ -91,7 +91,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PhotoFrameTeamCModelStoreContainer" CdmEntityContainer="PhotoFrameTeamCEntities">
+        <EntityContainerMapping StorageEntityContainer="PhotoFrameTeamCModelStoreContainer" CdmEntityContainer="PhotoFrameTeamCEntities2">
           <EntitySetMapping Name="m_Keyword">
             <EntityTypeMapping TypeName="PhotoFrameTeamCModel.m_Keyword">
               <MappingFragment StoreEntitySet="m_Keyword">
