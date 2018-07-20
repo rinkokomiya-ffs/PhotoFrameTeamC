@@ -282,10 +282,7 @@ namespace PhotoFrameApp
                     Image img = Image.FromStream(fs, false, false); // 検証なし
                     pictureBoxShowPicture.Image = img;
                 }
-                catch (ArgumentException)
-                {
-                    MessageBox.Show("ファイルが壊れています");
-                }
+                                
                 catch (FileNotFoundException)
                 {
                     MessageBox.Show("ファイルが存在しません");
