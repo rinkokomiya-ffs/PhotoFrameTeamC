@@ -53,10 +53,18 @@ namespace PhotoFrame.Application.Tests
         public void SearchFolderTest()
         {
             // テスト処理
-            Assert.AreEqual(3, photoFrameApplication.SearchFolder(@"C:\test1").Count());
-            Assert.AreEqual(0, photoFrameApplication.SearchFolder(@"C:\test2").Count());
-            Assert.AreEqual(null, photoFrameApplication.SearchFolder(@"C:\test3"));
+            //Assert.AreEqual(3, photoFrameApplication.SearchFolder(@"C:\test1").Count());
+            var sw = new System.Diagnostics.Stopwatch();
+            sw.Start();
+            Assert.AreEqual(472, photoFrameApplication.SearchFolder(@"\\Cfs-05-bk\home7\12810467\My Documents\My Pictures\Album2").Count());
+            sw.Stop();
             
+            TimeSpan ts = sw.Elapsed;
+        
+           
+
+            //Assert.AreEqual(null, photoFrameApplication.SearchFolder(@"C:\test3"));
+
         }
 
         [TestMethod()]
