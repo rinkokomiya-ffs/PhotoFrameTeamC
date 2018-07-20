@@ -88,7 +88,7 @@
     <Compile Include="Repositories\RepositoryFactory.cs" />
     <Compile Include="Services\IServiceFactory.cs" />
     <Compile Include="Services\PhotoFileService.cs" />
-    <Compile Include="Services\ServiceFactory.cs" />
+    <Compile Include="ServiceFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PhotoFrame.Domain.Model\PhotoFrame.Domain.Model.csproj">
