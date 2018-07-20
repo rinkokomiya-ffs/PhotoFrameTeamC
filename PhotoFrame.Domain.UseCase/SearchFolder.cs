@@ -71,6 +71,7 @@ namespace PhotoFrame.Domain.UseCase
         private DateTime GetDateTime(string filePath)
         {
             //読み込む
+
             var image = IsValidImage(filePath);
   
             // 有効データでない場合初期値を返す
@@ -84,6 +85,7 @@ namespace PhotoFrame.Domain.UseCase
             if(exifItem != null)
             {
                 //文字列に変換する
+
                 var dateString = Encoding.ASCII.GetString(exifItem.Value);
                 dateString = dateString.Trim(new char[] {'\0'});
 
