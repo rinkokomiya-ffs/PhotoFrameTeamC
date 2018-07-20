@@ -240,7 +240,13 @@ namespace PhotoFrameApp
             }
             if(CheckExistListviewPhotos())
             {
-                string newKeywordName = comboBoxChangeKeyword.Text;
+                string newKeywordName = null;
+
+                if (comboBoxChangeKeyword.Text != "設定解除")
+                {
+                    newKeywordName = comboBoxChangeKeyword.Text;
+                }
+
                 var indexList = GetListviewIndex();
                 
                 if(indexList.Count() == 0)
