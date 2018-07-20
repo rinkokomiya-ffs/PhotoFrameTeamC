@@ -355,6 +355,7 @@
             // 
             // comboBoxChangeKeyword
             // 
+            this.comboBoxChangeKeyword.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxChangeKeyword.FormattingEnabled = true;
             this.comboBoxChangeKeyword.Location = new System.Drawing.Point(71, 18);
             this.comboBoxChangeKeyword.Name = "comboBoxChangeKeyword";
