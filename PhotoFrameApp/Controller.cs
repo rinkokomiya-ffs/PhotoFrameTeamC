@@ -15,7 +15,7 @@ namespace PhotoFrameApp
         //private readonly PhotoFrameApplication application;
 
         // テスト用
-        private readonly PhotoFrameApplicationStub application;
+        private readonly PhotoFrameApplication application;
 
 
         private readonly IPhotoRepository photoRepository;
@@ -24,7 +24,7 @@ namespace PhotoFrameApp
 
         public Controller(IKeywordRepository keywordRepository, IPhotoRepository photoRepository, IPhotoFileService photoFileService)
         {
-            this.application = new PhotoFrameApplicationStub(keywordRepository, photoRepository, photoFileService);
+            this.application = new PhotoFrameApplication(keywordRepository, photoRepository, photoFileService);
      
         }
 

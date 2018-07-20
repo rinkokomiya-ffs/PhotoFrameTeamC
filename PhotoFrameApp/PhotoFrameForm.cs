@@ -40,8 +40,8 @@ namespace PhotoFrameApp
             InitializeComponent();
 
             // リポジトリ生成・初期化
-            RepositoryFactory repositoryFactory = new RepositoryFactory(PhotoFrame.Persistence.Type.Csv);
-            //RepositoryFactory repositoryFactory = new RepositoryFactory(PhotoFrame.Persistence.Type.EF);
+            //RepositoryFactory repositoryFactory = new RepositoryFactory(PhotoFrame.Persistence.Type.Csv);
+            RepositoryFactory repositoryFactory = new RepositoryFactory(PhotoFrame.Persistence.Type.EF);
             ServiceFactory serviceFactory = new ServiceFactory();
             photoRepository = repositoryFactory.PhotoRepository;
             keywordRepository = repositoryFactory.KeywordRepository;
