@@ -38,7 +38,6 @@ namespace PhotoFrameApp
                 }
 
                 comboBoxSelectKeyword.SelectedIndex = 0 ;
-                //comboBoxSelectKeyword.DisplayMember = Keyword ;
             }
 
 
