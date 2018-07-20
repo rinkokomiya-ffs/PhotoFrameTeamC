@@ -63,8 +63,6 @@ namespace PhotoFrameApp
                     PlayMusic();
                 }
 
-                timer_CloseForm.Interval = 600000;//Form画面終了時間　10分
-                timer_CloseForm.Start();
             }
         }
 
