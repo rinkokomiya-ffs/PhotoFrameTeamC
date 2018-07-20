@@ -52,6 +52,9 @@ namespace PhotoFrameApp
             // キーワード解除用文字列の登録
             comboBoxChangeKeyword.Items.Add("設定解除");
 
+            // キーワード解除用文字列の登録
+            comboBoxChangeKeyword.Items.Add("設定解除");
+
             // 全アルバム名を取得し、アルバム変更リストをセット
             UpdateKeywordList();
 
@@ -115,9 +118,8 @@ namespace PhotoFrameApp
             {
                 MessageBox.Show("フォルダ名が指定されていません");
             }
-
             // フォルダパスを引数にとって、コントローラーに渡す
-            if (controller.ExecuteSearchFolder(folderPath).Count() == 0)
+            else if (controller.ExecuteSearchFolder(folderPath).Count() == 0)
             {
                 MessageBox.Show("写真が存在しません");
             }
@@ -125,7 +127,6 @@ namespace PhotoFrameApp
             {
                 MessageBox.Show("フォルダが存在しません");
             }
-
             // フォルダパスを引数にとって、コントローラーに渡す
             else
             {
@@ -168,25 +169,28 @@ namespace PhotoFrameApp
                 string keyword = textBoxRegistKeyword.Text;
                 if(keyword == "")
                 {
-                    MessageBox.Show("キーワードが未入力です");
+                    MessageBox.Show("テキストボックスにキーワードが入力されていません");
                 }
                 else if(keyword.Length > MAX_KEYWORD_LENGTH)
                 {
                     MessageBox.Show("作成できるキーワードの文字数は20字以内です");
                 }
                 else
-                {   
+                {
                     var result = controller.ExecuteRegistKeyword(keyword);
                     //var result = await application.CreateAlbumAsync(keyword);
 
                     switch (result)
                     {
                         case 0:
-                            comboBoxChangeKeyword.Items.Add(keyword);
-                            UpdateKeywordList();
+
+                            allKeywords = controller.ExecuteGetKeyword();
+                            comboBoxChangeKeyword.Items.Add(keyword);                          
+                          
+
                             break;
                         case 1:
-                            MessageBox.Show("既存のキーワードです");
+                            MessageBox.Show("そのキーワードはすでに作成されています");
                             break;
                         default:
                             break;
@@ -239,7 +243,13 @@ namespace PhotoFrameApp
             }
             if(CheckExistListviewPhotos())
             {
-                string newKeywordName = comboBoxChangeKeyword.Text;
+                string newKeywordName = null;
+
+                if (comboBoxChangeKeyword.Text != "設定解除")
+                {
+                    newKeywordName = comboBoxChangeKeyword.Text;
+                }
+
                 var indexList = GetListviewIndex();
                 
                 if(indexList.Count() == 0)
@@ -350,6 +360,7 @@ namespace PhotoFrameApp
         {
             string keyword = "";
             string isFavorite = "";
+            string datetime = "";
 
             if (photo.Keyword != null)
             {
@@ -370,9 +381,13 @@ namespace PhotoFrameApp
                 isFavorite = "";
             }
 
+            datetime = photo.DateTime.ToShortDateString();
+
             listViewPhotoList.Items[index].SubItems[0].Text = photo.File.FilePath;
             listViewPhotoList.Items[index].SubItems[1].Text = keyword;
             listViewPhotoList.Items[index].SubItems[2].Text = isFavorite;
+            listViewPhotoList.Items[index].SubItems[3].Text = datetime;
+
         }
 
         /// <summary>
@@ -387,7 +402,7 @@ namespace PhotoFrameApp
             {
                 foreach (Photo photo in searchedPhotos)
                 {
-                    string keyword, isFavorite;
+                    string keyword, isFavorite, datetime;
 
                     if (photo.Keyword != null)
                     {
@@ -408,7 +423,9 @@ namespace PhotoFrameApp
                         isFavorite = "";
                     }
 
-                    string[] item = { photo.File.FilePath, keyword, isFavorite };
+                    datetime = photo.DateTime.ToShortDateString();
+
+                    string[] item = { photo.File.FilePath, keyword, isFavorite, datetime };
                     listViewPhotoList.Items.Add(new ListViewItem(item));
 
                 }

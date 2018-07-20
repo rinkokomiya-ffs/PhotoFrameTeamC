@@ -63,8 +63,6 @@ namespace PhotoFrameApp
                     PlayMusic();
                 }
 
-                timer_CloseForm.Interval = 600000;//Form画面終了時間　10分
-                timer_CloseForm.Start();
             }
         }
 
@@ -131,9 +129,9 @@ namespace PhotoFrameApp
             }
 
             System.IO.FileStream fs = System.IO.File.OpenRead(photos.ElementAt(photo_index).File.FilePath);
-            Image img = Image.FromStream(fs, false, false); // 検証なし
+            Image img = Image.FromStream(fs, true, true); // 検証なし
             pictureBoxSelectedPhotos.Image = img;
-         
+
         }
 
         /// <summary>
@@ -199,11 +197,10 @@ namespace PhotoFrameApp
            
         }
 
-        // Form画面の終了
-        private void TimerCloseFormTick(object sender, EventArgs e)
+       
+        private void SlideShowForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            timer_CloseForm.Stop();
-            this.Close();
+            this.StopMusic();
         }
     }
 }

@@ -24,7 +24,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoFrameApp", "PhotoFrame
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoFrame.Domain.UseCase", "PhotoFrame.Domain.UseCase\PhotoFrame.Domain.UseCase.csproj", "{B1F7CF16-46BC-4A6E-A3C7-725A2F426E3E}"
 EndProject
+
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoFrame.ApplicationTests1", "PhotoFrame.ApplicationTests1\PhotoFrame.ApplicationTests1.csproj", "{8DCEB471-8DF3-48F9-866B-683D725DED98}"
+
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,10 +54,12 @@ Global
 		{B1F7CF16-46BC-4A6E-A3C7-725A2F426E3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1F7CF16-46BC-4A6E-A3C7-725A2F426E3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1F7CF16-46BC-4A6E-A3C7-725A2F426E3E}.Release|Any CPU.Build.0 = Release|Any CPU
+
 		{8DCEB471-8DF3-48F9-866B-683D725DED98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8DCEB471-8DF3-48F9-866B-683D725DED98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DCEB471-8DF3-48F9-866B-683D725DED98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DCEB471-8DF3-48F9-866B-683D725DED98}.Release|Any CPU.Build.0 = Release|Any CPU
+
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +70,7 @@ Global
 		{1717472B-3B27-43F2-9895-C25F0C2D91DD} = {87439AEC-5B02-4114-AC4D-98A5217E2527}
 		{32E837CF-0149-4010-8E3E-7B19F1BD69E1} = {C50035AA-5CBA-495A-B217-34F78FCDF217}
 		{B1F7CF16-46BC-4A6E-A3C7-725A2F426E3E} = {6767C90D-A58B-4381-8EF9-82B727FC4D62}
+		{E514D059-AD2C-4755-98D2-0CACAF2CBE06} = {C50035AA-5CBA-495A-B217-34F78FCDF217}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6704A020-FBBE-4F02-B8B8-BDA99974031A}

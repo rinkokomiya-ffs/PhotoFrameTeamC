@@ -36,9 +36,10 @@ namespace PhotoFrameApp
                 {
                     comboBoxSelectKeyword.Items.Add(keyword.Name);
                 }
-                comboBoxSelectKeyword.SelectedIndex = 0;
 
+                comboBoxSelectKeyword.SelectedIndex = 0 ;
             }
+
 
             // 初期状態で表示する撮影日を設定する
             GetDateTime();
