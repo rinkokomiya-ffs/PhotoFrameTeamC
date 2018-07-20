@@ -82,6 +82,7 @@
             // 
             // comboBoxSelectKeyword
             // 
+            this.comboBoxSelectKeyword.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSelectKeyword.FormattingEnabled = true;
             this.comboBoxSelectKeyword.Location = new System.Drawing.Point(135, 58);
             this.comboBoxSelectKeyword.Name = "comboBoxSelectKeyword";

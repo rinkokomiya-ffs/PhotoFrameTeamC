@@ -37,7 +37,6 @@
             this.checkBoxAutoSlideShow = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkBoxPlayMusic = new System.Windows.Forms.CheckBox();
-            this.timer_CloseForm = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSelectedPhotos)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -126,10 +125,6 @@
             this.checkBoxPlayMusic.UseVisualStyleBackColor = true;
             this.checkBoxPlayMusic.CheckedChanged += new System.EventHandler(this.CheckPlayMusic);
             // 
-            // timer_CloseForm
-            // 
-            this.timer_CloseForm.Tick += new System.EventHandler(this.TimerCloseFormTick);
-            // 
             // SlideShowForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -138,6 +133,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "SlideShowForm";
             this.Text = "SlideShow";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SlideShowForm_FormClosing);
             this.Load += new System.EventHandler(this.SlideShowLoad);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSelectedPhotos)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -156,6 +152,5 @@
         private System.Windows.Forms.CheckBox checkBoxAutoSlideShow;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox checkBoxPlayMusic;
-        private System.Windows.Forms.Timer timer_CloseForm;
     }
 }
