@@ -202,5 +202,35 @@ namespace PhotoFrameApp
         {
             this.StopMusic();
         }
+
+        private void ButtonSearchMusicFile_Click(object sender, EventArgs e)
+        {
+            // ダイアログを開く
+            // FolderBrowserDialogクラスのインスタンスを作成
+            OpenFileDialog fbd = new OpenFileDialog();
+            
+            fbd.Filter = "(*.wav) | *.wav";
+
+            ////上部に表示する説明テキストを指定する
+            //fbd.Title = "ファイルを指定してください。",
+
+            ////最初に選択するフォルダを指定する
+            //SelectedPath = @"C:\",
+
+            //ダイアログで決定ボタンを選択される
+            if (fbd.ShowDialog(this) == DialogResult.OK)
+            {
+                // ラベルにフォルダパスを表示
+                labelShowMusicFilePath.Text = fbd.FileName;
+                // パスを格納
+                musicFile = fbd.FileName;
+
+                // 再生する
+                checkBoxPlayMusic.Enabled = true;
+                checkBoxPlayMusic.Checked = true;
+                checkBoxAutoSlideShow.Checked = true;
+                PlayMusic();
+            }
+        }
     }
 }
