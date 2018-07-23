@@ -37,6 +37,8 @@
             this.checkBoxAutoSlideShow = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkBoxPlayMusic = new System.Windows.Forms.CheckBox();
+            this.ButtonReferenceMusicFile = new System.Windows.Forms.Button();
+            this.labelShowMusicFilePath = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSelectedPhotos)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -104,7 +106,7 @@
             this.panel1.Controls.Add(this.checkBoxAutoSlideShow);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.pictureBoxSelectedPhotos);
-            this.panel1.Location = new System.Drawing.Point(173, 22);
+            this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(739, 436);
             this.panel1.TabIndex = 4;
@@ -112,6 +114,7 @@
             // checkBoxPlayMusic
             // 
             this.checkBoxPlayMusic.AutoSize = true;
+            this.checkBoxPlayMusic.Enabled = false;
             this.checkBoxPlayMusic.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.checkBoxPlayMusic.Location = new System.Drawing.Point(26, 401);
             this.checkBoxPlayMusic.Name = "checkBoxPlayMusic";
@@ -121,11 +124,32 @@
             this.checkBoxPlayMusic.UseVisualStyleBackColor = true;
             this.checkBoxPlayMusic.CheckedChanged += new System.EventHandler(this.CheckPlayMusic);
             // 
+            // ButtonReferenceMusicFile
+            // 
+            this.ButtonReferenceMusicFile.Location = new System.Drawing.Point(38, 454);
+            this.ButtonReferenceMusicFile.Name = "ButtonReferenceMusicFile";
+            this.ButtonReferenceMusicFile.Size = new System.Drawing.Size(121, 23);
+            this.ButtonReferenceMusicFile.TabIndex = 11;
+            this.ButtonReferenceMusicFile.Text = "音楽ファイル参照";
+            this.ButtonReferenceMusicFile.UseVisualStyleBackColor = true;
+            this.ButtonReferenceMusicFile.Click += new System.EventHandler(this.ButtonSearchMusicFile_Click);
+            // 
+            // labelShowMusicFilePath
+            // 
+            this.labelShowMusicFilePath.AutoSize = true;
+            this.labelShowMusicFilePath.Location = new System.Drawing.Point(36, 485);
+            this.labelShowMusicFilePath.Name = "labelShowMusicFilePath";
+            this.labelShowMusicFilePath.Size = new System.Drawing.Size(251, 12);
+            this.labelShowMusicFilePath.TabIndex = 12;
+            this.labelShowMusicFilePath.Text = "指定した音楽ファイル(.wav)パスがここに表示されます";
+            // 
             // SlideShowForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(945, 494);
+            this.ClientSize = new System.Drawing.Size(764, 517);
+            this.Controls.Add(this.labelShowMusicFilePath);
+            this.Controls.Add(this.ButtonReferenceMusicFile);
             this.Controls.Add(this.panel1);
             this.Name = "SlideShowForm";
             this.Text = "SlideShow";
@@ -136,6 +160,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -148,5 +173,7 @@
         private System.Windows.Forms.CheckBox checkBoxAutoSlideShow;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox checkBoxPlayMusic;
+        private System.Windows.Forms.Button ButtonReferenceMusicFile;
+        private System.Windows.Forms.Label labelShowMusicFilePath;
     }
 }
