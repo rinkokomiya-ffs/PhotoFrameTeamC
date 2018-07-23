@@ -89,8 +89,6 @@
             // checkBoxAutoSlideShow
             // 
             this.checkBoxAutoSlideShow.AutoSize = true;
-            this.checkBoxAutoSlideShow.Checked = true;
-            this.checkBoxAutoSlideShow.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxAutoSlideShow.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.checkBoxAutoSlideShow.Location = new System.Drawing.Point(26, 372);
             this.checkBoxAutoSlideShow.Name = "checkBoxAutoSlideShow";
@@ -106,7 +104,7 @@
             this.panel1.Controls.Add(this.checkBoxAutoSlideShow);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.pictureBoxSelectedPhotos);
-            this.panel1.Location = new System.Drawing.Point(31, 12);
+            this.panel1.Location = new System.Drawing.Point(173, 22);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(739, 436);
             this.panel1.TabIndex = 4;
@@ -114,8 +112,6 @@
             // checkBoxPlayMusic
             // 
             this.checkBoxPlayMusic.AutoSize = true;
-            this.checkBoxPlayMusic.Checked = true;
-            this.checkBoxPlayMusic.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxPlayMusic.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.checkBoxPlayMusic.Location = new System.Drawing.Point(26, 401);
             this.checkBoxPlayMusic.Name = "checkBoxPlayMusic";
@@ -129,7 +125,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(945, 494);
             this.Controls.Add(this.panel1);
             this.Name = "SlideShowForm";
             this.Text = "SlideShow";
