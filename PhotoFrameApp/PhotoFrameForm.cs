@@ -26,6 +26,8 @@ namespace PhotoFrameApp
         // 定数
         // キーワード登録上限値
         private readonly int MAX_REGIST_KEYWORD = 50;
+        // 写真登録上限値
+        private readonly int MAX_REGIST_IMAGE = 100;
         // キーワード文字数上限値
         private readonly int MAX_KEYWORD_LENGTH = 20;
 
@@ -134,6 +136,8 @@ namespace PhotoFrameApp
                 //this.searchedPhotos = await application.SearchDirectoryAsync(textBox_Search.Text);
 
                 RenewPhotoListView();
+
+                if (this.searchedPhotos.Count() >= MAX_REGIST_IMAGE) MessageBox.Show("表示上限枚数100枚に達しました\nこれ以上は表示できません");
             }
         }
 
