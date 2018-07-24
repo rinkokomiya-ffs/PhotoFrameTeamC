@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="83fd7efdf60445509031acc079a7579c" Name="Diagram1">
+      <Diagram DiagramId="4347f9d782484f9aa74f8e5e5b6ac02c" Name="Diagram1">
         <EntityTypeShape EntityType="PhotoFrameTeamCModel.m_Keyword" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PhotoFrameTeamCModel.m_Photo" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="PhotoFrameTeamCModel.FK_m_Photo_m_Keyword" ManuallyRouted="false" />

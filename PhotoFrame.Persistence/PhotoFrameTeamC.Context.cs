@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PhotoFrame.Persistence.Repositories.EF
+namespace PhotoFrame.Persistence
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PhotoFrameTeamCEntities2 : DbContext
+    public partial class PhotoFrameTeamCEntities : DbContext
     {
-        public PhotoFrameTeamCEntities2()
-            : base("name=PhotoFrameTeamCEntities2")
+        public PhotoFrameTeamCEntities()
+            : base("name=PhotoFrameTeamCEntities")
         {
         }
     

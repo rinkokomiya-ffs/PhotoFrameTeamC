@@ -112,7 +112,7 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonSearchFolderClick(object sender, EventArgs e)
+        private async void ButtonSearchFolderClick(object sender, EventArgs e)
         //private async void button_SearchAlbum_Click(object sender, EventArgs e)
         {
             //ラベルにフォルダが表示されていない場合の例外処理
@@ -270,6 +270,7 @@ namespace PhotoFrameApp
                     }
                 }
             }
+
         }
 
         /// <summary>
@@ -333,7 +334,7 @@ namespace PhotoFrameApp
             {
                 indexList.Add(listViewPhotoList.SelectedItems[i].Index);
             }
-
+            listViewPhotoList.SelectedItems.Clear();
             return indexList;
         }
 

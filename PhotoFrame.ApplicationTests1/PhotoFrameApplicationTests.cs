@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PhotoFrame.Domain.UseCase;
-using PhotoFrame.Persistence.Repositories;
 using PhotoFrame.Persistence;
 using System.Globalization;
 namespace PhotoFrame.Application.Tests

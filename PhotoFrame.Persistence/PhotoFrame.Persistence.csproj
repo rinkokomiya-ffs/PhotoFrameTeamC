@@ -33,11 +33,9 @@
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -53,31 +51,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Repositories\Csv\KeywordRepository.cs" />
-    <Compile Include="Repositories\Csv\PhotoRepository.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\EF\KeywordRepository.cs" />
-    <Compile Include="Repositories\EF\m_Keyword.cs">
+    <Compile Include="m_Keyword.cs">
       <DependentUpon>PhotoFrameTeamC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Repositories\EF\m_Photo.cs">
+    <Compile Include="m_Photo.cs">
       <DependentUpon>PhotoFrameTeamC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Repositories\EF\PhotoFrameTeamC.Context.cs">
+    <Compile Include="PhotoFrameTeamC.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PhotoFrameTeamC.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Repositories\EF\PhotoFrameTeamC.cs">
+    <Compile Include="PhotoFrameTeamC.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PhotoFrameTeamC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Repositories\EF\PhotoFrameTeamC.Designer.cs">
+    <Compile Include="PhotoFrameTeamC.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PhotoFrameTeamC.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\Csv\KeywordRepository.cs" />
+    <Compile Include="Repositories\Csv\PhotoRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\EF\KeywordRepository.cs" />
     <Compile Include="Repositories\EF\PhotoRepository.cs" />
     <Compile Include="Repositories\IRepositoryFactory.cs" />
     <Compile Include="Repositories\RepositoryFactory.cs" />
@@ -93,12 +91,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="packages.config" />
-    <EntityDeploy Include="Repositories\EF\PhotoFrameTeamC.edmx">
+    <EntityDeploy Include="PhotoFrameTeamC.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>PhotoFrameTeamC.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Repositories\EF\PhotoFrameTeamC.edmx.diagram">
+    <None Include="packages.config" />
+    <None Include="PhotoFrameTeamC.edmx.diagram">
       <DependentUpon>PhotoFrameTeamC.edmx</DependentUpon>
     </None>
   </ItemGroup>
@@ -106,12 +104,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Repositories\EF\PhotoFrameTeamC.Context.tt">
+    <Content Include="PhotoFrameTeamC.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PhotoFrameTeamC.edmx</DependentUpon>
       <LastGenOutput>PhotoFrameTeamC.Context.cs</LastGenOutput>
+      <DependentUpon>PhotoFrameTeamC.edmx</DependentUpon>
     </Content>
-    <Content Include="Repositories\EF\PhotoFrameTeamC.tt">
+    <Content Include="PhotoFrameTeamC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>PhotoFrameTeamC.edmx</DependentUpon>
       <LastGenOutput>PhotoFrameTeamC.cs</LastGenOutput>

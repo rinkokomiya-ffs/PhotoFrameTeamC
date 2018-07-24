@@ -1,4 +1,4 @@
-﻿// T4 コード生成がモデル 'C:\github研修\PhotoFrame_ojt\PhotoFrame\PhotoFrame\PhotoFrame.Persistence\FhotoFramModel.edmx' に対して有効です。 
+﻿// T4 コード生成がモデル 'C:\github研修\PhotoFrameTeamC\PhotoFrame.Persistence\PhotoFrameTeamC.edmx' に対して有効です。 
 // レガシ コード生成を有効にするには、'コード生成方法' デザイナー
 // プロパティの値を 'レガシ ObjectContext' に変更します。このプロパティは、デザイナーでモデルが開かれている場合に [プロパティ] ウィンドウ
 // で使用できます。
