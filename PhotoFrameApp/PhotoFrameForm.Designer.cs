@@ -58,6 +58,7 @@
             this.comboBoxChangeKeyword = new System.Windows.Forms.ComboBox();
             this.buttonChangeKeyword = new System.Windows.Forms.Button();
             this.buttonToggleFavorite = new System.Windows.Forms.Button();
+            this.pictureBoxProcessing = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -72,6 +73,7 @@
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProcessing)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -143,6 +145,7 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.pictureBoxProcessing);
             this.splitContainer2.Panel1.Controls.Add(this.labelPictureBox);
             this.splitContainer2.Panel1.Controls.Add(this.pictureBoxShowPicture);
             this.splitContainer2.Panel1.Controls.Add(this.listViewPhotoList);
@@ -383,6 +386,15 @@
             this.buttonToggleFavorite.UseVisualStyleBackColor = true;
             this.buttonToggleFavorite.Click += new System.EventHandler(this.ButtonToggleFavoriteClick);
             // 
+            // pictureBoxProcessing
+            // 
+            this.pictureBoxProcessing.Location = new System.Drawing.Point(33, 0);
+            this.pictureBoxProcessing.Name = "pictureBoxProcessing";
+            this.pictureBoxProcessing.Size = new System.Drawing.Size(530, 311);
+            this.pictureBoxProcessing.TabIndex = 3;
+            this.pictureBoxProcessing.TabStop = false;
+            this.pictureBoxProcessing.Visible = false;
+            // 
             // PhotoFrameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -410,6 +422,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProcessing)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -446,6 +459,7 @@
         private System.Windows.Forms.Label labelFavorite;
         private System.Windows.Forms.ColumnHeader columnHeader_Date;
         private System.Windows.Forms.Label labelPictureBox;
+        private System.Windows.Forms.PictureBox pictureBoxProcessing;
     }
 }
 

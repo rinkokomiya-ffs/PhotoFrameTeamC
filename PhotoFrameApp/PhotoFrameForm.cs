@@ -48,7 +48,6 @@ namespace PhotoFrameApp
             photoRepository = repositoryFactory.PhotoRepository;
             keywordRepository = repositoryFactory.KeywordRepository;
             photoFileService = serviceFactory.PhotoFileService;
-            searchedPhotos = new List<Photo>().AsEnumerable();
             controller = new Controller(keywordRepository, photoRepository, photoFileService);
             
             // キーワード解除用文字列の登録
@@ -76,6 +75,9 @@ namespace PhotoFrameApp
                 }
                
             }
+
+            // 読み込み中画面のロード
+            pictureBoxProcessing.Image = new Bitmap("loading.jpg");
         }
 
         /// <summary>
@@ -112,32 +114,45 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonSearchFolderClick(object sender, EventArgs e)
-        //private async void button_SearchAlbum_Click(object sender, EventArgs e)
+        private async void ButtonSearchFolderClick(object sender, EventArgs e)
         {
             //ラベルにフォルダが表示されていない場合の例外処理
             if (folderPath == null || folderPath == "")
             {
                 MessageBox.Show("フォルダ名が指定されていません");
             }
-            // フォルダパスを引数にとって、コントローラーに渡す
-            else if (controller.ExecuteSearchFolder(folderPath) == null)
-            {
-                MessageBox.Show("フォルダが存在しません");
-            }
-            else if (controller.ExecuteSearchFolder(folderPath).Count() == 0)
-            {
-                MessageBox.Show("写真が存在しません");
-            }
-            // フォルダパスを引数にとって、コントローラーに渡す
             else
             {
-                this.searchedPhotos = controller.ExecuteSearchFolder(folderPath);
-                //this.searchedPhotos = await application.SearchDirectoryAsync(textBox_Search.Text);
+                searchedPhotos = new List<Photo>().AsEnumerable();
 
-                RenewPhotoListView();
+                // 読み込み中画面表示
+                pictureBoxProcessing.Visible = true;
 
-                if (this.searchedPhotos.Count() >= MAX_REGIST_IMAGE) MessageBox.Show("表示上限枚数100枚に達しました\nこれ以上は表示できません");
+                // 写真情報読み込み
+                searchedPhotos = await controller.ExecuteSearchFolderAsync(folderPath);
+
+                // 読み込み中画面非表示
+                pictureBoxProcessing.Visible = false;
+            
+                // フォルダパスを引数にとって、コントローラーに渡す
+                if (searchedPhotos == null)
+                {
+                    MessageBox.Show("フォルダが存在しません");
+                }
+                else if (searchedPhotos.Count() == 0)
+                {
+                    MessageBox.Show("写真が存在しません");
+                }
+                else
+                {
+                    RenewPhotoListView();
+
+                    // 上限枚数に達した場合
+                    if (this.searchedPhotos.Count() >= MAX_REGIST_IMAGE)
+                    {
+                        MessageBox.Show("表示上限枚数100枚に達しました\nこれ以上は表示できません");
+                    }
+                }
             }
         }
 
