@@ -36,33 +36,6 @@ namespace PhotoFrame.Persistence
                 }
 
             }
-
-            return file_list;
-
-        }
-
-        public List<string> Enumerate(string dir)
-        {
-            string[] files = Directory.GetFiles(dir);
-            List<string> file_list = new List<string>();
-
-            foreach (string s in files)
-            {
-                file_list.Add(s);
-            }
-
-            string[] dirs = Directory.GetDirectories(dir);
-
-            foreach (string s in dirs)
-            {
-                List<string> temp_list = Enumerate(s);
-
-                foreach (string t in temp_list)
-                {
-                    file_list.Add(t);
-                }
-            }
-
             return file_list;
         }
     }
