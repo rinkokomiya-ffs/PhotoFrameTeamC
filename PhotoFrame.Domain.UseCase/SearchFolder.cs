@@ -13,10 +13,6 @@ namespace PhotoFrame.Domain.UseCase
         private readonly IPhotoRepository _photoRepository;
         private readonly IPhotoFileService _photoFileService;
 
-        // 定数
-        // キーワード登録上限値
-        private readonly int MAX_REGIST_IMAGE = 100;
-
         public SearchFolder(IPhotoRepository photoRepository, IPhotoFileService photoFileService)
         {
             _photoRepository = photoRepository;
@@ -32,7 +28,6 @@ namespace PhotoFrame.Domain.UseCase
         {
             var files = _photoFileService.FindAllPhotoFilesFromDirectory(folderPath);
             var photosInFolder = new List<Photo>();
-            int imageNumber = 0;
 
             if (files == null)
             {
@@ -45,7 +40,6 @@ namespace PhotoFrame.Domain.UseCase
                 var searchedPhoto = photos.SingleOrDefault(photo => photo.File.FilePath == file.FilePath);
                 var getDateTime = GetDateTime(file.FilePath);
 
-                if (imageNumber >= MAX_REGIST_IMAGE) break;
                 // 有効データでない場合(初期値と比較)
                 if (getDateTime != null)
                 {
@@ -62,7 +56,6 @@ namespace PhotoFrame.Domain.UseCase
                         _photoRepository.Store(photo);
 
                     }
-                    imageNumber++;
                 }   
             }
 
