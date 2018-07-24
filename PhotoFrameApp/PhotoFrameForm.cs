@@ -349,6 +349,8 @@ namespace PhotoFrameApp
                 indexList.Add(listViewPhotoList.SelectedItems[i].Index);
             }
 
+            listViewPhotoList.SelectedItems.Clear();
+
             return indexList;
         }
 
