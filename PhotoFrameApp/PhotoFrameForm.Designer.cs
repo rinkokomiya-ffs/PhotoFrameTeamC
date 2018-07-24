@@ -34,6 +34,7 @@
             this.buttonSearchKeyword = new System.Windows.Forms.Button();
             this.labelShowFolderPath = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.pictureBoxProcessing = new System.Windows.Forms.PictureBox();
             this.labelPictureBox = new System.Windows.Forms.Label();
             this.pictureBoxShowPicture = new System.Windows.Forms.PictureBox();
             this.listViewPhotoList = new System.Windows.Forms.ListView();
@@ -58,7 +59,6 @@
             this.comboBoxChangeKeyword = new System.Windows.Forms.ComboBox();
             this.buttonChangeKeyword = new System.Windows.Forms.Button();
             this.buttonToggleFavorite = new System.Windows.Forms.Button();
-            this.pictureBoxProcessing = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -68,12 +68,12 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProcessing)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxShowPicture)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProcessing)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -159,6 +159,15 @@
             this.splitContainer2.Size = new System.Drawing.Size(990, 471);
             this.splitContainer2.SplitterDistance = 361;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // pictureBoxProcessing
+            // 
+            this.pictureBoxProcessing.Location = new System.Drawing.Point(33, 0);
+            this.pictureBoxProcessing.Name = "pictureBoxProcessing";
+            this.pictureBoxProcessing.Size = new System.Drawing.Size(530, 348);
+            this.pictureBoxProcessing.TabIndex = 3;
+            this.pictureBoxProcessing.TabStop = false;
+            this.pictureBoxProcessing.Visible = false;
             // 
             // labelPictureBox
             // 
@@ -386,15 +395,6 @@
             this.buttonToggleFavorite.UseVisualStyleBackColor = true;
             this.buttonToggleFavorite.Click += new System.EventHandler(this.ButtonToggleFavoriteClick);
             // 
-            // pictureBoxProcessing
-            // 
-            this.pictureBoxProcessing.Location = new System.Drawing.Point(33, 0);
-            this.pictureBoxProcessing.Name = "pictureBoxProcessing";
-            this.pictureBoxProcessing.Size = new System.Drawing.Size(530, 311);
-            this.pictureBoxProcessing.TabIndex = 3;
-            this.pictureBoxProcessing.TabStop = false;
-            this.pictureBoxProcessing.Visible = false;
-            // 
             // PhotoFrameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -414,6 +414,7 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProcessing)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxShowPicture)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -422,7 +423,6 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProcessing)).EndInit();
             this.ResumeLayout(false);
 
         }
