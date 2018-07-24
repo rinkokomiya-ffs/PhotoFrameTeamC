@@ -69,7 +69,6 @@ namespace PhotoFrame.Domain.UseCase
             return photosInFolder;
         }
 
-
         /// <summary>
         /// 撮影日取得
         /// </summary>

@@ -58,6 +58,8 @@
             this.comboBoxChangeKeyword = new System.Windows.Forms.ComboBox();
             this.buttonChangeKeyword = new System.Windows.Forms.Button();
             this.buttonToggleFavorite = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ProcessingPictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -72,6 +74,8 @@
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProcessingPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -143,6 +147,8 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.ProcessingPictureBox);
+            this.splitContainer2.Panel1.Controls.Add(this.pictureBox1);
             this.splitContainer2.Panel1.Controls.Add(this.labelPictureBox);
             this.splitContainer2.Panel1.Controls.Add(this.pictureBoxShowPicture);
             this.splitContainer2.Panel1.Controls.Add(this.listViewPhotoList);
@@ -383,6 +389,24 @@
             this.buttonToggleFavorite.UseVisualStyleBackColor = true;
             this.buttonToggleFavorite.Click += new System.EventHandler(this.ButtonToggleFavoriteClick);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(589, 11);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
+            // ProcessingPictureBox
+            // 
+            this.ProcessingPictureBox.Location = new System.Drawing.Point(12, 27);
+            this.ProcessingPictureBox.Name = "ProcessingPictureBox";
+            this.ProcessingPictureBox.Size = new System.Drawing.Size(560, 286);
+            this.ProcessingPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ProcessingPictureBox.TabIndex = 4;
+            this.ProcessingPictureBox.TabStop = false;
+            this.ProcessingPictureBox.Visible = false;
+            // 
             // PhotoFrameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -410,6 +434,8 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProcessingPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -446,6 +472,8 @@
         private System.Windows.Forms.Label labelFavorite;
         private System.Windows.Forms.ColumnHeader columnHeader_Date;
         private System.Windows.Forms.Label labelPictureBox;
+        private System.Windows.Forms.PictureBox ProcessingPictureBox;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

@@ -19,10 +19,12 @@ namespace PhotoFrameApp
         private IPhotoRepository photoRepository;
         private IKeywordRepository keywordRepository;
         private IPhotoFileService photoFileService;
+        private Controller controller;
+        private string folderPath;
 
         public IEnumerable<Photo> searchedPhotos { set; get; } // リストビュー上のフォトのリスト
-        private Controller controller;
-        
+        public IEnumerable<Keyword> allKeywords { set; get; }
+     
         // 定数
         // キーワード登録上限値
         private readonly int MAX_REGIST_KEYWORD = 50;
@@ -30,9 +32,6 @@ namespace PhotoFrameApp
         private readonly int MAX_REGIST_IMAGE = 100;
         // キーワード文字数上限値
         private readonly int MAX_KEYWORD_LENGTH = 20;
-
-        public string folderPath { set; get; }
-        public IEnumerable<Keyword> allKeywords { set; get; }
 
         /// <summary>
         /// コンストラクタ
@@ -42,7 +41,6 @@ namespace PhotoFrameApp
             InitializeComponent();
 
             // リポジトリ生成・初期化
-            //RepositoryFactory repositoryFactory = new RepositoryFactory(PhotoFrame.Persistence.Type.Csv);
             RepositoryFactory repositoryFactory = new RepositoryFactory(PhotoFrame.Persistence.Type.EF);
             ServiceFactory serviceFactory = new ServiceFactory();
             photoRepository = repositoryFactory.PhotoRepository;
@@ -56,8 +54,10 @@ namespace PhotoFrameApp
 
             // 全アルバム名を取得し、アルバム変更リストをセット
             UpdateKeywordList();
-
             comboBoxChangeKeyword.SelectedIndex = 0;
+
+            // 読み込み中画面のロード
+            ProcessingPictureBox.Image = new Bitmap("読み込み.jpg");
 
 
         }
@@ -113,28 +113,34 @@ namespace PhotoFrameApp
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private async void ButtonSearchFolderClick(object sender, EventArgs e)
-        //private async void button_SearchAlbum_Click(object sender, EventArgs e)
         {
+            // 読み込み中画面表示
+            ProcessingPictureBox.Visible = true;
+
+            // 写真情報読み込み
+            var result = await controller.ExecuteSearchFolderAsync(folderPath);
+
+            //　読み込み中画面非表示
+            ProcessingPictureBox.Visible = false;
+
             //ラベルにフォルダが表示されていない場合の例外処理
             if (folderPath == null || folderPath == "")
             {
                 MessageBox.Show("フォルダ名が指定されていません");
             }
-            // フォルダパスを引数にとって、コントローラーに渡す
-            else if (controller.ExecuteSearchFolder(folderPath).Count() == 0)
-            {
-                MessageBox.Show("写真が存在しません");
-            }
-            else if (controller.ExecuteSearchFolder(folderPath) == null)
+            else if (result == null)
             {
                 MessageBox.Show("フォルダが存在しません");
             }
             // フォルダパスを引数にとって、コントローラーに渡す
+            else if (result.Count() == 0)
+            {
+                MessageBox.Show("写真が存在しません");
+            }        
+            // フォルダパスを引数にとって、コントローラーに渡す
             else
             {
-                this.searchedPhotos = controller.ExecuteSearchFolder(folderPath);
-                //this.searchedPhotos = await application.SearchDirectoryAsync(textBox_Search.Text);
-
+                this.searchedPhotos = result;
                 RenewPhotoListView();
 
                 if (this.searchedPhotos.Count() >= MAX_REGIST_IMAGE) MessageBox.Show("表示上限枚数100枚に達しました\nこれ以上は表示できません");
@@ -160,7 +166,6 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        //private async void ButtonRegistKeyword(object sender, EventArgs e)
         private void ButtonRegistKeywordClick(object sender, EventArgs e)
         {
             if(allKeywords.Count() >= MAX_REGIST_KEYWORD)
@@ -209,7 +214,6 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        //private async void button_ToggleFavorite_Click(object sender, EventArgs e)
         private void ButtonToggleFavoriteClick(object sender, EventArgs e)
         {
             if(CheckExistListviewPhotos())
@@ -225,7 +229,6 @@ namespace PhotoFrameApp
                     for (int i = 0; i < indexList.Count; i++)
                     {
                         Photo photo = controller.ExecuteToggleFavorite(searchedPhotos.ElementAt(indexList.ElementAt(i)));
-                        //Photo photo = await application.ToggleFavoriteAsync(searchedPhotos.ElementAt(indexList.ElementAt(i)));
                         RenewPhotoListViewItem(indexList.ElementAt(i), photo);
                     }
                 }
@@ -238,7 +241,6 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        //private async void ButtonChangeKeywordClick(object sender, EventArgs e)
         private void ButtonChangeKeywordClick(object sender, EventArgs e)
         {
             if(allKeywords.Count() == 0)
@@ -265,7 +267,6 @@ namespace PhotoFrameApp
                     for (int i = 0; i < indexList.Count; i++)
                     {
                         Photo photo = controller.ExecuteChangeKeyword(searchedPhotos.ElementAt(indexList.ElementAt(i)), newKeywordName);
-                        //Photo photo = await application.ChangeAlbumAsync(searchedPhotos.ElementAt(indexList.ElementAt(i)), newAlbumName);
                         RenewPhotoListViewItem(indexList.ElementAt(i), photo);
                     }
                 }
@@ -288,7 +289,7 @@ namespace PhotoFrameApp
 
                     labelPictureBox.Visible = false;
                     FileStream fs = System.IO.File.OpenRead(searchedPhotos.ElementAt(indexNumber).File.FilePath);
-                    Image img = Image.FromStream(fs, false, false); // 検証なし
+                    Image img = Image.FromStream(fs, false, false); 
                     pictureBoxShowPicture.Image = img;
                 }
                 catch (ArgumentException)
