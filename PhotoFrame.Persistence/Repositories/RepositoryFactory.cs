@@ -5,7 +5,7 @@ using System.Data.Entity.SqlServer;
 
 namespace PhotoFrame.Persistence
 {
-    public enum Type { Csv, EF }
+    public enum Type { EF }
 
     /// <summary>
     /// 永続化ストアに応じたリポジトリセットを提供するファクトリ
@@ -13,7 +13,7 @@ namespace PhotoFrame.Persistence
     public class RepositoryFactory : IRepositoryFactory
     {
         // ストア名称
-        //   App.config（アプリケーション構成ファイル）に定義した文字列を引く
+        //  App.config（アプリケーション構成ファイル）に定義した文字列を引く
         private static readonly string DatabaseName = ConfigurationManager.AppSettings["DatabaseName"];
 
         private readonly Type type;
@@ -26,12 +26,7 @@ namespace PhotoFrame.Persistence
             this.type = t;
             switch (type)
             {
-                case Type.Csv:
-                    KeywordRepository = new Csv.KeywordRepository(DatabaseName);
-                    PhotoRepository = new Csv.PhotoRepository(DatabaseName, KeywordRepository);
-                    break;
                 case Type.EF:
-                    // TODO: EFに適した生成に変更してください
                     SqlProviderServices sqlProviderServices = SqlProviderServices.Instance;
                     KeywordRepository = new EF.KeywordRepository(sqlProviderServices);
                     PhotoRepository = new EF.PhotoRepository(KeywordRepository, sqlProviderServices);
