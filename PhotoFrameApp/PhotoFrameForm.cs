@@ -19,10 +19,10 @@ namespace PhotoFrameApp
         private IPhotoRepository photoRepository;
         private IKeywordRepository keywordRepository;
         private IPhotoFileService photoFileService;
+        private Controller controller;
 
         public IEnumerable<Photo> searchedPhotos { set; get; } // リストビュー上のフォトのリスト
-        private Controller controller;
-        
+
         // 定数
         // キーワード登録上限値
         private readonly int MAX_REGIST_KEYWORD = 50;
@@ -34,22 +34,18 @@ namespace PhotoFrameApp
         public string folderPath { set; get; }
         public IEnumerable<Keyword> allKeywords { set; get; }
 
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
         public PhotoFrameForm()
         {
             InitializeComponent();
 
             // リポジトリ生成・初期化
-            //RepositoryFactory repositoryFactory = new RepositoryFactory(PhotoFrame.Persistence.Type.Csv);
             RepositoryFactory repositoryFactory = new RepositoryFactory(PhotoFrame.Persistence.Type.EF);
             ServiceFactory serviceFactory = new ServiceFactory();
             photoRepository = repositoryFactory.PhotoRepository;
             keywordRepository = repositoryFactory.KeywordRepository;
             photoFileService = serviceFactory.PhotoFileService;
             controller = new Controller(keywordRepository, photoRepository, photoFileService);
-            
+
             // キーワード解除用文字列の登録
             comboBoxChangeKeyword.Items.Add("設定解除");
 
@@ -57,8 +53,6 @@ namespace PhotoFrameApp
             UpdateKeywordList();
 
             comboBoxChangeKeyword.SelectedIndex = 0;
-
-
         }
 
         /// <summary>
@@ -73,7 +67,6 @@ namespace PhotoFrameApp
                 {
                     comboBoxChangeKeyword.Items.Add(keyword.Name);
                 }
-               
             }
 
             // 読み込み中画面のロード
@@ -133,7 +126,7 @@ namespace PhotoFrameApp
 
                 // 読み込み中画面非表示
                 pictureBoxProcessing.Visible = false;
-            
+
                 // フォルダパスを引数にとって、コントローラーに渡す
                 if (searchedPhotos == null)
                 {
@@ -163,7 +156,7 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void ButtonDetailSearchClick(object sender, EventArgs e)
         {
-            if(CheckExistListviewPhotos())
+            if (CheckExistListviewPhotos())
             {
                 var detailSearchForm = new DetailSearchForm(this, controller, allKeywords, searchedPhotos);
                 detailSearchForm.ShowDialog();
@@ -178,35 +171,31 @@ namespace PhotoFrameApp
         //private async void ButtonRegistKeyword(object sender, EventArgs e)
         private void ButtonRegistKeywordClick(object sender, EventArgs e)
         {
-            if(allKeywords.Count() >= MAX_REGIST_KEYWORD)
+            if (allKeywords.Count() >= MAX_REGIST_KEYWORD)
             {
                 MessageBox.Show("作成できるキーワード数の上限値に達しています");
             }
-            
+
             else
             {
                 string keyword = textBoxRegistKeyword.Text;
-                if(keyword == "")
+                if (keyword == "")
                 {
                     MessageBox.Show("テキストボックスにキーワードが入力されていません");
                 }
-                else if(keyword.Length > MAX_KEYWORD_LENGTH)
+                else if (keyword.Length > MAX_KEYWORD_LENGTH)
                 {
                     MessageBox.Show("作成できるキーワードの文字数は20字以内です");
                 }
                 else
                 {
                     var result = controller.ExecuteRegistKeyword(keyword);
-                    //var result = await application.CreateAlbumAsync(keyword);
 
                     switch (result)
                     {
                         case 0:
-
                             allKeywords = controller.ExecuteGetKeyword();
-                            comboBoxChangeKeyword.Items.Add(keyword);                          
-                          
-
+                            comboBoxChangeKeyword.Items.Add(keyword);
                             break;
                         case 1:
                             MessageBox.Show("そのキーワードはすでに作成されています");
@@ -216,7 +205,6 @@ namespace PhotoFrameApp
                     }
                 }
             }
-
         }
 
         /// <summary>
@@ -224,14 +212,13 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        //private async void button_ToggleFavorite_Click(object sender, EventArgs e)
         private void ButtonToggleFavoriteClick(object sender, EventArgs e)
         {
-            if(CheckExistListviewPhotos())
+            if (CheckExistListviewPhotos())
             {
                 var indexList = GetListviewIndex();
-            
-                if(indexList.Count() == 0)
+
+                if (indexList.Count() == 0)
                 {
                     MessageBox.Show("写真が選択されていません");
                 }
@@ -240,7 +227,6 @@ namespace PhotoFrameApp
                     for (int i = 0; i < indexList.Count; i++)
                     {
                         Photo photo = controller.ExecuteToggleFavorite(searchedPhotos.ElementAt(indexList.ElementAt(i)));
-                        //Photo photo = await application.ToggleFavoriteAsync(searchedPhotos.ElementAt(indexList.ElementAt(i)));
                         RenewPhotoListViewItem(indexList.ElementAt(i), photo);
                     }
                 }
@@ -253,14 +239,13 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        //private async void ButtonChangeKeywordClick(object sender, EventArgs e)
         private void ButtonChangeKeywordClick(object sender, EventArgs e)
         {
-            if(allKeywords.Count() == 0)
+            if (allKeywords.Count() == 0)
             {
                 MessageBox.Show("キーワードが作成されていません");
             }
-            if(CheckExistListviewPhotos())
+            if (CheckExistListviewPhotos())
             {
                 string newKeywordName = null;
 
@@ -270,8 +255,8 @@ namespace PhotoFrameApp
                 }
 
                 var indexList = GetListviewIndex();
-                
-                if(indexList.Count() == 0)
+
+                if (indexList.Count() == 0)
                 {
                     MessageBox.Show("写真が選択されていません");
                 }
@@ -280,7 +265,6 @@ namespace PhotoFrameApp
                     for (int i = 0; i < indexList.Count; i++)
                     {
                         Photo photo = controller.ExecuteChangeKeyword(searchedPhotos.ElementAt(indexList.ElementAt(i)), newKeywordName);
-                        //Photo photo = await application.ChangeAlbumAsync(searchedPhotos.ElementAt(indexList.ElementAt(i)), newAlbumName);
                         RenewPhotoListViewItem(indexList.ElementAt(i), photo);
                     }
                 }
@@ -302,7 +286,7 @@ namespace PhotoFrameApp
 
                     labelPictureBox.Visible = false;
                     FileStream fs = System.IO.File.OpenRead(searchedPhotos.ElementAt(indexNumber).File.FilePath);
-                    Image img = Image.FromStream(fs, false, false); // 検証なし
+                    Image img = Image.FromStream(fs, false, false);
                     pictureBoxShowPicture.Image = img;
                 }
                 catch (ArgumentException)
@@ -321,11 +305,11 @@ namespace PhotoFrameApp
         /// </summary>
         private int CheckSortList()
         {
-            if(radioButtonOldNew.Checked)
+            if (radioButtonOldNew.Checked)
             {
                 return 1;
             }
-            else if(radioButtonNewOld.Checked)
+            else if (radioButtonNewOld.Checked)
             {
                 return 2;
             }
@@ -361,14 +345,13 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void ButtonStartSlideShowClick(object sender, EventArgs e)
         {
-            if(CheckExistListviewPhotos())
+            if (CheckExistListviewPhotos())
             {
                 // ソートしたリストを渡す
                 IEnumerable<Photo> targetSlideshowPhotos = controller.ExecuteSortList(searchedPhotos, CheckSortList());
                 var slideShowForm = new SlideShowForm(targetSlideshowPhotos);
                 slideShowForm.ShowDialog();
             }
-
         }
 
 
@@ -408,7 +391,6 @@ namespace PhotoFrameApp
             listViewPhotoList.Items[index].SubItems[1].Text = keyword;
             listViewPhotoList.Items[index].SubItems[2].Text = isFavorite;
             listViewPhotoList.Items[index].SubItems[3].Text = datetime;
-
         }
 
         /// <summary>

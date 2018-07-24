@@ -24,18 +24,14 @@ namespace PhotoFrameApp
         int photo_index;
 
         private SoundPlayer player = null;
-        private string musicFile = "music.wav";
+        private string musicFile;
 
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="photos"></param>
         public SlideShowForm(IEnumerable<Photo> photos)
         {
             InitializeComponent();
             this.photos = photos;
             this.photo_index = 0;
-        }   
+        }
 
         /// <summary>
         /// スライドショー画面の初期設定
@@ -44,12 +40,12 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void SlideShowLoad(object sender, EventArgs e)
         {
-            if(photos.Count() > 0)
+            if (photos.Count() > 0)
             {
                 System.IO.FileStream fs = System.IO.File.OpenRead(photos.ElementAt(photo_index).File.FilePath);
                 Image img = Image.FromStream(fs, false, false); // 検証なし
                 pictureBoxSelectedPhotos.Image = img;
-              
+
                 timer_ChangePhoto.Interval = 3000;
 
                 if (checkBoxAutoSlideShow.Checked)
@@ -62,7 +58,6 @@ namespace PhotoFrameApp
                     // 音楽再生メソッドを呼び出す
                     PlayMusic();
                 }
-
             }
         }
 
@@ -91,12 +86,9 @@ namespace PhotoFrameApp
         {
             //読み込む
             player = new SoundPlayer(musicFile);
-            //非同期再生する
-            //player.Play();
-     
-            //ループ再生される
-            player.PlayLooping();
 
+            //ループ再生
+            player.PlayLooping();
         }
 
         /// <summary>
@@ -123,7 +115,7 @@ namespace PhotoFrameApp
         {
             photo_index++;
 
-            if(photo_index >= photos.Count())
+            if (photo_index >= photos.Count())
             {
                 photo_index = 0;
             }
@@ -171,7 +163,6 @@ namespace PhotoFrameApp
             System.IO.FileStream fs = System.IO.File.OpenRead(photos.ElementAt(photo_index).File.FilePath);
             Image img = Image.FromStream(fs, false, false); // 検証なし
             pictureBoxSelectedPhotos.Image = img;
-            
         }
 
         /// <summary>
@@ -194,10 +185,9 @@ namespace PhotoFrameApp
             System.IO.FileStream fs = System.IO.File.OpenRead(photos.ElementAt(photo_index).File.FilePath);
             Image img = Image.FromStream(fs, false, false); // 検証なし
             pictureBoxSelectedPhotos.Image = img;
-           
         }
 
-       
+
         private void SlideShowForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.StopMusic();
@@ -208,14 +198,8 @@ namespace PhotoFrameApp
             // ダイアログを開く
             // FolderBrowserDialogクラスのインスタンスを作成
             OpenFileDialog fbd = new OpenFileDialog();
-            
+
             fbd.Filter = "(*.wav) | *.wav";
-
-            ////上部に表示する説明テキストを指定する
-            //fbd.Title = "ファイルを指定してください。",
-
-            ////最初に選択するフォルダを指定する
-            //SelectedPath = @"C:\",
 
             //ダイアログで決定ボタンを選択される
             if (fbd.ShowDialog(this) == DialogResult.OK)

@@ -11,21 +11,11 @@ namespace PhotoFrameApp
     public class Controller
     {
         // アプリケーションのインスタンス
-        // 本番用
-        //private readonly PhotoFrameApplication application;
-
-        // テスト用
         private readonly PhotoFrameApplication application;
-
-
-        private readonly IPhotoRepository photoRepository;
-        private readonly IKeywordRepository albumRepository;
-        private readonly IPhotoFileService photoFileService;
 
         public Controller(IKeywordRepository keywordRepository, IPhotoRepository photoRepository, IPhotoFileService photoFileService)
         {
             this.application = new PhotoFrameApplication(keywordRepository, photoRepository, photoFileService);
-     
         }
 
         public IEnumerable<Keyword> ExecuteGetKeyword()
@@ -70,7 +60,7 @@ namespace PhotoFrameApp
                 var photos = application.SearchFolder(directoryName);
                 return photos;
             });
-            return retPhotos;         
+            return retPhotos;
         }
     }
 }

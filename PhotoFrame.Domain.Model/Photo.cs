@@ -67,7 +67,6 @@ namespace PhotoFrame.Domain.Model
             {
                 KeywordId = keyword.Id;
             }
-           
         }
 
         public void MarkAsFavorite()

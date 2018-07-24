@@ -9,7 +9,6 @@ namespace PhotoFrame.Domain.UseCase
 {
     public class GetKeywordList
     {
-
         private readonly IKeywordRepository _keywordRepository;
 
         public GetKeywordList(IKeywordRepository keywordRepository)
@@ -24,7 +23,7 @@ namespace PhotoFrame.Domain.UseCase
         public IEnumerable<Keyword> Execute()
         {
             // 全アルバム名を取得
-            return _keywordRepository.Find(keywords => keywords); 
+            return _keywordRepository.Find(keywords => keywords);
         }
     }
 }

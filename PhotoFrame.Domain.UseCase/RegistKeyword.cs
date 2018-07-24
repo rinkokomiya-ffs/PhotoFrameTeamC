@@ -11,15 +11,13 @@ namespace PhotoFrame.Domain.UseCase
     /// <summary>
     /// アルバムを作成するユースケースを実現する
     /// </summary>
-    // TODO: 仮実装
     public class RegistKeyword
     {
         private readonly IKeywordRepository _keywordRepository;
-        
+
         public RegistKeyword(IKeywordRepository keywordRepository)
         {
             _keywordRepository = keywordRepository;
-          
         }
 
         /// <summary>
@@ -34,7 +32,6 @@ namespace PhotoFrame.Domain.UseCase
             // 登録済みのアルバム名でない場合
             if (result == null)
             {
-
                 var keyword = Keyword.Create(keywordName);
                 _keywordRepository.Store(keyword);
 
@@ -46,9 +43,6 @@ namespace PhotoFrame.Domain.UseCase
                 // 既存のアルバム名
                 return 1;
             }
-          
         }
-
     }
-    
 }

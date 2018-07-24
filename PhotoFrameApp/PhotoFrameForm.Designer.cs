@@ -402,7 +402,7 @@
             this.ClientSize = new System.Drawing.Size(990, 572);
             this.Controls.Add(this.splitContainer1);
             this.Name = "PhotoFrameForm";
-            this.Text = "Form1";
+            this.Text = "Emograph～マイストーリーは突然に～";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

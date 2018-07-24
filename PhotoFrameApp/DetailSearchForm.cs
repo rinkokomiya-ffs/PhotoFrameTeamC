@@ -26,8 +26,6 @@ namespace PhotoFrameApp
             this.controller = controller;
             this.photoList = new List<Photo>(photoList);
             InitializeComponent();
-            
-            
 
             // キーワードを選択できるようにコンボボックスに表示する
             if (allKeywords != null)
@@ -37,9 +35,7 @@ namespace PhotoFrameApp
                     comboBoxSelectKeyword.Items.Add(keyword.Name);
                 }
 
-                //comboBoxSelectKeyword.SelectedIndex = 0 ;
             }
-
 
             // 初期状態で表示する撮影日を設定する
             GetDateTime();
@@ -47,12 +43,14 @@ namespace PhotoFrameApp
             dateTimePickerLastDate.Value = newDate;
         }
 
+        /// <summary>
+        /// 初期状態で表示する撮影日を設定
+        /// </summary>
         private void GetDateTime()
         {
             var tmpPhotoList = new List<Photo>(photoList);
             oldDate = controller.ExecuteSortList(tmpPhotoList, 1).First().DateTime;
             newDate = controller.ExecuteSortList(tmpPhotoList, 2).First().DateTime;
-            
         }
 
         /// <summary>
@@ -63,6 +61,7 @@ namespace PhotoFrameApp
         private void ButtonFinishDecideClick(object sender, EventArgs e)
         {
             var searchResultPhotos = CheckParameter();
+
             // 撮影日設定に不備があった場合
             if (searchResultPhotos == null)
             {

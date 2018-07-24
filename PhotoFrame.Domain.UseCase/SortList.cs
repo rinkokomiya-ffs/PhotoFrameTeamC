@@ -10,8 +10,7 @@ namespace PhotoFrame.Domain.UseCase
 {
     public class SortList
     {
-
-        public SortList(){}
+        public SortList() { }
 
         /// <summary>
         /// ソート実行
@@ -38,7 +37,5 @@ namespace PhotoFrame.Domain.UseCase
                 return null;
             }
         }
-
-       
     }
 }

@@ -9,7 +9,6 @@ namespace PhotoFrame.Domain.UseCase
 {
     public class ChangeKeyword
     {
-
         private readonly IKeywordRepository _keywordRepository;
         private readonly IPhotoRepository _photoRepository;
 
@@ -28,8 +27,7 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns></returns>
         public Photo Execute(Photo photo, string keywordName)
         {
-
-            if(keywordName == null)
+            if (keywordName == null)
             {
                 photo.IsAssignedTo(null);
                 _photoRepository.Store(photo);
@@ -43,9 +41,8 @@ namespace PhotoFrame.Domain.UseCase
                     _photoRepository.Store(photo);
                 }
             }
-           
+
             return photo;
         }
-
     }
 }

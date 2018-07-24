@@ -58,7 +58,6 @@ namespace PhotoFrame.Domain.UseCase
                     }
                 }   
             }
-
             return photosInFolder;
         }
 
@@ -99,7 +98,6 @@ namespace PhotoFrame.Domain.UseCase
                 var date = System.IO.File.GetCreationTime(filePath);
                 return date;
             }
-                   
         }
 
         /// <summary>
@@ -114,14 +112,11 @@ namespace PhotoFrame.Domain.UseCase
                 System.IO.FileStream stream = System.IO.File.OpenRead(filePath);
                 Image image = Image.FromStream(stream, false, false);
                 return image;
-
             }
             catch
             { 
                 return null;
             }
-            
         }
-
     }
 }

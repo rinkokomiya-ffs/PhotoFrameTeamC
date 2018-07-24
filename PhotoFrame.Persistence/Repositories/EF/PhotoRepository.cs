@@ -26,13 +26,11 @@ namespace PhotoFrame.Persistence.EF
 
         public bool Exists(Photo entity)
         {
-            // TODO: DBプログラミング講座で実装
             throw new NotImplementedException();
         }
 
         public bool ExistsBy(string id)
         {
-            // TODO: DBプログラミング講座で実装
             throw new NotImplementedException();
         }
 
@@ -49,7 +47,6 @@ namespace PhotoFrame.Persistence.EF
 
         public Photo FindBy(string id)
         {
-            // TODO: DBプログラミング講座で実装
             throw new NotImplementedException();
         }
 
@@ -60,7 +57,6 @@ namespace PhotoFrame.Persistence.EF
         /// <returns></returns>
         public Photo Store(Photo entity)
         {
-            // TODO: DBプログラミング講座で実装
             var photo = PhotoToTable(entity);
 
             using (var photoFrameEntity = new PhotoFrameTeamCEntities2())
@@ -158,7 +154,6 @@ namespace PhotoFrame.Persistence.EF
 
         public void StoreIfNotExists(IEnumerable<Photo> photos)
         {
-            // TODO: DBプログラミング講座で実装
             throw new NotImplementedException();
         }
     }

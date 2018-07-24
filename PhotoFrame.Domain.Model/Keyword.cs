@@ -27,7 +27,6 @@ namespace PhotoFrame.Domain.Model
         {
             Id = albumId;
             Name = name;
-           
         }
 
         private Keyword() { }

@@ -37,6 +37,5 @@ namespace PhotoFrame.Domain.UseCase
 
             return photo;
         }
-
     }
 }

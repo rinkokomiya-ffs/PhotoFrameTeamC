@@ -1,5 +1,4 @@
-﻿
-using PhotoFrame.Domain.Model;
+﻿using PhotoFrame.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,13 +23,11 @@ namespace PhotoFrame.Persistence.EF
 
         public bool Exists(Keyword entity)
         {
-            // TODO: DBプログラミング講座で実装
             throw new NotImplementedException();
         }
 
         public bool ExistsBy(string id)
         {
-            // TODO: DBプログラミング講座で実装
             throw new NotImplementedException();
         }
 
@@ -52,7 +49,6 @@ namespace PhotoFrame.Persistence.EF
 
         public Keyword FindBy(string id)
         {
-            // TODO: DBプログラミング講座で実装
             throw new NotImplementedException();
         }
 
@@ -64,7 +60,6 @@ namespace PhotoFrame.Persistence.EF
         /// <returns></returns>
         public Keyword Store(Keyword entity)
         {
-            // TODO: DBプログラミング講座で実装
             var keyword = KeywordToTable(entity);
           
             using (var photoFrameEntity = new PhotoFrameTeamCEntities2())
@@ -88,18 +83,14 @@ namespace PhotoFrame.Persistence.EF
                         photoFrameEntity.SaveChanges();
                         transaction.Commit();
                         return entity;
-
                     }
                     catch (Exception)
                     {
                         transaction.Rollback();
                         throw;
                     }
-
                 }
-
             }
-
         }
 
         /// <summary>
@@ -138,6 +129,5 @@ namespace PhotoFrame.Persistence.EF
 
             return m_keyword;
         }
-
     }
 }

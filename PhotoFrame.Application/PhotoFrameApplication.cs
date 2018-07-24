@@ -11,7 +11,6 @@ namespace PhotoFrame.Application
     /// <summary>
     /// PhotoFrameのUIの指示にしたがってドメインのユースケースを起動する
     /// </summary>
-    // TODO: 仮実装
     public class PhotoFrameApplication
     {
         // ユースケースのインスタンス
@@ -34,7 +33,6 @@ namespace PhotoFrame.Application
             _getKeywordList = new GetKeywordList(keywordRepository);
         }
 
- 
         public int RegistKeyword(string keyword)
         {
             return _registKeyword.Execute(keyword);
@@ -54,7 +52,7 @@ namespace PhotoFrame.Application
         {
             return _toggleFavorite.Execute(photo);
         }
-     
+
         public Photo ChangeKeyword(Photo photo, string keyword)
         {
             return _changeKeyword.Execute(photo, keyword);
@@ -69,7 +67,5 @@ namespace PhotoFrame.Application
         {
             return _getKeywordList.Execute();
         }
-
-     
     }
 }

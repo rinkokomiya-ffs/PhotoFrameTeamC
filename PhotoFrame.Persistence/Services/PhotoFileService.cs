@@ -32,7 +32,7 @@ namespace PhotoFrame.Persistence
                 {
                     Domain.Model.File file = new Domain.Model.File(filePath);
 
-                    if(file.IsPhoto)
+                    if (file.IsPhoto)
                     {
                         file_list.Add(file);
                     }
@@ -57,11 +57,11 @@ namespace PhotoFrame.Persistence
 
             string[] dirs = Directory.GetDirectories(dir);
 
-            foreach(string s in dirs)
+            foreach (string s in dirs)
             {
                 List<string> temp_list = Enumerate(s);
 
-                foreach(string t in temp_list)
+                foreach (string t in temp_list)
                 {
                     file_list.Add(t);
                 }

@@ -9,7 +9,7 @@ namespace PhotoFrame.Domain.UseCase
 {
     public class DetailSearch
     {
-        public DetailSearch(){}
+        public DetailSearch() { }
 
         /// <summary>
         /// 指定した名前のアルバムに属するフォトのリストを返す
@@ -18,22 +18,21 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns></returns>
         public IEnumerable<Photo> Execute(IEnumerable<Photo> photoList, string keyword, string isFavorite, DateTime? firstData, DateTime? lastData)
         {
-            if(keyword != null)
+            if (keyword != null)
             {
                 photoList = photoList.Where(photo => photo.Keyword != null && photo.Keyword.Name == keyword);
             }
 
-            if(isFavorite != null)
+            if (isFavorite != null)
             {
                 photoList = photoList.Where(photo => photo.IsFavorite == Convert.ToBoolean(isFavorite));
             }
 
-            if(firstData != null && lastData != null)
+            if (firstData != null && lastData != null)
             {
                 photoList = photoList.Where(photo => photo.DateTime >= firstData && photo.DateTime <= lastData);
             }
             return photoList;
         }
-
     }
 }
