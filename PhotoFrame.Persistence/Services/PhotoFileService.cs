@@ -13,17 +13,21 @@ namespace PhotoFrame.Persistence
     /// </summary>
     class PhotoFileService : IPhotoFileService
     {
+
+        // 定数
+        // キーワード登録上限値
+        private readonly int MAX_REGIST_IMAGE = 100;
+
         public IEnumerable<Domain.Model.File> FindAllPhotoFilesFromDirectory(string directory)
         {
             // TODO: コレクション講座で実装予定
             List<Domain.Model.File> file_list = null;
-
+         
             // directoryが存在する場合
             if (Directory.Exists(directory))
             {
                 file_list = new List<Domain.Model.File>();
-                // バグの危険性
-                //List<string> path_list = Enumerate(directory);
+                
                 string[] path_list = Directory.GetFiles(directory);
 
                 foreach (string filePath in path_list)
@@ -34,6 +38,8 @@ namespace PhotoFrame.Persistence
                     {
                         file_list.Add(file);
                     }
+
+                    if (file_list.Count >= MAX_REGIST_IMAGE) break;
                 }
 
             }

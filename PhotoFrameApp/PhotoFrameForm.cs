@@ -114,6 +114,8 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private async void ButtonSearchFolderClick(object sender, EventArgs e)
         {
+            searchedPhotos = new List<Photo>().AsEnumerable();
+
             // 読み込み中画面表示
             ProcessingPictureBox.Visible = true;
 
@@ -187,8 +189,7 @@ namespace PhotoFrameApp
                 else
                 {
                     var result = controller.ExecuteRegistKeyword(keyword);
-                    //var result = await application.CreateAlbumAsync(keyword);
-
+                   
                     switch (result)
                     {
                         case 0:
