@@ -1,27 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using PhotoFrame.Application;
-using PhotoFrame.Domain;
 using PhotoFrame.Domain.Model;
-using PhotoFrame.Domain.UseCase;
-using PhotoFrame.Persistence;
-using PhotoFrame.Persistence.Csv;
 using System.Media;
-using System.Threading;
 
 namespace PhotoFrameApp
 {
     public partial class SlideShowForm : Form
     {
-        IEnumerable<Photo> photos;
-        int photo_index;
+        private IEnumerable<Photo> photos;
+        private int photo_index;
 
         private SoundPlayer player = null;
         private string musicFile;
@@ -43,7 +33,7 @@ namespace PhotoFrameApp
             if (photos.Count() > 0)
             {
                 System.IO.FileStream fs = System.IO.File.OpenRead(photos.ElementAt(photo_index).File.FilePath);
-                Image img = Image.FromStream(fs, false, false); // 検証なし
+                Image img = Image.FromStream(fs, false, false);
                 pictureBoxSelectedPhotos.Image = img;
 
                 timer_ChangePhoto.Interval = 3000;
@@ -104,8 +94,6 @@ namespace PhotoFrameApp
             }
         }
 
-
-
         /// <summary>
         /// 一定時間ごとに画像を切り替え
         /// </summary>
@@ -121,7 +109,7 @@ namespace PhotoFrameApp
             }
 
             System.IO.FileStream fs = System.IO.File.OpenRead(photos.ElementAt(photo_index).File.FilePath);
-            Image img = Image.FromStream(fs, true, true); // 検証なし
+            Image img = Image.FromStream(fs, true, true);
             pictureBoxSelectedPhotos.Image = img;
 
         }
@@ -161,7 +149,7 @@ namespace PhotoFrameApp
             }
 
             System.IO.FileStream fs = System.IO.File.OpenRead(photos.ElementAt(photo_index).File.FilePath);
-            Image img = Image.FromStream(fs, false, false); // 検証なし
+            Image img = Image.FromStream(fs, false, false);
             pictureBoxSelectedPhotos.Image = img;
         }
 
@@ -183,7 +171,7 @@ namespace PhotoFrameApp
             }
 
             System.IO.FileStream fs = System.IO.File.OpenRead(photos.ElementAt(photo_index).File.FilePath);
-            Image img = Image.FromStream(fs, false, false); // 検証なし
+            Image img = Image.FromStream(fs, false, false);
             pictureBoxSelectedPhotos.Image = img;
         }
 

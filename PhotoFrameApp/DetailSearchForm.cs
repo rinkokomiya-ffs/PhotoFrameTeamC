@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using PhotoFrame.Domain.Model;
 
@@ -16,7 +11,7 @@ namespace PhotoFrameApp
     {
         PhotoFrameForm mainForm;
         private readonly Controller controller;
-        public IEnumerable<Photo> photoList { get; set; }
+        private IEnumerable<Photo> photoList;
         private DateTime oldDate;
         private DateTime newDate;
 

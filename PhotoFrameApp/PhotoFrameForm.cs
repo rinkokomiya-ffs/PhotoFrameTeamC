@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using PhotoFrame.Application;
 using PhotoFrame.Domain.Model;
 using PhotoFrame.Persistence;
 using System.IO;
@@ -21,8 +17,13 @@ namespace PhotoFrameApp
         private IPhotoFileService photoFileService;
         private Controller controller;
 
-        public IEnumerable<Photo> searchedPhotos { set; get; } // リストビュー上のフォトのリスト
-
+        // フォルダパス
+        private string folderPath;
+        // リストビュー上のフォトのリスト
+        public IEnumerable<Photo> searchedPhotos { set; get; }
+        // キーワードリスト
+        public IEnumerable<Keyword> allKeywords { set; get; }
+        
         // 定数
         // キーワード登録上限値
         private readonly int MAX_REGIST_KEYWORD = 50;
@@ -30,9 +31,6 @@ namespace PhotoFrameApp
         private readonly int MAX_REGIST_IMAGE = 100;
         // キーワード文字数上限値
         private readonly int MAX_KEYWORD_LENGTH = 20;
-
-        public string folderPath { set; get; }
-        public IEnumerable<Keyword> allKeywords { set; get; }
 
         public PhotoFrameForm()
         {

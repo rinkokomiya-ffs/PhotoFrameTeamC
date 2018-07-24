@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PhotoFrame.Domain.Model;
-using System.Drawing;
 
 namespace PhotoFrame.Domain.UseCase
 {

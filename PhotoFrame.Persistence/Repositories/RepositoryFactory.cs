@@ -1,11 +1,6 @@
 ﻿using PhotoFrame.Domain.Model;
-using PhotoFrame.Persistence.EF;
 using System;
 using System.Configuration;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity.SqlServer;
 
 namespace PhotoFrame.Persistence
