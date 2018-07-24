@@ -120,14 +120,15 @@ namespace PhotoFrameApp
             {
                 MessageBox.Show("フォルダ名が指定されていません");
             }
+            
+            else if (controller.ExecuteSearchFolder(folderPath) == null)
+            {
+                MessageBox.Show("フォルダが存在しません");
+            }
             // フォルダパスを引数にとって、コントローラーに渡す
             else if (controller.ExecuteSearchFolder(folderPath).Count() == 0)
             {
                 MessageBox.Show("写真が存在しません");
-            }
-            else if (controller.ExecuteSearchFolder(folderPath) == null)
-            {
-                MessageBox.Show("フォルダが存在しません");
             }
             // フォルダパスを引数にとって、コントローラーに渡す
             else
