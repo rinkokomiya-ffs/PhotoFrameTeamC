@@ -58,25 +58,25 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EF\KeywordRepository.cs" />
     <Compile Include="Repositories\EF\m_Keyword.cs">
-      <DependentUpon>PhotoFrameTeamC2.tt</DependentUpon>
+      <DependentUpon>PhotoFrameTeamC.tt</DependentUpon>
     </Compile>
     <Compile Include="Repositories\EF\m_Photo.cs">
-      <DependentUpon>PhotoFrameTeamC2.tt</DependentUpon>
+      <DependentUpon>PhotoFrameTeamC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Repositories\EF\PhotoFrameTeamC2.Context.cs">
+    <Compile Include="Repositories\EF\PhotoFrameTeamC.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PhotoFrameTeamC2.Context.tt</DependentUpon>
+      <DependentUpon>PhotoFrameTeamC.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Repositories\EF\PhotoFrameTeamC2.cs">
+    <Compile Include="Repositories\EF\PhotoFrameTeamC.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PhotoFrameTeamC2.tt</DependentUpon>
+      <DependentUpon>PhotoFrameTeamC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Repositories\EF\PhotoFrameTeamC2.Designer.cs">
+    <Compile Include="Repositories\EF\PhotoFrameTeamC.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PhotoFrameTeamC2.edmx</DependentUpon>
+      <DependentUpon>PhotoFrameTeamC.edmx</DependentUpon>
     </Compile>
     <Compile Include="Repositories\EF\PhotoRepository.cs" />
     <Compile Include="Repositories\IRepositoryFactory.cs" />
@@ -94,27 +94,27 @@
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="Repositories\EF\PhotoFrameTeamC2.edmx">
+    <EntityDeploy Include="Repositories\EF\PhotoFrameTeamC.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PhotoFrameTeamC2.Designer.cs</LastGenOutput>
+      <LastGenOutput>PhotoFrameTeamC.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Repositories\EF\PhotoFrameTeamC2.edmx.diagram">
-      <DependentUpon>PhotoFrameTeamC2.edmx</DependentUpon>
+    <None Include="Repositories\EF\PhotoFrameTeamC.edmx.diagram">
+      <DependentUpon>PhotoFrameTeamC.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Repositories\EF\PhotoFrameTeamC2.Context.tt">
+    <Content Include="Repositories\EF\PhotoFrameTeamC.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PhotoFrameTeamC2.edmx</DependentUpon>
-      <LastGenOutput>PhotoFrameTeamC2.Context.cs</LastGenOutput>
+      <DependentUpon>PhotoFrameTeamC.edmx</DependentUpon>
+      <LastGenOutput>PhotoFrameTeamC.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Repositories\EF\PhotoFrameTeamC2.tt">
+    <Content Include="Repositories\EF\PhotoFrameTeamC.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PhotoFrameTeamC2.edmx</DependentUpon>
-      <LastGenOutput>PhotoFrameTeamC2.cs</LastGenOutput>
+      <DependentUpon>PhotoFrameTeamC.edmx</DependentUpon>
+      <LastGenOutput>PhotoFrameTeamC.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

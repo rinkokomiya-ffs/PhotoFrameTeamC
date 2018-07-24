@@ -13,10 +13,10 @@ namespace PhotoFrame.Persistence.Repositories.EF
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PhotoFrameTeamCEntities3 : DbContext
+    public partial class PhotoFrameTeamCEntities2 : DbContext
     {
-        public PhotoFrameTeamCEntities3()
-            : base("name=PhotoFrameTeamCEntities3")
+        public PhotoFrameTeamCEntities2()
+            : base("name=PhotoFrameTeamCEntities2")
         {
         }
     
