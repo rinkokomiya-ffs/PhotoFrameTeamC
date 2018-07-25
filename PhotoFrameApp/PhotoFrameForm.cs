@@ -114,6 +114,9 @@ namespace PhotoFrameApp
             }
             else
             {
+                //　表示されている写真をリセット
+                if (pictureBoxShowPicture.Image != null) pictureBoxShowPicture.Image = null;
+
                 // 読み込み中画面表示
                 pictureBoxProcessing.Visible = true;
 
