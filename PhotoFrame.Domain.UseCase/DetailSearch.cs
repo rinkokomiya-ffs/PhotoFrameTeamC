@@ -14,7 +14,7 @@ namespace PhotoFrame.Domain.UseCase
         /// </summary>
         /// <param name="albumName"></param>
         /// <returns></returns>
-        public IEnumerable<Photo> Execute(IEnumerable<Photo> photoList, string keyword, string isFavorite, DateTime? firstData, DateTime? lastData)
+        public IEnumerable<Photo> Execute(IEnumerable<Photo> photoList, string keyword, string isFavorite, DateTime? firstDate, DateTime? lastData)
         {
             if (keyword != null)
             {
@@ -26,9 +26,9 @@ namespace PhotoFrame.Domain.UseCase
                 photoList = photoList.Where(photo => photo.IsFavorite == Convert.ToBoolean(isFavorite));
             }
 
-            if (firstData != null && lastData != null)
+            if (firstDate != null && lastData != null)
             {
-                photoList = photoList.Where(photo => photo.DateTime >= firstData && photo.DateTime <= lastData);
+                photoList = photoList.Where(photo => photo.DateTime >= firstDate && photo.DateTime <= lastData);
             }
             return photoList;
         }
