@@ -27,27 +27,6 @@ namespace PhotoFrame.Domain.Model
         E Find(Func<IQueryable<E>, E> query);
 
         /// <summary>
-        /// IDをもとにオブジェクトを検索する
-        /// </summary>
-        /// <param name="id">ID</param>
-        /// <returns>検索結果</returns>
-        E FindBy(string id);
-
-        /// <summary>
-        /// すでに存在するオブジェクトかどうか
-        /// </summary>
-        /// <param name="entity">オブジェクト</param>
-        /// <returns>true 存在する, false 存在しない</returns>
-        bool Exists(E entity);
-
-        /// <summary>
-        /// すでに存在するオブジェクトかどうか
-        /// </summary>
-        /// <param name="id">ID</param>
-        /// <returns>true 存在する, false 存在しない</returns>
-        bool ExistsBy(string id);
-
-        /// <summary>
         /// オブジェクトを保存する
         /// </summary>
         /// <param name="entity">オブジェクト</param>

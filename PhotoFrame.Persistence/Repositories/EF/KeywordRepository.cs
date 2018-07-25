@@ -19,16 +19,6 @@ namespace PhotoFrame.Persistence.EF
             _sqlProviderServices = sqlProviderServices;
         }
 
-        public bool Exists(Keyword entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool ExistsBy(string id)
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// 引数のFunc<>の条件で複数データ検索
         /// </summary>
@@ -44,11 +34,6 @@ namespace PhotoFrame.Persistence.EF
         /// <returns></returns>
         public Keyword Find(Func<IQueryable<Keyword>, Keyword> query)
             => query(FindAll());
-
-        public Keyword FindBy(string id)
-        {
-            throw new NotImplementedException();
-        }
 
         /// <summary>
         /// アルバム保存
