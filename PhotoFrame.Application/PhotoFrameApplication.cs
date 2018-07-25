@@ -35,9 +35,9 @@ namespace PhotoFrame.Application
             return _registKeyword.Execute(keyword);
         }
 
-        public IEnumerable<Photo> DetailSearch(IEnumerable<Photo> photoList, string keyword, string isFavorite, DateTime? firstData, DateTime? lastData)
+        public IEnumerable<Photo> DetailSearch(IEnumerable<Photo> photoList, string keyword, string isFavorite, DateTime? firstDate, DateTime? lastDate)
         {
-            return _detailSearch.Execute(photoList, keyword, isFavorite, firstData, lastData);
+            return _detailSearch.Execute(photoList, keyword, isFavorite, firstDate, lastDate);
         }
 
         public IEnumerable<Photo> SearchFolder(string directoryName)

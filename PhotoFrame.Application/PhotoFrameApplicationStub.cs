@@ -149,12 +149,12 @@ namespace PhotoFrame.Application
             }
         }
 
-        public IEnumerable<Photo> DetailSearch(IEnumerable<Photo> photoList, string keyword, string isFavorite, DateTime? firstData, DateTime? lastData)
+        public IEnumerable<Photo> DetailSearch(IEnumerable<Photo> photoList, string keyword, string isFavorite, DateTime? firstDate, DateTime? lastDate)
         {
             var keyword_test = keyword;
             var isFavorite_test = isFavorite;
-            var firstDate_test = firstData;
-            var lastDate_test = lastData;
+            var firstDate_test = firstDate;
+            var lastDate_test = lastDate;
             Console.WriteLine("Application.DetailSearchは呼び出されました");
             return photoList;
         }
