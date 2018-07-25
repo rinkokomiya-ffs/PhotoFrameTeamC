@@ -44,18 +44,21 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 22);
+            this.label1.Font = new System.Drawing.Font("メイリオ", 10F);
+            this.label1.Location = new System.Drawing.Point(32, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 12);
+            this.label1.Size = new System.Drawing.Size(94, 21);
             this.label1.TabIndex = 0;
             this.label1.Text = "絞り込み条件";
             // 
             // checkBoxKeyword
             // 
             this.checkBoxKeyword.AutoSize = true;
-            this.checkBoxKeyword.Location = new System.Drawing.Point(36, 60);
+            this.checkBoxKeyword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBoxKeyword.Location = new System.Drawing.Point(42, 90);
+            this.checkBoxKeyword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBoxKeyword.Name = "checkBoxKeyword";
-            this.checkBoxKeyword.Size = new System.Drawing.Size(72, 16);
+            this.checkBoxKeyword.Size = new System.Drawing.Size(84, 22);
             this.checkBoxKeyword.TabIndex = 1;
             this.checkBoxKeyword.Text = "キーワード";
             this.checkBoxKeyword.UseVisualStyleBackColor = true;
@@ -63,9 +66,11 @@
             // checkBoxFavorite
             // 
             this.checkBoxFavorite.AutoSize = true;
-            this.checkBoxFavorite.Location = new System.Drawing.Point(36, 107);
+            this.checkBoxFavorite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBoxFavorite.Location = new System.Drawing.Point(42, 145);
+            this.checkBoxFavorite.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBoxFavorite.Name = "checkBoxFavorite";
-            this.checkBoxFavorite.Size = new System.Drawing.Size(75, 16);
+            this.checkBoxFavorite.Size = new System.Drawing.Size(84, 22);
             this.checkBoxFavorite.TabIndex = 2;
             this.checkBoxFavorite.Text = "お気に入り";
             this.checkBoxFavorite.UseVisualStyleBackColor = true;
@@ -73,9 +78,11 @@
             // checkBoxDateTime
             // 
             this.checkBoxDateTime.AutoSize = true;
-            this.checkBoxDateTime.Location = new System.Drawing.Point(36, 153);
+            this.checkBoxDateTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBoxDateTime.Location = new System.Drawing.Point(42, 200);
+            this.checkBoxDateTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBoxDateTime.Name = "checkBoxDateTime";
-            this.checkBoxDateTime.Size = new System.Drawing.Size(60, 16);
+            this.checkBoxDateTime.Size = new System.Drawing.Size(60, 22);
             this.checkBoxDateTime.TabIndex = 3;
             this.checkBoxDateTime.Text = "撮影日";
             this.checkBoxDateTime.UseVisualStyleBackColor = true;
@@ -83,19 +90,23 @@
             // comboBoxSelectKeyword
             // 
             this.comboBoxSelectKeyword.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxSelectKeyword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBoxSelectKeyword.FormattingEnabled = true;
-            this.comboBoxSelectKeyword.Location = new System.Drawing.Point(135, 58);
+            this.comboBoxSelectKeyword.Location = new System.Drawing.Point(157, 87);
+            this.comboBoxSelectKeyword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxSelectKeyword.Name = "comboBoxSelectKeyword";
-            this.comboBoxSelectKeyword.Size = new System.Drawing.Size(271, 20);
+            this.comboBoxSelectKeyword.Size = new System.Drawing.Size(315, 26);
             this.comboBoxSelectKeyword.TabIndex = 4;
             // 
             // radioButtonFavoriteTrue
             // 
             this.radioButtonFavoriteTrue.AutoSize = true;
             this.radioButtonFavoriteTrue.Checked = true;
-            this.radioButtonFavoriteTrue.Location = new System.Drawing.Point(135, 106);
+            this.radioButtonFavoriteTrue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radioButtonFavoriteTrue.Location = new System.Drawing.Point(157, 147);
+            this.radioButtonFavoriteTrue.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButtonFavoriteTrue.Name = "radioButtonFavoriteTrue";
-            this.radioButtonFavoriteTrue.Size = new System.Drawing.Size(41, 16);
+            this.radioButtonFavoriteTrue.Size = new System.Drawing.Size(49, 22);
             this.radioButtonFavoriteTrue.TabIndex = 5;
             this.radioButtonFavoriteTrue.TabStop = true;
             this.radioButtonFavoriteTrue.Text = "あり";
@@ -104,51 +115,59 @@
             // radioButtonFavoriteFalse
             // 
             this.radioButtonFavoriteFalse.AutoSize = true;
-            this.radioButtonFavoriteFalse.Location = new System.Drawing.Point(247, 106);
+            this.radioButtonFavoriteFalse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radioButtonFavoriteFalse.Location = new System.Drawing.Point(288, 147);
+            this.radioButtonFavoriteFalse.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButtonFavoriteFalse.Name = "radioButtonFavoriteFalse";
-            this.radioButtonFavoriteFalse.Size = new System.Drawing.Size(42, 16);
+            this.radioButtonFavoriteFalse.Size = new System.Drawing.Size(49, 22);
             this.radioButtonFavoriteFalse.TabIndex = 6;
             this.radioButtonFavoriteFalse.Text = "なし";
             this.radioButtonFavoriteFalse.UseVisualStyleBackColor = true;
             // 
             // dateTimePickerFirstDate
             // 
-            this.dateTimePickerFirstDate.Location = new System.Drawing.Point(135, 153);
+            this.dateTimePickerFirstDate.Location = new System.Drawing.Point(157, 200);
+            this.dateTimePickerFirstDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dateTimePickerFirstDate.Name = "dateTimePickerFirstDate";
-            this.dateTimePickerFirstDate.Size = new System.Drawing.Size(121, 19);
+            this.dateTimePickerFirstDate.Size = new System.Drawing.Size(140, 25);
             this.dateTimePickerFirstDate.TabIndex = 7;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(262, 157);
+            this.label2.Location = new System.Drawing.Point(304, 200);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(17, 12);
+            this.label2.Size = new System.Drawing.Size(20, 18);
             this.label2.TabIndex = 8;
             this.label2.Text = "～";
             // 
             // dateTimePickerLastDate
             // 
-            this.dateTimePickerLastDate.Location = new System.Drawing.Point(285, 153);
+            this.dateTimePickerLastDate.Location = new System.Drawing.Point(331, 200);
+            this.dateTimePickerLastDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dateTimePickerLastDate.Name = "dateTimePickerLastDate";
-            this.dateTimePickerLastDate.Size = new System.Drawing.Size(121, 19);
+            this.dateTimePickerLastDate.Size = new System.Drawing.Size(140, 25);
             this.dateTimePickerLastDate.TabIndex = 9;
             // 
             // ButtonFinishDecide
             // 
-            this.ButtonFinishDecide.Location = new System.Drawing.Point(181, 192);
+            this.ButtonFinishDecide.BackColor = System.Drawing.Color.White;
+            this.ButtonFinishDecide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonFinishDecide.Location = new System.Drawing.Point(213, 270);
+            this.ButtonFinishDecide.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ButtonFinishDecide.Name = "ButtonFinishDecide";
-            this.ButtonFinishDecide.Size = new System.Drawing.Size(75, 23);
+            this.ButtonFinishDecide.Size = new System.Drawing.Size(84, 34);
             this.ButtonFinishDecide.TabIndex = 10;
             this.ButtonFinishDecide.Text = "決定";
-            this.ButtonFinishDecide.UseVisualStyleBackColor = true;
+            this.ButtonFinishDecide.UseVisualStyleBackColor = false;
             this.ButtonFinishDecide.Click += new System.EventHandler(this.ButtonFinishDecideClick);
             // 
             // DetailSearchForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(449, 236);
+            this.BackColor = System.Drawing.Color.Moccasin;
+            this.ClientSize = new System.Drawing.Size(521, 344);
             this.Controls.Add(this.ButtonFinishDecide);
             this.Controls.Add(this.dateTimePickerLastDate);
             this.Controls.Add(this.label2);
@@ -160,8 +179,12 @@
             this.Controls.Add(this.checkBoxFavorite);
             this.Controls.Add(this.checkBoxKeyword);
             this.Controls.Add(this.label1);
+            this.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximumSize = new System.Drawing.Size(540, 392);
             this.Name = "DetailSearchForm";
-            this.Text = "DetailSearchForm";
+            this.Text = "絞り込み画面";
             this.ResumeLayout(false);
             this.PerformLayout();
 

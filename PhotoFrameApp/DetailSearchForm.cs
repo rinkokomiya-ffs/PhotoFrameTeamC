@@ -128,5 +128,7 @@ namespace PhotoFrameApp
             // コントローラに投げる
             return controller.ExecuteDetailSearch(photoList, keyword, isFavorite, firstDate, lastDate);
         }
+
+
     }
 }
