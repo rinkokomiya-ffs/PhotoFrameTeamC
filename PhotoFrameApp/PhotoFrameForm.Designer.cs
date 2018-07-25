@@ -30,8 +30,8 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.buttonReferenceFolder = new System.Windows.Forms.Button();
             this.buttonSearchKeyword = new System.Windows.Forms.Button();
+            this.buttonReferenceFolder = new System.Windows.Forms.Button();
             this.labelShowFolderPath = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.pictureBoxProcessing = new System.Windows.Forms.PictureBox();
@@ -97,8 +97,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.buttonReferenceFolder);
             this.groupBox1.Controls.Add(this.buttonSearchKeyword);
+            this.groupBox1.Controls.Add(this.buttonReferenceFolder);
             this.groupBox1.Controls.Add(this.labelShowFolderPath);
             this.groupBox1.Location = new System.Drawing.Point(33, 7);
             this.groupBox1.Name = "groupBox1";
@@ -107,25 +107,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "1. フォルダから写真一覧を表示";
             // 
-            // buttonReferenceFolder
-            // 
-            this.buttonReferenceFolder.Location = new System.Drawing.Point(6, 18);
-            this.buttonReferenceFolder.Name = "buttonReferenceFolder";
-            this.buttonReferenceFolder.Size = new System.Drawing.Size(75, 23);
-            this.buttonReferenceFolder.TabIndex = 3;
-            this.buttonReferenceFolder.Text = "フォルダ参照";
-            this.buttonReferenceFolder.UseVisualStyleBackColor = true;
-            this.buttonReferenceFolder.Click += new System.EventHandler(this.ButtonReferenceFolderClick);
-            // 
             // buttonSearchKeyword
             // 
-            this.buttonSearchKeyword.Location = new System.Drawing.Point(5, 46);
+            this.buttonSearchKeyword.Location = new System.Drawing.Point(6, 44);
             this.buttonSearchKeyword.Name = "buttonSearchKeyword";
-            this.buttonSearchKeyword.Size = new System.Drawing.Size(77, 23);
-            this.buttonSearchKeyword.TabIndex = 1;
+            this.buttonSearchKeyword.Size = new System.Drawing.Size(75, 25);
+            this.buttonSearchKeyword.TabIndex = 3;
             this.buttonSearchKeyword.Text = "検索";
             this.buttonSearchKeyword.UseVisualStyleBackColor = true;
             this.buttonSearchKeyword.Click += new System.EventHandler(this.ButtonSearchFolderClick);
+            // 
+            // buttonReferenceFolder
+            // 
+            this.buttonReferenceFolder.Location = new System.Drawing.Point(6, 16);
+            this.buttonReferenceFolder.Name = "buttonReferenceFolder";
+            this.buttonReferenceFolder.Size = new System.Drawing.Size(75, 25);
+            this.buttonReferenceFolder.TabIndex = 1;
+            this.buttonReferenceFolder.Text = "フォルダ参照";
+            this.buttonReferenceFolder.UseVisualStyleBackColor = true;
+            this.buttonReferenceFolder.Click += new System.EventHandler(this.ButtonReferenceFolderClick);
             // 
             // labelShowFolderPath
             // 
@@ -437,11 +437,11 @@
         private System.Windows.Forms.ColumnHeader columnHeader_Keyword;
         private System.Windows.Forms.ColumnHeader columnHeader_Favorite;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button buttonSearchKeyword;
+        private System.Windows.Forms.Button buttonReferenceFolder;
         private System.Windows.Forms.TextBox textBoxRegistKeyword;
         private System.Windows.Forms.Label labelKeywordName;
         private System.Windows.Forms.Button buttonSlideShow;
-        private System.Windows.Forms.Button buttonReferenceFolder;
+        private System.Windows.Forms.Button buttonSearchKeyword;
         private System.Windows.Forms.Label labelShowFolderPath;
         private System.Windows.Forms.Button ButtonDetailSearch;
         private System.Windows.Forms.ComboBox comboBoxChangeKeyword;

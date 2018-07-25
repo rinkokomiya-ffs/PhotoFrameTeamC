@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -181,21 +182,21 @@ namespace PhotoFrameApp
             this.StopMusic();
         }
 
-        private void ButtonSearchMusicFile_Click(object sender, EventArgs e)
+        private void ButtonSearchMusicFileClick(object sender, EventArgs e)
         {
             // ダイアログを開く
-            // FolderBrowserDialogクラスのインスタンスを作成
-            OpenFileDialog fbd = new OpenFileDialog();
+            OpenFileDialog ofd = new OpenFileDialog();
 
-            fbd.Filter = "(*.wav) | *.wav";
+            ofd.Filter = "(*.wav) | *.wav";
 
             //ダイアログで決定ボタンを選択される
-            if (fbd.ShowDialog(this) == DialogResult.OK)
+            if (ofd.ShowDialog(this) == DialogResult.OK)
             {
-                // ラベルにフォルダパスを表示
-                labelShowMusicFilePath.Text = fbd.FileName;
+                // ラベルに音楽ファイルパスを表示
+                labelShowMusicFilePath.Text = Path.GetFileName(ofd.FileName);
+
                 // パスを格納
-                musicFile = fbd.FileName;
+                musicFile = ofd.FileName;
 
                 // 再生する
                 checkBoxPlayMusic.Enabled = true;
