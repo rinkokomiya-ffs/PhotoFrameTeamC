@@ -69,7 +69,6 @@ namespace PhotoFrame.Domain.UseCase
         private DateTime? GetDateTime(string filePath)
         {
             //読み込む
-
             var image = IsValidImage(filePath);
   
             // 有効データでない場合初期値を返す
