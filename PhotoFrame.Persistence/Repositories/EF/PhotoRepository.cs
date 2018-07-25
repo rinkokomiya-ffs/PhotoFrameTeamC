@@ -42,7 +42,7 @@ namespace PhotoFrame.Persistence.EF
         {
             var photo = PhotoToTable(entity);
 
-            using (var photoFrameEntity = new PhotoFrameTeamCEntities2())
+            using (var photoFrameEntity = new PhotoFrameTeamCEntities())
             {
                 // トランザクション作成
                 using (var transaction = photoFrameEntity.Database.BeginTransaction())
@@ -85,7 +85,7 @@ namespace PhotoFrame.Persistence.EF
             var m_photos = new List<m_Photo>();
 
             // KeywordのFindAllでDBへアクセスするため、 一度DBのデータを格納して接続切る
-            using (var photoFrameEntity = new PhotoFrameTeamCEntities2())
+            using (var photoFrameEntity = new PhotoFrameTeamCEntities())
             {
                 m_photos = photoFrameEntity.m_Photo.ToList();
             }

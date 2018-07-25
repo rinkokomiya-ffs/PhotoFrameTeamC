@@ -205,5 +205,7 @@ namespace PhotoFrameApp
                 PlayMusic();
             }
         }
+
+
     }
 }
