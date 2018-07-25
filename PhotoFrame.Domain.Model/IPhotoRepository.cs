@@ -11,10 +11,5 @@ namespace PhotoFrame.Domain.Model
     /// </summary>
     public interface IPhotoRepository : IRepository<Photo>
     {
-        /// <summary>
-        /// 存在しなければ追加する
-        /// </summary>
-        /// <param name="photos">Photoのコレクション</param>
-        void StoreIfNotExists(IEnumerable<Photo> photos);
     }
 }

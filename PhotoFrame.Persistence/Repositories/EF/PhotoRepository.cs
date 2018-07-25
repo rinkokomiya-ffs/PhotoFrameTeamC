@@ -22,16 +22,6 @@ namespace PhotoFrame.Persistence.EF
             _sqlProviderServices = sqlProviderServices;
         }
 
-        public bool Exists(Photo entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool ExistsBy(string id)
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// 
         /// </summary>
@@ -42,11 +32,6 @@ namespace PhotoFrame.Persistence.EF
 
         public Photo Find(Func<IQueryable<Photo>, Photo> query)
             => query(FindAll());
-
-        public Photo FindBy(string id)
-        {
-            throw new NotImplementedException();
-        }
 
         /// <summary>
         /// 
@@ -150,9 +135,5 @@ namespace PhotoFrame.Persistence.EF
             return m_photo;
         }
 
-        public void StoreIfNotExists(IEnumerable<Photo> photos)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
