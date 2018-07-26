@@ -92,8 +92,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1014, 730);
-            this.splitContainer1.SplitterDistance = 123;
+            this.splitContainer1.Size = new System.Drawing.Size(1014, 830);
+            this.splitContainer1.SplitterDistance = 139;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -167,8 +167,8 @@
             this.splitContainer2.Panel2.Controls.Add(this.groupBox4);
             this.splitContainer2.Panel2.Controls.Add(this.groupBox3);
             this.splitContainer2.Panel2.Controls.Add(this.groupBox2);
-            this.splitContainer2.Size = new System.Drawing.Size(1014, 601);
-            this.splitContainer2.SplitterDistance = 459;
+            this.splitContainer2.Size = new System.Drawing.Size(1014, 685);
+            this.splitContainer2.SplitterDistance = 523;
             this.splitContainer2.SplitterWidth = 6;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -178,7 +178,7 @@
             this.pictureBoxProcessing.Location = new System.Drawing.Point(38, 0);
             this.pictureBoxProcessing.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBoxProcessing.Name = "pictureBoxProcessing";
-            this.pictureBoxProcessing.Size = new System.Drawing.Size(530, 460);
+            this.pictureBoxProcessing.Size = new System.Drawing.Size(530, 519);
             this.pictureBoxProcessing.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxProcessing.TabIndex = 3;
             this.pictureBoxProcessing.TabStop = false;
@@ -215,7 +215,7 @@
             this.listViewPhotoList.Location = new System.Drawing.Point(38, 0);
             this.listViewPhotoList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listViewPhotoList.Name = "listViewPhotoList";
-            this.listViewPhotoList.Size = new System.Drawing.Size(530, 456);
+            this.listViewPhotoList.Size = new System.Drawing.Size(530, 465);
             this.listViewPhotoList.TabIndex = 0;
             this.listViewPhotoList.UseCompatibleStateImageBehavior = false;
             this.listViewPhotoList.View = System.Windows.Forms.View.Details;
@@ -246,10 +246,10 @@
             this.panel1.Controls.Add(this.textBoxRegistKeyword);
             this.panel1.Controls.Add(this.labelKeywordName);
             this.panel1.Controls.Add(this.buttonCreateKeyword);
-            this.panel1.Location = new System.Drawing.Point(38, 476);
+            this.panel1.Location = new System.Drawing.Point(31, 473);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(597, 46);
+            this.panel1.Size = new System.Drawing.Size(537, 46);
             this.panel1.TabIndex = 0;
             // 
             // textBoxRegistKeyword
@@ -257,7 +257,7 @@
             this.textBoxRegistKeyword.Location = new System.Drawing.Point(143, 11);
             this.textBoxRegistKeyword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxRegistKeyword.Name = "textBoxRegistKeyword";
-            this.textBoxRegistKeyword.Size = new System.Drawing.Size(331, 25);
+            this.textBoxRegistKeyword.Size = new System.Drawing.Size(283, 25);
             this.textBoxRegistKeyword.TabIndex = 0;
             // 
             // labelKeywordName
@@ -273,7 +273,7 @@
             // 
             this.buttonCreateKeyword.BackColor = System.Drawing.Color.White;
             this.buttonCreateKeyword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCreateKeyword.Location = new System.Drawing.Point(482, 6);
+            this.buttonCreateKeyword.Location = new System.Drawing.Point(432, 6);
             this.buttonCreateKeyword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonCreateKeyword.Name = "buttonCreateKeyword";
             this.buttonCreateKeyword.Size = new System.Drawing.Size(100, 34);
@@ -453,12 +453,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Moccasin;
-            this.ClientSize = new System.Drawing.Size(1014, 730);
+            this.ClientSize = new System.Drawing.Size(1014, 830);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MaximumSize = new System.Drawing.Size(1030, 768);
+            this.MaximumSize = new System.Drawing.Size(1030, 868);
             this.Name = "PhotoFrameForm";
             this.Text = "Emograph ～マイストーリーは突然に～";
             this.splitContainer1.Panel1.ResumeLayout(false);
