@@ -92,8 +92,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1155, 858);
-            this.splitContainer1.SplitterDistance = 145;
+            this.splitContainer1.Size = new System.Drawing.Size(1014, 730);
+            this.splitContainer1.SplitterDistance = 123;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -106,7 +106,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(800, 112);
+            this.groupBox1.Size = new System.Drawing.Size(929, 112);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = " 1. フォルダから写真一覧を表示 ";
@@ -167,8 +167,8 @@
             this.splitContainer2.Panel2.Controls.Add(this.groupBox4);
             this.splitContainer2.Panel2.Controls.Add(this.groupBox3);
             this.splitContainer2.Panel2.Controls.Add(this.groupBox2);
-            this.splitContainer2.Size = new System.Drawing.Size(1155, 707);
-            this.splitContainer2.SplitterDistance = 541;
+            this.splitContainer2.Size = new System.Drawing.Size(1014, 601);
+            this.splitContainer2.SplitterDistance = 459;
             this.splitContainer2.SplitterWidth = 6;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -178,7 +178,7 @@
             this.pictureBoxProcessing.Location = new System.Drawing.Point(38, 0);
             this.pictureBoxProcessing.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBoxProcessing.Name = "pictureBoxProcessing";
-            this.pictureBoxProcessing.Size = new System.Drawing.Size(618, 522);
+            this.pictureBoxProcessing.Size = new System.Drawing.Size(530, 460);
             this.pictureBoxProcessing.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxProcessing.TabIndex = 3;
             this.pictureBoxProcessing.TabStop = false;
@@ -188,7 +188,7 @@
             // 
             this.labelPictureBox.AutoSize = true;
             this.labelPictureBox.Font = new System.Drawing.Font("メイリオ", 10F);
-            this.labelPictureBox.Location = new System.Drawing.Point(816, 220);
+            this.labelPictureBox.Location = new System.Drawing.Point(697, 220);
             this.labelPictureBox.Name = "labelPictureBox";
             this.labelPictureBox.Size = new System.Drawing.Size(178, 21);
             this.labelPictureBox.TabIndex = 2;
@@ -196,10 +196,10 @@
             // 
             // pictureBoxShowPicture
             // 
-            this.pictureBoxShowPicture.Location = new System.Drawing.Point(674, 0);
+            this.pictureBoxShowPicture.Location = new System.Drawing.Point(572, 1);
             this.pictureBoxShowPicture.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBoxShowPicture.Name = "pictureBoxShowPicture";
-            this.pictureBoxShowPicture.Size = new System.Drawing.Size(463, 460);
+            this.pictureBoxShowPicture.Size = new System.Drawing.Size(435, 445);
             this.pictureBoxShowPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxShowPicture.TabIndex = 1;
             this.pictureBoxShowPicture.TabStop = false;
@@ -215,7 +215,7 @@
             this.listViewPhotoList.Location = new System.Drawing.Point(38, 0);
             this.listViewPhotoList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listViewPhotoList.Name = "listViewPhotoList";
-            this.listViewPhotoList.Size = new System.Drawing.Size(618, 464);
+            this.listViewPhotoList.Size = new System.Drawing.Size(530, 456);
             this.listViewPhotoList.TabIndex = 0;
             this.listViewPhotoList.UseCompatibleStateImageBehavior = false;
             this.listViewPhotoList.View = System.Windows.Forms.View.Details;
@@ -224,17 +224,17 @@
             // columnHeader_PhotoPath
             // 
             this.columnHeader_PhotoPath.Text = "ファイルパス";
-            this.columnHeader_PhotoPath.Width = 283;
+            this.columnHeader_PhotoPath.Width = 265;
             // 
             // columnHeader_Keyword
             // 
             this.columnHeader_Keyword.Text = "キーワード";
-            this.columnHeader_Keyword.Width = 165;
+            this.columnHeader_Keyword.Width = 80;
             // 
             // columnHeader_Favorite
             // 
             this.columnHeader_Favorite.Text = "お気に入り";
-            this.columnHeader_Favorite.Width = 85;
+            this.columnHeader_Favorite.Width = 76;
             // 
             // columnHeader_Date
             // 
@@ -289,7 +289,7 @@
             this.groupBox4.Controls.Add(this.radioButtonDefault);
             this.groupBox4.Controls.Add(this.buttonSlideShow);
             this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox4.Location = new System.Drawing.Point(816, 18);
+            this.groupBox4.Location = new System.Drawing.Point(674, 8);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -353,11 +353,11 @@
             // 
             this.groupBox3.Controls.Add(this.ButtonDetailSearch);
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox3.Location = new System.Drawing.Point(510, 18);
+            this.groupBox3.Location = new System.Drawing.Point(470, 8);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox3.Size = new System.Drawing.Size(247, 120);
+            this.groupBox3.Size = new System.Drawing.Size(193, 120);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = " 3. 検索条件 ";
@@ -366,7 +366,7 @@
             // 
             this.ButtonDetailSearch.BackColor = System.Drawing.Color.White;
             this.ButtonDetailSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonDetailSearch.Location = new System.Drawing.Point(74, 50);
+            this.ButtonDetailSearch.Location = new System.Drawing.Point(46, 50);
             this.ButtonDetailSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ButtonDetailSearch.Name = "ButtonDetailSearch";
             this.ButtonDetailSearch.Size = new System.Drawing.Size(113, 34);
@@ -383,7 +383,7 @@
             this.groupBox2.Controls.Add(this.buttonChangeKeyword);
             this.groupBox2.Controls.Add(this.buttonToggleFavorite);
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox2.Location = new System.Drawing.Point(38, 18);
+            this.groupBox2.Location = new System.Drawing.Point(38, 7);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -453,12 +453,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Moccasin;
-            this.ClientSize = new System.Drawing.Size(1155, 858);
+            this.ClientSize = new System.Drawing.Size(1014, 730);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MaximumSize = new System.Drawing.Size(1171, 896);
+            this.MaximumSize = new System.Drawing.Size(1030, 768);
             this.Name = "PhotoFrameForm";
             this.Text = "Emograph ～マイストーリーは突然に～";
             this.splitContainer1.Panel1.ResumeLayout(false);
